@@ -29,6 +29,7 @@ export function Header() {
   const close = () => setIsMenuOpen(false)
 
   const navLinks = [
+    { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/team", label: "Team" },
     { href: "/services", label: "Services" },
@@ -66,8 +67,8 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-xl hover:bg-deep-navy/5 ${
-                  isScrolled ? "text-deep-navy" : "text-deep-navy"
+                className={`px-4 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-xl hover:bg-white/10 ${
+                  isScrolled ? "text-deep-navy" : "text-white"
                 }`}
               >
                 {link.label}
@@ -94,7 +95,7 @@ export function Header() {
               className={`lg:hidden flex h-12 w-12 items-center justify-center rounded-2xl border transition-all duration-300 ${
                 isScrolled
                   ? "border-slate-200 bg-white text-deep-navy shadow-sm"
-                  : "border-deep-navy/20 bg-white/50 backdrop-blur-md text-deep-navy"
+                  : "border-white/20 bg-white/10 backdrop-blur-md text-white"
               }`}
             >
               <Menu className="h-6 w-6" />
@@ -127,30 +128,30 @@ export function Header() {
               </button>
             </div>
 
-            <div className="flex-grow overflow-y-auto p-6">
-              <div className="space-y-2">
+            <div className="flex-grow overflow-y-auto px-6 py-4">
+              <div className="grid grid-cols-1 gap-2">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={close}
-                    className="flex items-center justify-between p-5 rounded-2xl bg-slate-50 text-xl font-black text-deep-navy uppercase tracking-tight transition-all active:scale-95"
+                    className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 text-[11px] font-bold text-deep-navy uppercase tracking-[0.2em] transition-all active:scale-95 border border-slate-100/50"
                   >
                     <span>{link.label}</span>
-                    <ChevronRight className="h-6 w-6 text-electric-blue" />
+                    <ChevronRight className="h-3.5 w-3.5 text-electric-blue" />
                   </Link>
                 ))}
               </div>
             </div>
 
-            <div className="p-6 bg-slate-50 border-t border-slate-100">
+            <div className="p-6 bg-slate-50 border-t border-slate-100 mt-auto">
               <Button
                 asChild
-                className="w-full h-16 rounded-2xl bg-deep-navy text-white font-bold text-xl shadow-xl"
+                className="w-full h-12 rounded-xl bg-deep-navy text-white font-bold text-base shadow-lg"
               >
                 <Link href="/portal" onClick={close}>Customer Portal</Link>
               </Button>
-              <p className="mt-6 text-center text-slate-400 text-sm font-medium uppercase tracking-widest">
+              <p className="mt-4 text-center text-slate-400 text-[10px] font-medium uppercase tracking-[0.3em]">
                 QK Coldstores (Marston) Ltd
               </p>
             </div>

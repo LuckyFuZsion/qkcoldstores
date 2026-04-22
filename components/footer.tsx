@@ -122,6 +122,35 @@ export function Footer() {
         </div>
       </div>
 
+      {/* Accreditations Bar */}
+      <div className="bg-white border-t border-slate-100 py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+            <Image
+              src="/brcgs-cert.svg"
+              alt="BRCGS Global Standard for Storage and Distribution"
+              width={120}
+              height={60}
+              className="h-16 w-auto object-contain"
+            />
+            <Image
+              src="/fsdf.jpg"
+              alt="FSDF - Food Storage & Distribution Federation"
+              width={120}
+              height={60}
+              className="h-16 w-auto object-contain"
+            />
+            <Image
+              src="/bfff.jpg"
+              alt="BFFF - British Frozen Food Federation"
+              width={120}
+              height={60}
+              className="h-16 w-auto object-contain"
+            />
+          </div>
+        </div>
+      </div>
+
       {/* Bottom Bar */}
       <div className="bg-slate-50 border-t border-slate-100 py-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

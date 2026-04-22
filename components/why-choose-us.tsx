@@ -76,7 +76,7 @@ export function WhyChooseUs() {
           >
             <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-slate-50">
               <img 
-                src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=2072" 
+                src="/portrait.png" 
                 alt="Temperature Controlled Cold Store Facility" 
                 className="w-full h-full object-cover"
               />

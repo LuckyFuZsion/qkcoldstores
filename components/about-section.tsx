@@ -26,7 +26,7 @@ export function AboutSection() {
           >
             <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
               <img
-                src="https://images.unsplash.com/photo-1504386106331-3e4e71712b38?q=80&w=1932"
+                src="/landscape.png"
                 alt="Industrial Cold Storage Racking"
                 className="w-full h-[500px] lg:h-[600px] object-cover"
               />
