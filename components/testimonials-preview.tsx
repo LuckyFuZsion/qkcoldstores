@@ -2,8 +2,9 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Star, ArrowRight } from "lucide-react"
+import { Star, ArrowRight, MessageSquare } from "lucide-react"
 import Link from "next/link"
+import { motion } from "framer-motion"
 import {
   Carousel,
   CarouselContent,
@@ -42,22 +43,38 @@ const testimonials = [
 
 export function TestimonialsPreview() {
   return (
-    <section className="py-24 bg-secondary/30">
+    <section className="py-24 md:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-electric-blue font-semibold text-sm uppercase tracking-wider">Testimonials</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-navy mt-3 mb-6 text-balance">
-            Trusted by Logistics Professionals
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-20"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-electric-blue/10 text-electric-blue text-xs font-black uppercase tracking-widest mb-6">
+            <MessageSquare className="w-4 h-4" />
+            Testimonials
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black text-deep-navy mt-3 mb-6 tracking-tight leading-none">
+            Trusted by <br />
+            <span className="text-electric-blue">Industry Leaders</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-xl text-slate-500 font-medium leading-relaxed">
             See what drivers and logistics partners say about their experience 
             at our Grantham facility.
           </p>
-        </div>
+        </motion.div>
 
         {/* Testimonials Carousel */}
-        <div className="max-w-5xl mx-auto px-12 mb-12">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-6xl mx-auto px-12 mb-20"
+        >
           <Carousel
             opts={{
               align: "start",
@@ -65,33 +82,33 @@ export function TestimonialsPreview() {
             }}
             className="w-full"
           >
-            <CarouselContent className="-ml-4 flex">
+            <CarouselContent className="-ml-6 flex">
               {testimonials.map((testimonial) => (
-                <CarouselItem key={testimonial.author} className="pl-4 md:basis-1/2 lg:basis-1/3 flex">
-                  <Card className="border-border/50 flex flex-col w-full">
-                    <CardContent className="p-6 flex flex-col h-full">
+                <CarouselItem key={testimonial.author} className="pl-6 md:basis-1/2 lg:basis-1/3 flex">
+                  <Card className="border-slate-100 flex flex-col w-full transition-all duration-500 hover:shadow-2xl hover:border-electric-blue/30 rounded-[2.5rem] bg-slate-50/50">
+                    <CardContent className="p-10 flex flex-col h-full">
                       {/* Stars section */}
-                      <div className="flex gap-1 mb-4 shrink-0">
+                      <div className="flex gap-1 mb-8 shrink-0">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-electric-blue text-electric-blue" />
+                          <Star key={i} className="h-5 w-5 fill-electric-blue text-electric-blue" />
                         ))}
                       </div>
                       
                       {/* Quote section */}
-                      <div className="flex-grow flex flex-col justify-center mb-6">
-                        <blockquote className="text-foreground text-sm leading-relaxed text-pretty italic">
+                      <div className="flex-grow flex flex-col justify-center mb-10">
+                        <blockquote className="text-deep-navy text-lg font-bold leading-relaxed text-pretty italic">
                           &quot;{testimonial.quote}&quot;
                         </blockquote>
                       </div>
                       
                       {/* Author section */}
-                      <div className="flex items-center gap-3 pt-4 border-t border-border/50 shrink-0">
-                        <div className="w-10 h-10 rounded-full bg-deep-navy flex items-center justify-center text-white font-bold text-sm shrink-0">
+                      <div className="flex items-center gap-4 pt-8 border-t border-slate-200 shrink-0">
+                        <div className="w-14 h-14 rounded-2xl bg-deep-navy flex items-center justify-center text-white font-black text-xl shrink-0 shadow-lg">
                           {testimonial.author.charAt(0)}
                         </div>
                         <div className="min-w-0">
-                          <div className="font-semibold text-foreground text-sm truncate">{testimonial.author}</div>
-                          <div className="text-muted-foreground text-[10px] uppercase tracking-wider truncate">
+                          <div className="font-black text-deep-navy text-lg truncate uppercase tracking-tight">{testimonial.author}</div>
+                          <div className="text-electric-blue text-xs font-black uppercase tracking-widest truncate">
                             {testimonial.company}
                           </div>
                         </div>
@@ -101,20 +118,26 @@ export function TestimonialsPreview() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="-left-12" />
-            <CarouselNext className="-right-12" />
+            <CarouselPrevious className="-left-12 w-12 h-12 rounded-2xl border-2 border-slate-100 bg-white text-deep-navy hover:bg-deep-navy hover:text-white transition-all shadow-xl" />
+            <CarouselNext className="-right-12 w-12 h-12 rounded-2xl border-2 border-slate-100 bg-white text-deep-navy hover:bg-deep-navy hover:text-white transition-all shadow-xl" />
           </Carousel>
-        </div>
+        </motion.div>
 
         {/* CTA */}
-        <div className="text-center">
-          <Button asChild variant="outline" size="lg" className="border-deep-navy text-deep-navy hover:bg-deep-navy hover:text-white">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-center"
+        >
+          <Button asChild size="lg" className="bg-deep-navy text-white hover:bg-black font-bold px-10 py-8 rounded-2xl shadow-2xl transition-all hover:-translate-y-1">
             <Link href="/testimonials">
-              Read More Reviews
-              <ArrowRight className="ml-2 h-5 w-5" />
+              Read All Reviews
+              <ArrowRight className="ml-2 h-6 w-6" />
             </Link>
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

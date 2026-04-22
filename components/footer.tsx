@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { MapPin, Phone, Mail, Clock, Facebook, Linkedin, Twitter } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, Facebook, Linkedin, Twitter, ArrowUpRight } from "lucide-react"
 
 const quickLinks = [
   { label: "About Us", href: "/about" },
@@ -10,75 +10,67 @@ const quickLinks = [
   { label: "Testimonials", href: "/testimonials" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact Us", href: "/contact" },
-  { label: "Customer Portal", href: "/portal" },
 ]
 
 const services = [
   "Bulk Cold Storage",
   "Blast Freezing",
-  "Distribution",
+  "Up-Tempering",
+  "Integrated Logistics",
+  "Export & Import",
   "Inventory Management",
-  "Cross-Docking",
-  "Order Fulfilment",
 ]
 
 export function Footer() {
   return (
-    <footer className="bg-deep-navy text-white">
+    <footer className="bg-white text-deep-navy border-t border-slate-100">
       {/* Main Footer */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
           {/* Company Info */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="flex items-center mb-6">
+          <div className="space-y-8">
+            <Link href="/" className="inline-block transition-transform hover:scale-105">
               <Image
                 src="/images/qk-logo.png"
                 alt="QK Coldstores"
-                width={140}
-                height={70}
+                width={160}
+                height={80}
                 className="h-14 w-auto"
               />
             </Link>
-            <p className="text-ice-blue/70 mb-6">
-              Grantham&apos;s premier temperature-controlled warehousing and 
-              logistics provider. Trusted by businesses across the East Midlands.
+            <p className="text-slate-500 text-lg font-medium leading-relaxed">
+              Premium temperature-controlled warehousing and value-added services for the food manufacturing sector.
             </p>
             {/* Social Links */}
-            <div className="flex gap-4">
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-electric-blue transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-electric-blue transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-electric-blue transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
+            <div className="flex gap-3">
+              {[
+                { icon: Facebook, label: "Facebook" },
+                { icon: Linkedin, label: "LinkedIn" },
+                { icon: Twitter, label: "Twitter" },
+              ].map((social) => (
+                <a 
+                  key={social.label}
+                  href="#" 
+                  className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-deep-navy hover:bg-electric-blue hover:text-white transition-all duration-300 shadow-sm"
+                  aria-label={social.label}
+                >
+                  <social.icon className="h-5 w-5" />
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-6">Quick Links</h3>
-            <ul className="space-y-3">
+            <h3 className="font-black text-xl uppercase tracking-tight mb-8">Company</h3>
+            <ul className="space-y-4">
               {quickLinks.map((link) => (
                 <li key={link.label}>
                   <Link 
                     href={link.href} 
-                    className="text-ice-blue/70 hover:text-electric-blue transition-colors"
+                    className="text-slate-500 hover:text-electric-blue font-bold flex items-center group transition-colors"
                   >
+                    <span className="mr-2 h-0.5 w-0 bg-electric-blue transition-all group-hover:w-4" />
                     {link.label}
                   </Link>
                 </li>
@@ -88,14 +80,15 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-bold text-lg mb-6">Our Services</h3>
-            <ul className="space-y-3">
+            <h3 className="font-black text-xl uppercase tracking-tight mb-8">Services</h3>
+            <ul className="space-y-4">
               {services.map((service) => (
                 <li key={service}>
                   <Link 
                     href="/services" 
-                    className="text-ice-blue/70 hover:text-electric-blue transition-colors"
+                    className="text-slate-500 hover:text-electric-blue font-bold flex items-center group transition-colors"
                   >
+                    <span className="mr-2 h-0.5 w-0 bg-electric-blue transition-all group-hover:w-4" />
                     {service}
                   </Link>
                 </li>
@@ -104,61 +97,43 @@ export function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h3 className="font-bold text-lg mb-6">Contact Us</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-electric-blue flex-shrink-0 mt-0.5" />
-                <span className="text-ice-blue/70">
-                  QK Cold Stores (Marston) Ltd<br />
-                  2 Toll Bar Road<br />
-                  Marston, Grantham<br />
-                  NG32 2HT
-                </span>
-              </li>
-              <li>
-                <a href="tel:+441234567890" className="flex items-center gap-3 text-ice-blue/70 hover:text-electric-blue transition-colors">
-                  <Phone className="h-5 w-5 text-electric-blue" />
-                  01234 567 890
-                </a>
-              </li>
-              <li>
-                <a href="mailto:info@qkcoldstores.co.uk" className="flex items-center gap-3 text-ice-blue/70 hover:text-electric-blue transition-colors">
-                  <Mail className="h-5 w-5 text-electric-blue" />
-                  info@qkcoldstores.co.uk
-                </a>
-              </li>
-              <li className="flex items-center gap-3 text-ice-blue/70">
-                <Clock className="h-5 w-5 text-electric-blue" />
-                24/7 Operations
-              </li>
-            </ul>
+          <div className="space-y-8">
+            <h3 className="font-black text-xl uppercase tracking-tight mb-8">Get in Touch</h3>
+            <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100 space-y-6">
+              <a href="tel:+441234567890" className="flex items-center gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-electric-blue shadow-sm group-hover:bg-electric-blue group-hover:text-white transition-all">
+                  <Phone className="h-5 w-5" />
+                </div>
+                <span className="font-black text-lg">01246 854999</span>
+              </a>
+              <a href="mailto:info@qkcoldstores.co.uk" className="flex items-center gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-electric-blue shadow-sm group-hover:bg-electric-blue group-hover:text-white transition-all">
+                  <Mail className="h-5 w-5" />
+                </div>
+                <span className="font-bold text-slate-600 break-all">enquiries@qkcoldstores.co.uk</span>
+              </a>
+              <div className="pt-4 border-t border-slate-200">
+                <Link href="/location" className="flex items-center justify-between font-black text-sm uppercase tracking-widest text-electric-blue hover:gap-2 transition-all">
+                  View Our Sites <ArrowUpRight className="h-5 w-5" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Area Coverage - SEO Section */}
-      <div className="border-t border-white/10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h4 className="font-semibold text-sm mb-3 text-ice-blue/80">Areas We Serve</h4>
-          <p className="text-ice-blue/60 text-sm leading-relaxed">
-            Providing cold storage and logistics services across <strong className="text-ice-blue/80">Grantham</strong>, <strong className="text-ice-blue/80">Marston</strong>, 
-            Newark, Sleaford, Stamford, Melton Mowbray, Bourne, and the wider <strong className="text-ice-blue/80">East Midlands</strong> region 
-            including Lincolnshire, Nottinghamshire, Leicestershire, and Rutland. Nationwide distribution available.
-          </p>
-        </div>
-      </div>
-
-      {/* Copyright */}
-      <div className="border-t border-white/10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-ice-blue/60">
-            <p>&copy; {new Date().getFullYear()} QK Coldstores. All rights reserved.</p>
-            <div className="flex gap-6">
-              <Link href="/privacy" className="hover:text-electric-blue transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-electric-blue transition-colors">Terms of Service</Link>
-              <Link href="/cookies" className="hover:text-electric-blue transition-colors">Cookie Policy</Link>
+      {/* Bottom Bar */}
+      <div className="bg-slate-50 border-t border-slate-100 py-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-bold uppercase tracking-widest text-slate-400">
+              <Link href="/privacy" className="hover:text-deep-navy transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-deep-navy transition-colors">Terms of Service</Link>
+              <Link href="/cookies" className="hover:text-deep-navy transition-colors">Cookie Policy</Link>
             </div>
+            <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">
+              &copy; {new Date().getFullYear()} QK Coldstores (Marston) Ltd.
+            </p>
           </div>
         </div>
       </div>

@@ -1,48 +1,59 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
-import { Phone } from "lucide-react"
+import { Phone, ArrowRight, MessageSquare } from "lucide-react"
 import { ContactForm } from "@/components/contact-form"
+import { motion } from "framer-motion"
 
 export function CTASection() {
   return (
-    <section className="py-24 bg-deep-navy relative overflow-hidden">
-      {/* Background pattern removed */}
-
+    <section className="py-24 md:py-32 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
           {/* Left Column - Text */}
-          <div className="text-center lg:text-left">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-              Ready to Streamline Your Cold Chain?
-            </h2>
-            <p className="text-xl text-ice-blue/80 mb-8 text-pretty">
-              Contact us today to discuss your cold storage requirements. 
-              Our team is ready to create a tailored solution for your business.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-2 border-electric-blue text-electric-blue hover:bg-electric-blue hover:text-white font-semibold text-lg px-8 py-6 bg-transparent"
-              >
-                <a href="tel:+441234567890">
-                  <Phone className="mr-2 h-5 w-5" />
-                  01234 567 890
-                </a>
-              </Button>
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-electric-blue/10 text-electric-blue text-xs font-black uppercase tracking-widest mb-8">
+              <MessageSquare className="w-4 h-4" />
+              Contact Us
             </div>
-
-            <p className="text-ice-blue/60 text-sm">
-              24/7 Operations | BRC Accredited | Serving the East Midlands &amp; Beyond
+            <h2 className="text-4xl md:text-6xl font-black text-deep-navy mb-8 tracking-tight leading-[1.1]">
+              Contact Us to <br />
+              <span className="text-electric-blue text-glow">Discuss Your Requirements</span>
+            </h2>
+            <p className="text-xl text-slate-500 mb-10 leading-relaxed font-medium max-w-xl">
+              Our team of specialists is ready to create a tailored cold chain solution 
+              for your business. Reach out today for a consultation or a quote.
             </p>
-          </div>
+
+            <div className="space-y-6">
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-[1.25rem] bg-slate-50 flex items-center justify-center text-electric-blue shadow-sm border border-slate-100">
+                  <Phone className="w-8 h-8" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Call Our Team</p>
+                  <a href="tel:+441234567890" className="text-2xl font-black text-deep-navy hover:text-electric-blue transition-colors">01246 854999</a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Right Column - Contact Form */}
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10">
-            <h3 className="text-xl font-bold text-white mb-6">Send Us a Message</h3>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="bg-slate-50 rounded-[3rem] p-10 md:p-16 border border-slate-100 shadow-2xl relative"
+          >
+            <h3 className="text-3xl font-black text-deep-navy mb-8 tracking-tight">Submit an Enquiry</h3>
             <ContactForm variant="compact" />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

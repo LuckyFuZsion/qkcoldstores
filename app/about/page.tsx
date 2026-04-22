@@ -34,7 +34,7 @@ const values = [
 
 const stats = [
   { value: "25+", label: "Years Experience" },
-  { value: "50K+", label: "Pallet Capacity" },
+  { value: "30K+", label: "Pallet Capacity" },
   { value: "100+", label: "Active Clients" },
   { value: "24/7", label: "Operations" },
 ]
@@ -73,7 +73,7 @@ export default function AboutPage() {
                   that mission remains at the heart of everything we do.
                 </p>
                 <p>
-                  Today, we operate state-of-the-art facilities with over 50,000 pallet spaces, 
+                  Today, we operate state-of-the-art facilities with over 30,000 pallet spaces, 
                   serving clients ranging from local producers to major national retailers. 
                   Despite our growth, we&apos;ve never lost the personal touch that defines a family business.
                 </p>

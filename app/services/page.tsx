@@ -25,7 +25,7 @@ const services = [
     description: "Large-scale temperature-controlled warehousing with state-of-the-art monitoring systems maintaining optimal conditions 24/7.",
     features: [
       "Multi-temperature zones (-25°C to +15°C)",
-      "50,000+ pallet capacity",
+      "30,000+ pallet capacity",
       "Real-time temperature monitoring",
       "BRC accredited facilities",
     ],

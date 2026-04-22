@@ -29,43 +29,45 @@ export function Header() {
   const close = () => setIsMenuOpen(false)
 
   const navLinks = [
-    { href: "/about", label: "About Us" },
-    { href: "/team", label: "Meet the Team" },
-    { href: "/services", label: "What We Offer" },
+    { href: "/about", label: "About" },
+    { href: "/team", label: "Team" },
+    { href: "/services", label: "Services" },
     { href: "/location", label: "Location" },
-    { href: "/testimonials", label: "Testimonials" },
+    { href: "/testimonials", label: "Reviews" },
     { href: "/faq", label: "FAQ" },
-    { href: "/contact", label: "Contact Us" },
+    { href: "/contact", label: "Contact" },
   ]
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[1000] isolate pointer-events-auto transition-all duration-300 ${
-        isScrolled ? "bg-white/95 backdrop-blur-sm shadow-md" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ${
+        isScrolled 
+          ? "bg-white/90 backdrop-blur-xl border-b border-slate-100 py-4 shadow-sm" 
+          : "bg-transparent py-6"
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center transition-transform hover:scale-105 active:scale-95">
             <Image
               src="/images/qk-logo.png"
               alt="QK Coldstores"
-              width={120}
-              height={60}
-              className="h-12 w-auto"
+              width={160}
+              height={80}
+              className="h-12 md:h-14 w-auto"
               priority
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-electric-blue ${
-                  isScrolled ? "text-deep-navy" : "text-white"
+                className={`px-4 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-xl hover:bg-deep-navy/5 ${
+                  isScrolled ? "text-deep-navy" : "text-deep-navy"
                 }`}
               >
                 {link.label}
@@ -77,7 +79,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-4">
             <Button
               asChild
-              className="bg-electric-blue hover:bg-electric-blue/90 text-white font-semibold shadow-lg"
+              className="bg-deep-navy hover:bg-black text-white font-bold px-6 py-5 rounded-xl shadow-lg transition-all hover:-translate-y-0.5 active:translate-y-0"
             >
               <Link href="/portal">Customer Portal</Link>
             </Button>
@@ -89,15 +91,13 @@ export function Header() {
               type="button"
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open menu"
-              aria-expanded={false}
-              aria-controls="mobile-navigation"
-              className={`lg:hidden fixed top-4 right-4 z-[1003] flex h-12 w-12 items-center justify-center rounded-2xl border shadow-lg backdrop-blur-xl transition-all duration-200 touch-manipulation cursor-pointer ${
+              className={`lg:hidden flex h-12 w-12 items-center justify-center rounded-2xl border transition-all duration-300 ${
                 isScrolled
-                  ? "border-slate-200/80 bg-white/95 text-deep-navy hover:bg-white"
-                  : "border-white/20 bg-deep-navy/45 text-white hover:bg-deep-navy/60"
+                  ? "border-slate-200 bg-white text-deep-navy shadow-sm"
+                  : "border-deep-navy/20 bg-white/50 backdrop-blur-md text-deep-navy"
               }`}
             >
-              <Menu className="h-5 w-5" />
+              <Menu className="h-6 w-6" />
             </button>
           )}
         </div>
@@ -107,51 +107,52 @@ export function Header() {
       {isMenuOpen && (
         <div
           id="mobile-navigation"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Navigation menu"
-          className="lg:hidden fixed top-4 right-4 z-[1003] w-[min(22rem,calc(100vw-2rem))] max-h-[calc(100svh-2rem)] flex flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-2xl animate-in fade-in zoom-in-95 slide-in-from-top-right-2 duration-200"
+          className="lg:hidden fixed inset-0 z-[1001] bg-white animate-in fade-in duration-300"
         >
-            {/* Header stripe with close button */}
-          <div className="relative shrink-0 bg-gradient-to-br from-deep-navy via-deep-navy to-electric-blue px-5 pt-4 pb-4 text-white">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Menu</p>
-            <button
-              type="button"
-              onClick={close}
-              aria-label="Close menu"
-              className="absolute top-3 right-3 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-white/15 text-white backdrop-blur-sm touch-manipulation cursor-pointer hover:bg-white/25 transition-colors"
-            >
-              <X className="h-5 w-5" />
-            </button>
-          </div>
-
-          {/* Scrollable nav links */}
-          <div className="overflow-y-auto overscroll-contain p-3 border-none">
-            <div className="space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={close}
-                  className="flex items-center justify-between rounded-2xl px-4 py-3 text-base font-medium text-deep-navy transition-all hover:bg-slate-100 hover:text-electric-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue/40"
-                >
-                  <span>{link.label}</span>
-                  <ChevronRight className="h-4 w-4 text-slate-400" />
-                </Link>
-              ))}
+          <div className="flex flex-col h-full">
+            <div className="flex items-center justify-between p-6 border-b border-slate-100">
+              <Image
+                src="/images/qk-logo.png"
+                alt="QK Coldstores"
+                width={140}
+                height={70}
+                className="h-10 w-auto"
+              />
+              <button
+                type="button"
+                onClick={close}
+                className="h-12 w-12 flex items-center justify-center rounded-2xl bg-slate-50 text-deep-navy"
+              >
+                <X className="h-6 w-6" />
+              </button>
             </div>
 
-            <div className="mt-3 rounded-2xl bg-slate-50 p-3 border-none">
-              <p className="text-sm font-medium text-deep-navy">Need live account access?</p>
-              <p className="mt-1 text-sm text-slate-600">
-                Sign in to your customer portal for stock and account information.
-              </p>
+            <div className="flex-grow overflow-y-auto p-6">
+              <div className="space-y-2">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={close}
+                    className="flex items-center justify-between p-5 rounded-2xl bg-slate-50 text-xl font-black text-deep-navy uppercase tracking-tight transition-all active:scale-95"
+                  >
+                    <span>{link.label}</span>
+                    <ChevronRight className="h-6 w-6 text-electric-blue" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-6 bg-slate-50 border-t border-slate-100">
               <Button
                 asChild
-                className="mt-3 h-11 w-full rounded-xl bg-electric-blue text-white font-semibold shadow-sm hover:bg-electric-blue/90"
+                className="w-full h-16 rounded-2xl bg-deep-navy text-white font-bold text-xl shadow-xl"
               >
                 <Link href="/portal" onClick={close}>Customer Portal</Link>
               </Button>
+              <p className="mt-6 text-center text-slate-400 text-sm font-medium uppercase tracking-widest">
+                QK Coldstores (Marston) Ltd
+              </p>
             </div>
           </div>
         </div>

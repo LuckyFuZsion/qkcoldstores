@@ -83,7 +83,7 @@ export default function LocationPage() {
             Our Location
           </h1>
           <p className="text-xl text-ice-blue/80 max-w-2xl mx-auto text-pretty">
-            Strategically located in Marston, Grantham for optimal East Midlands coverage
+            Located directly adjacent to the A1, five miles north of Grantham in Lincolnshire
           </p>
         </div>
       </section>

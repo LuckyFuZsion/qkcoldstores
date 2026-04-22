@@ -55,7 +55,7 @@ const management = [
 const workforce = [
   {
     title: "WMS Operatives",
-    description: "Utilising the Empirica system to track over 50,000 pallets with precision.",
+    description: "Utilising the Empirica system to track over 30,000 pallets with precision.",
   },
   {
     title: "Blast Freezing Technicians",

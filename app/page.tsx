@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
+import { AboutSection } from "@/components/about-section"
 import { ServicesPreview } from "@/components/services-preview"
 import { WhyChooseUs } from "@/components/why-choose-us"
 import { TestimonialsPreview } from "@/components/testimonials-preview"
@@ -60,7 +61,7 @@ const jsonLd = {
         itemOffered: {
           "@type": "Service",
           name: "Bulk Cold Storage",
-          description: "Temperature-controlled warehousing with capacity for over 50,000 pallets",
+          description: "Temperature-controlled warehousing with capacity for over 30,000 pallets",
         },
       },
       {
@@ -106,6 +107,7 @@ export default function HomePage() {
       <main>
         <Header />
         <HeroSection />
+        <AboutSection />
         <ServicesPreview />
         <WhyChooseUs />
         <TestimonialsPreview />
