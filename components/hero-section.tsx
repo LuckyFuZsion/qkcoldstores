@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import { ChevronRight, ShieldCheck, Zap, Warehouse } from "lucide-react"
 import { motion } from "framer-motion"
 
@@ -73,7 +74,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto border-t border-white/10 pt-12 mt-12 mb-12"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto border-t border-white/10 pt-12 mt-12 mb-16"
           >
             {[
               { icon: ShieldCheck, title: "BRC-Approved", desc: "AA Standard Accredited" },
@@ -90,6 +91,36 @@ export function HeroSection() {
                 </div>
               </div>
             ))}
+          </motion.div>
+
+          {/* Accreditation Logos */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 hover:opacity-100 transition-opacity duration-500"
+          >
+            <Image
+              src="/brcgs-cert.svg"
+              alt="BRCGS"
+              width={80}
+              height={40}
+              className="h-10 w-auto brightness-0 invert"
+            />
+            <Image
+              src="/fsdf.jpg"
+              alt="FSDF"
+              width={80}
+              height={40}
+              className="h-10 w-auto brightness-0 invert"
+            />
+            <Image
+              src="/bfff.jpg"
+              alt="BFFF"
+              width={80}
+              height={40}
+              className="h-10 w-auto brightness-0 invert"
+            />
           </motion.div>
         </div>
       </div>
