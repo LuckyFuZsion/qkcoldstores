@@ -100,26 +100,20 @@ export function HeroSection() {
             transition={{ duration: 1, delay: 1 }}
             className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 hover:opacity-100 transition-opacity duration-500"
           >
-            <Image
+            <img
               src="/brcgs-cert.svg"
               alt="BRCGS"
-              width={80}
-              height={40}
-              className="h-10 w-auto brightness-0 invert"
+              className="h-12 w-auto brightness-0 invert"
             />
-            <Image
+            <img
               src="/fsdf.jpg"
               alt="FSDF"
-              width={80}
-              height={40}
-              className="h-10 w-auto brightness-0 invert"
+              className="h-12 w-auto brightness-0 invert mix-blend-screen"
             />
-            <Image
+            <img
               src="/bfff.jpg"
               alt="BFFF"
-              width={80}
-              height={40}
-              className="h-10 w-auto brightness-0 invert"
+              className="h-12 w-auto brightness-0 invert mix-blend-screen"
             />
           </motion.div>
         </div>
