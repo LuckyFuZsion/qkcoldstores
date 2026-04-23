@@ -40,69 +40,71 @@ export function Header() {
   ]
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ${
-        isScrolled 
-          ? "bg-white/90 backdrop-blur-xl border-b border-slate-100 py-4 shadow-sm" 
-          : "bg-transparent py-6"
-      }`}
-    >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center transition-transform hover:scale-105 active:scale-95">
-            <Image
-              src="/images/qk-logo.png"
-              alt="QK Coldstores"
-              width={160}
-              height={80}
-              className="h-12 md:h-14 w-auto"
-              priority
-            />
-          </Link>
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ${
+          isScrolled 
+            ? "bg-white/90 backdrop-blur-xl border-b border-slate-100 py-4 shadow-sm" 
+            : "bg-transparent py-6"
+        }`}
+      >
+        <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="flex items-center transition-transform hover:scale-105 active:scale-95">
+              <Image
+                src="/images/qk-logo.png"
+                alt="QK Coldstores"
+                width={160}
+                height={80}
+                className="h-12 md:h-14 w-auto"
+                priority
+              />
+            </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`px-4 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-xl hover:bg-white/10 ${
-                  isScrolled ? "text-deep-navy" : "text-white"
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-4 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-xl hover:bg-white/10 ${
+                    isScrolled ? "text-deep-navy" : "text-white"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex items-center gap-4">
+              <Button
+                asChild
+                className="bg-deep-navy hover:bg-black text-white font-bold px-6 py-5 rounded-xl shadow-lg transition-all hover:-translate-y-0.5 active:translate-y-0"
+              >
+                <Link href="/portal">Customer Portal</Link>
+              </Button>
+            </div>
+
+            {/* Mobile hamburger trigger */}
+            {!isMenuOpen && (
+              <button
+                type="button"
+                onClick={() => setIsMenuOpen(true)}
+                aria-label="Open menu"
+                className={`lg:hidden flex h-12 w-12 items-center justify-center rounded-2xl border transition-all duration-300 ${
+                  isScrolled
+                    ? "border-slate-200 bg-white text-deep-navy shadow-sm"
+                    : "border-white/20 bg-white/10 backdrop-blur-md text-white"
                 }`}
               >
-                {link.label}
-              </Link>
-            ))}
+                <Menu className="h-6 w-6" />
+              </button>
+            )}
           </div>
-
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-4">
-            <Button
-              asChild
-              className="bg-deep-navy hover:bg-black text-white font-bold px-6 py-5 rounded-xl shadow-lg transition-all hover:-translate-y-0.5 active:translate-y-0"
-            >
-              <Link href="/portal">Customer Portal</Link>
-            </Button>
-          </div>
-
-          {/* Mobile hamburger trigger */}
-          {!isMenuOpen && (
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen(true)}
-              aria-label="Open menu"
-              className={`lg:hidden flex h-12 w-12 items-center justify-center rounded-2xl border transition-all duration-300 ${
-                isScrolled
-                  ? "border-slate-200 bg-white text-deep-navy shadow-sm"
-                  : "border-white/20 bg-white/10 backdrop-blur-md text-white"
-              }`}
-            >
-              <Menu className="h-6 w-6" />
-            </button>
-          )}
-        </div>
-      </nav>
+        </nav>
+      </header>
 
       {/* Mobile menu panel */}
       {isMenuOpen && (
@@ -158,6 +160,6 @@ export function Header() {
           </div>
         </div>
       )}
-    </header>
+    </>
   )
 }
