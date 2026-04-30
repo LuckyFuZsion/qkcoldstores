@@ -13,7 +13,7 @@ const stats = [
 
 export function AboutSection() {
   return (
-    <section className="py-24 md:py-32 bg-slate-50 overflow-hidden">
+    <section className="py-24 md:py-32 bg-background overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           {/* Image side */}
@@ -24,7 +24,7 @@ export function AboutSection() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
+            <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card">
               <img
                 src="/landscape.png"
                 alt="Industrial Cold Storage Racking"
@@ -33,13 +33,13 @@ export function AboutSection() {
             </div>
             
             {/* Floating stats card */}
-            <div className="absolute -bottom-10 -right-10 bg-white rounded-[2rem] shadow-2xl p-10 hidden sm:block border border-slate-100">
+            <div className="absolute -bottom-10 -right-10 bg-card rounded-[2rem] shadow-2xl p-10 hidden sm:block border border-border">
               <div className="flex items-center gap-10">
                 {stats.map((stat) => (
                   <div key={stat.label} className="text-center">
                     <stat.icon className="h-8 w-8 text-electric-blue mx-auto mb-4" />
-                    <div className="text-3xl font-black text-deep-navy mb-1">{stat.value}</div>
-                    <div className="text-slate-400 text-xs font-bold uppercase tracking-widest">{stat.label}</div>
+                    <div className="text-3xl font-black text-foreground mb-1">{stat.value}</div>
+                    <div className="text-muted-foreground text-xs font-bold uppercase tracking-widest">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -54,17 +54,17 @@ export function AboutSection() {
             transition={{ duration: 0.8 }}
           >
             <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">About QK Coldstores</span>
-            <h2 className="text-4xl md:text-6xl font-black text-deep-navy mb-8 tracking-tight leading-[1.1]">
+            <h2 className="text-4xl md:text-6xl font-black text-foreground mb-8 tracking-tight leading-[1.1]">
               Your Trusted Cold <br />
               <span className="text-electric-blue">Chain Partner</span>
             </h2>
             
-            <p className="text-xl text-slate-600 mb-8 leading-relaxed font-medium">
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed font-medium">
               QK Cold Stores (Marston) Limited is located directly adjacent to the A1 five miles north of Grantham in Lincolnshire. 
               Our state-of-the-art facility serves businesses across the East Midlands and beyond.
             </p>
             
-            <p className="text-lg text-slate-500 mb-10 leading-relaxed">
+            <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
               Our facility includes 30,000 system controlled pallet storage locations, extensive blast freezing & tempering facilities, 
               and a dedicated chill storage area. We are container & overland import & export specialists, offering full vet services where required.
             </p>
@@ -80,7 +80,7 @@ export function AboutSection() {
                   <div className="w-6 h-6 rounded-full bg-electric-blue/10 flex items-center justify-center shrink-0">
                     <CheckCircle2 className="w-4 h-4 text-electric-blue" />
                   </div>
-                  <span className="text-deep-navy font-bold text-sm uppercase tracking-tight">{item}</span>
+                  <span className="text-foreground font-bold text-sm uppercase tracking-tight">{item}</span>
                 </div>
               ))}
             </div>

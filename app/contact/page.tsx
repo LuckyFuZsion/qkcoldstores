@@ -38,7 +38,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Content */}
-      <section className="py-24 md:py-32 bg-white overflow-hidden">
+      <section className="py-24 md:py-32 bg-ice-blue/20 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-20">
             {/* Contact Form */}
@@ -57,14 +57,14 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="space-y-8">
               {/* Address */}
-              <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-electric-blue/30 hover:bg-white hover:shadow-2xl transition-all duration-300 group">
+              <div className="p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group">
                 <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-deep-navy group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0">
+                  <div className="w-16 h-16 rounded-2xl bg-background flex items-center justify-center text-foreground group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0 border border-border">
                     <MapPin className="h-8 w-8" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-black text-deep-navy mb-2 tracking-tight uppercase group-hover:text-electric-blue transition-colors">Our Location</h3>
-                    <p className="text-slate-500 font-medium leading-relaxed">
+                    <h3 className="text-xl font-black text-foreground mb-2 tracking-tight uppercase group-hover:text-electric-blue transition-colors">Our Location</h3>
+                    <p className="text-muted-foreground font-medium leading-relaxed">
                       QK Cold Stores (Marston) Ltd<br />
                       2 Toll Bar Road<br />
                       Marston, Grantham<br />
@@ -75,20 +75,20 @@ export default function ContactPage() {
               </div>
 
               {/* Phone */}
-              <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-electric-blue/30 hover:bg-white hover:shadow-2xl transition-all duration-300 group">
+              <div className="p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group">
                 <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-deep-navy group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0">
+                  <div className="w-16 h-16 rounded-2xl bg-background flex items-center justify-center text-foreground group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0 border border-border">
                     <Phone className="h-8 w-8" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-black text-deep-navy mb-2 tracking-tight uppercase group-hover:text-electric-blue transition-colors">Phone</h3>
+                    <h3 className="text-xl font-black text-foreground mb-2 tracking-tight uppercase group-hover:text-electric-blue transition-colors">Phone</h3>
                     <a 
                       href="tel:+441234567890" 
-                      className="text-2xl font-black text-deep-navy hover:text-electric-blue transition-colors"
+                      className="text-2xl font-black text-foreground hover:text-electric-blue transition-colors"
                     >
                       01246 854999
                     </a>
-                    <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-2">
+                    <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest mt-2">
                       Available 24/7 for enquiries
                     </p>
                   </div>
@@ -96,20 +96,20 @@ export default function ContactPage() {
               </div>
 
               {/* Email */}
-              <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-electric-blue/30 hover:bg-white hover:shadow-2xl transition-all duration-300 group">
+              <div className="p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group">
                 <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-deep-navy group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0">
+                  <div className="w-16 h-16 rounded-2xl bg-background flex items-center justify-center text-foreground group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0 border border-border">
                     <Mail className="h-8 w-8" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-black text-deep-navy mb-2 tracking-tight uppercase group-hover:text-electric-blue transition-colors">Email</h3>
+                    <h3 className="text-xl font-black text-foreground mb-2 tracking-tight uppercase group-hover:text-electric-blue transition-colors">Email</h3>
                     <a 
-                      href="mailto:info@qkcoldstores.co.uk" 
-                      className="text-lg font-black text-deep-navy hover:text-electric-blue transition-colors break-all"
+                      href="mailto:enquiries@qkcoldstores.co.uk" 
+                      className="text-sm sm:text-base md:text-lg font-black text-foreground hover:text-electric-blue transition-colors break-words leading-tight"
                     >
                       enquiries@qkcoldstores.co.uk
                     </a>
-                    <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-2">
+                    <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest mt-2">
                       We respond within 24 hours
                     </p>
                   </div>
@@ -117,20 +117,20 @@ export default function ContactPage() {
               </div>
 
               {/* Hours */}
-              <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-electric-blue/30 hover:bg-white hover:shadow-2xl transition-all duration-300 group">
+              <div className="p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group">
                 <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-deep-navy group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0">
+                  <div className="w-16 h-16 rounded-2xl bg-background flex items-center justify-center text-foreground group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0 border border-border">
                     <Clock className="h-8 w-8" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-black text-deep-navy mb-2 tracking-tight uppercase group-hover:text-electric-blue transition-colors">Operating Hours</h3>
-                    <div className="text-slate-500 font-medium leading-relaxed">
+                    <h3 className="text-xl font-black text-foreground mb-2 tracking-tight uppercase group-hover:text-electric-blue transition-colors">Operating Hours</h3>
+                    <div className="text-muted-foreground font-medium leading-relaxed">
                       <div className="flex justify-between gap-4">
-                        <span className="font-bold text-deep-navy">Warehouse:</span>
+                        <span className="font-bold text-foreground">Warehouse:</span>
                         <span>24/7</span>
                       </div>
                       <div className="flex justify-between gap-4">
-                        <span className="font-bold text-deep-navy">Office:</span>
+                        <span className="font-bold text-foreground">Office:</span>
                         <span>Mon-Fri 8am-6pm</span>
                       </div>
                     </div>

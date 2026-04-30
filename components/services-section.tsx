@@ -40,7 +40,7 @@ export function ServicesSection() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-electric-blue font-semibold text-sm uppercase tracking-wider">Our Services</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-navy mt-3 mb-6 text-balance">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-6 text-balance">
             Comprehensive Cold Chain Solutions
           </h2>
           <p className="text-muted-foreground text-lg">
@@ -75,7 +75,7 @@ export function ServicesSection() {
                 }`}>
                   <service.icon className="h-7 w-7" />
                 </div>
-                <CardTitle className="text-xl font-bold text-deep-navy group-hover:text-electric-blue transition-colors">
+                <CardTitle className="text-xl font-bold text-foreground group-hover:text-electric-blue transition-colors">
                   {service.title}
                 </CardTitle>
                 <CardDescription className="text-muted-foreground">

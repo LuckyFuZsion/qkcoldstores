@@ -44,7 +44,7 @@ export function ServicesPreview() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
-    <section className="py-24 md:py-32 bg-slate-50 overflow-hidden">
+    <section className="py-24 md:py-32 bg-secondary overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
@@ -56,7 +56,7 @@ export function ServicesPreview() {
             className="max-w-3xl"
           >
             <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Our Services</span>
-            <h2 className="text-4xl md:text-6xl font-black text-deep-navy tracking-tight leading-none">
+            <h2 className="text-4xl md:text-6xl font-black text-foreground tracking-tight leading-none">
               Integrated Cold <br />
               <span className="text-electric-blue">Chain Solutions</span>
             </h2>
@@ -84,7 +84,7 @@ export function ServicesPreview() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card
-                className={`group relative h-full overflow-hidden border-none rounded-[2.5rem] transition-all duration-500 bg-white ${
+                className={`group relative h-full overflow-hidden border border-border rounded-[2.5rem] transition-all duration-500 bg-card ${
                   hoveredIndex === index 
                     ? "shadow-2xl -translate-y-2" 
                     : "shadow-lg"
@@ -96,16 +96,16 @@ export function ServicesPreview() {
                   <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-all duration-500 ${
                     hoveredIndex === index 
                       ? "bg-electric-blue text-white rotate-6 scale-110" 
-                      : "bg-ice-blue/50 text-deep-navy"
+                      : "bg-background text-foreground border border-border"
                   }`}>
                     <service.icon className="h-8 w-8" />
                   </div>
-                  <CardTitle className="text-2xl font-black text-deep-navy group-hover:text-electric-blue transition-colors uppercase tracking-tight leading-tight">
+                  <CardTitle className="text-2xl font-black text-foreground group-hover:text-electric-blue transition-colors uppercase tracking-tight leading-tight">
                     {service.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-10 pt-0">
-                  <CardDescription className="text-slate-500 text-lg font-medium leading-relaxed">
+                  <CardDescription className="text-muted-foreground text-lg font-medium leading-relaxed">
                     {service.description}
                   </CardDescription>
                   <div className="mt-8">

@@ -100,11 +100,11 @@ export default function LocationPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-24 md:py-32 bg-white overflow-hidden">
+      <section className="py-24 md:py-32 bg-background overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-20">
             {/* Map */}
-            <div className="relative h-[500px] lg:h-auto rounded-[3rem] overflow-hidden shadow-2xl border-8 border-slate-50">
+            <div className="relative h-[500px] lg:h-auto rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card bg-card">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2402.5!2d-0.6936068!3d52.9659668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4879dd0a5f3d5555%3A0x2b7a28f0c7a7e4c5!2sQK%20Cold%20Stores%20(Marston)%20Ltd!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
                 width="100%"
@@ -121,28 +121,28 @@ export default function LocationPage() {
             {/* Contact Cards */}
             <div className="space-y-8">
               <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Get in Touch</span>
-              <h2 className="text-4xl md:text-5xl font-black text-deep-navy mb-8 tracking-tight">Contact Information</h2>
+              <h2 className="text-4xl md:text-5xl font-black text-foreground mb-8 tracking-tight">Contact Information</h2>
               
               <div className="grid gap-6">
                 {contactInfo.map((item) => (
-                  <div key={item.label} className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-electric-blue/30 hover:bg-white hover:shadow-2xl transition-all duration-300 group">
+                  <div key={item.label} className="p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group">
                     <div className="flex items-start gap-6">
-                      <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-deep-navy group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0">
+                      <div className="w-16 h-16 rounded-2xl bg-background flex items-center justify-center text-foreground group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0 border border-border">
                         <item.icon className="h-8 w-8" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-black text-deep-navy mb-2 tracking-tight uppercase group-hover:text-electric-blue transition-colors">{item.label}</h3>
+                        <h3 className="text-xl font-black text-foreground mb-2 tracking-tight uppercase group-hover:text-electric-blue transition-colors">{item.label}</h3>
                         {item.href ? (
                           <a
                             href={item.href}
                             target={item.href.startsWith("http") ? "_blank" : undefined}
                             rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                            className="text-slate-500 font-medium hover:text-electric-blue transition-colors whitespace-pre-line leading-relaxed"
+                            className="text-muted-foreground font-medium hover:text-electric-blue transition-colors whitespace-pre-line leading-relaxed"
                           >
                             {item.value}
                           </a>
                         ) : (
-                          <p className="text-slate-500 font-medium whitespace-pre-line leading-relaxed">{item.value}</p>
+                          <p className="text-muted-foreground font-medium whitespace-pre-line leading-relaxed">{item.value}</p>
                         )}
                       </div>
                     </div>
@@ -165,24 +165,24 @@ export default function LocationPage() {
       </section>
 
       {/* Transport Links */}
-      <section className="py-24 md:py-32 bg-slate-50">
+      <section className="py-24 md:py-32 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Accessibility</span>
-            <h2 className="text-4xl md:text-5xl font-black text-deep-navy mb-6 tracking-tight">Getting Here</h2>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium">
+            <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6 tracking-tight">Getting Here</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
               Our facility is designed for easy access by all vehicle types.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {transportLinks.map((link) => (
-              <div key={link.title} className="p-8 rounded-[2rem] bg-white border border-slate-100 hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group text-center">
-                <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-deep-navy group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm mx-auto mb-6">
+              <div key={link.title} className="p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group text-center">
+                <div className="w-16 h-16 rounded-2xl bg-background flex items-center justify-center text-foreground group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm mx-auto mb-6 border border-border">
                   <link.icon className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-black text-deep-navy mb-4 tracking-tight uppercase group-hover:text-electric-blue transition-colors">{link.title}</h3>
-                <p className="text-slate-500 font-medium leading-relaxed">{link.description}</p>
+                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight uppercase group-hover:text-electric-blue transition-colors">{link.title}</h3>
+                <p className="text-muted-foreground font-medium leading-relaxed">{link.description}</p>
               </div>
             ))}
           </div>
@@ -190,12 +190,12 @@ export default function LocationPage() {
       </section>
 
       {/* Areas Served */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-24 md:py-32 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Service Area</span>
-            <h2 className="text-4xl md:text-5xl font-black text-deep-navy mb-6 tracking-tight">Areas We Serve</h2>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium">
+            <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6 tracking-tight">Areas We Serve</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
               Providing cold storage and logistics services across the East Midlands and beyond.
             </p>
           </div>
@@ -204,7 +204,7 @@ export default function LocationPage() {
             {areasServed.map((area) => (
               <span
                 key={area}
-                className="px-6 py-3 bg-slate-50 text-deep-navy border border-slate-100 rounded-2xl font-bold text-sm uppercase tracking-widest hover:border-electric-blue/30 transition-all"
+                className="px-6 py-3 bg-card text-foreground border border-border rounded-2xl font-bold text-sm uppercase tracking-widest hover:border-electric-blue/30 transition-all"
               >
                 {area}
               </span>
@@ -215,7 +215,7 @@ export default function LocationPage() {
           </div>
 
           <div className="text-center mt-16">
-            <Button asChild variant="outline" size="lg" className="border-2 border-deep-navy text-deep-navy hover:bg-deep-navy hover:text-white font-bold px-10 py-8 rounded-2xl transition-all">
+            <Button asChild variant="outline" size="lg" className="border-2 border-deep-navy text-foreground hover:bg-deep-navy hover:text-white font-bold px-10 py-8 rounded-2xl transition-all">
               <Link href="/services">
                 View Our Services
               </Link>

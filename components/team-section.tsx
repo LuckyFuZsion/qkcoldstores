@@ -74,7 +74,7 @@ export function TeamSection() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="text-electric-blue font-semibold text-sm uppercase tracking-wider">Our Team</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-navy mt-3 mb-6 text-balance">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-6 text-balance">
             The Experts Behind Your Cold Chain
           </h2>
           <p className="text-muted-foreground text-lg">
@@ -86,9 +86,9 @@ export function TeamSection() {
         {/* Ownership & Directors */}
         <div className="mb-24">
           <div className="flex items-center gap-4 mb-10">
-            <div className="h-px flex-1 bg-slate-200" />
-            <h3 className="text-2xl font-bold text-deep-navy">Ownership & Directors</h3>
-            <div className="h-px flex-1 bg-slate-200" />
+            <div className="h-px flex-1 bg-border" />
+            <h3 className="text-2xl font-bold text-electric-blue">Ownership & Directors</h3>
+            <div className="h-px flex-1 bg-border" />
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {ownership.map((member) => (
@@ -100,9 +100,9 @@ export function TeamSection() {
         {/* Local Management */}
         <div className="mb-24">
           <div className="flex items-center gap-4 mb-10">
-            <div className="h-px flex-1 bg-slate-200" />
-            <h3 className="text-2xl font-bold text-deep-navy">Local Management & Operations</h3>
-            <div className="h-px flex-1 bg-slate-200" />
+            <div className="h-px flex-1 bg-border" />
+            <h3 className="text-2xl font-bold text-electric-blue">Local Management & Operations</h3>
+            <div className="h-px flex-1 bg-border" />
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {management.map((member) => (
@@ -110,7 +110,7 @@ export function TeamSection() {
             ))}
           </div>
           <div className="mt-8 text-center bg-ice-blue/10 rounded-2xl p-6 border border-ice-blue/20 max-w-2xl mx-auto">
-            <p className="text-deep-navy font-medium">
+            <p className="text-foreground font-medium">
               Business Inquiry? <span className="text-muted-foreground font-normal">Darrell Swain is the primary point of contact for new storage or distribution inquiries.</span>
             </p>
           </div>
@@ -119,14 +119,14 @@ export function TeamSection() {
         {/* The Workforce */}
         <div>
           <div className="flex items-center gap-4 mb-10">
-            <div className="h-px flex-1 bg-slate-200" />
-            <h3 className="text-2xl font-bold text-deep-navy">Our Workforce</h3>
-            <div className="h-px flex-1 bg-slate-200" />
+            <div className="h-px flex-1 bg-border" />
+            <h3 className="text-2xl font-bold text-electric-blue">Our Workforce</h3>
+            <div className="h-px flex-1 bg-border" />
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {workforce.map((item) => (
-              <div key={item.title} className="bg-slate-50 rounded-3xl p-8 border border-slate-100 transition-all hover:shadow-md">
-                <h4 className="text-xl font-bold text-deep-navy mb-3">{item.title}</h4>
+              <div key={item.title} className="bg-card rounded-3xl p-8 border border-border transition-all hover:shadow-md">
+                <h4 className="text-xl font-bold text-foreground mb-3">{item.title}</h4>
                 <p className="text-muted-foreground leading-relaxed">{item.description}</p>
               </div>
             ))}
@@ -142,16 +142,16 @@ export function TeamSection() {
 
 function TeamMemberCard({ member }: { member: { name: string; role: string; bio: string } }) {
   return (
-    <Card className="group overflow-hidden border-slate-100 hover:border-electric-blue/30 transition-all duration-300 hover:shadow-xl rounded-3xl">
+    <Card className="group overflow-hidden border-border hover:border-electric-blue/30 transition-all duration-300 hover:shadow-xl rounded-3xl bg-card">
       <CardContent className="p-0">
-        <div className="relative aspect-[4/5] bg-slate-100 flex items-center justify-center overflow-hidden">
+        <div className="relative aspect-[4/5] bg-secondary flex items-center justify-center overflow-hidden">
           {/* Silhouette Placeholder */}
-          <User className="w-24 h-24 text-slate-300 transition-transform duration-500 group-hover:scale-110" />
+          <User className="w-24 h-24 text-muted-foreground/50 transition-transform duration-500 group-hover:scale-110" />
           <div className="absolute inset-0 bg-gradient-to-t from-deep-navy/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
         
         <div className="p-6">
-          <h3 className="text-lg font-bold text-deep-navy group-hover:text-electric-blue transition-colors leading-tight">
+          <h3 className="text-lg font-bold text-foreground group-hover:text-electric-blue transition-colors leading-tight">
             {member.name}
           </h3>
           <p className="text-electric-blue text-sm font-medium mt-1 mb-3">{member.role}</p>

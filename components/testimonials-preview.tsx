@@ -43,7 +43,7 @@ const testimonials = [
 
 export function TestimonialsPreview() {
   return (
-    <section className="py-24 md:py-32 bg-white overflow-hidden">
+    <section className="py-24 md:py-32 bg-secondary overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div 
@@ -57,11 +57,11 @@ export function TestimonialsPreview() {
             <MessageSquare className="w-4 h-4" />
             Testimonials
           </div>
-          <h2 className="text-4xl md:text-6xl font-black text-deep-navy mt-3 mb-6 tracking-tight leading-none">
+          <h2 className="text-4xl md:text-6xl font-black text-foreground mt-3 mb-6 tracking-tight leading-none">
             Trusted by <br />
             <span className="text-electric-blue">Industry Leaders</span>
           </h2>
-          <p className="text-xl text-slate-500 font-medium leading-relaxed">
+          <p className="text-xl text-muted-foreground font-medium leading-relaxed">
             See what drivers and logistics partners say about their experience 
             at our Grantham facility.
           </p>
@@ -85,7 +85,7 @@ export function TestimonialsPreview() {
             <CarouselContent className="-ml-6 flex">
               {testimonials.map((testimonial) => (
                 <CarouselItem key={testimonial.author} className="pl-6 md:basis-1/2 lg:basis-1/3 flex">
-                  <Card className="border-slate-100 flex flex-col w-full transition-all duration-500 hover:shadow-2xl hover:border-electric-blue/30 rounded-[2.5rem] bg-slate-50/50">
+                  <Card className="border-border flex flex-col w-full transition-all duration-500 hover:shadow-2xl hover:border-electric-blue/30 rounded-[2.5rem] bg-card">
                     <CardContent className="p-10 flex flex-col h-full">
                       {/* Stars section */}
                       <div className="flex gap-1 mb-8 shrink-0">
@@ -96,18 +96,18 @@ export function TestimonialsPreview() {
                       
                       {/* Quote section */}
                       <div className="flex-grow flex flex-col justify-center mb-10">
-                        <blockquote className="text-deep-navy text-lg font-bold leading-relaxed text-pretty italic">
+                        <blockquote className="text-foreground text-lg font-bold leading-relaxed text-pretty italic">
                           &quot;{testimonial.quote}&quot;
                         </blockquote>
                       </div>
                       
                       {/* Author section */}
-                      <div className="flex items-center gap-4 pt-8 border-t border-slate-200 shrink-0">
+                      <div className="flex items-center gap-4 pt-8 border-t border-border shrink-0">
                         <div className="w-14 h-14 rounded-2xl bg-deep-navy flex items-center justify-center text-white font-black text-xl shrink-0 shadow-lg">
                           {testimonial.author.charAt(0)}
                         </div>
                         <div className="min-w-0">
-                          <div className="font-black text-deep-navy text-lg truncate uppercase tracking-tight">{testimonial.author}</div>
+                          <div className="font-black text-foreground text-lg truncate uppercase tracking-tight">{testimonial.author}</div>
                           <div className="text-electric-blue text-xs font-black uppercase tracking-widest truncate">
                             {testimonial.company}
                           </div>
@@ -118,8 +118,8 @@ export function TestimonialsPreview() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="-left-12 w-12 h-12 rounded-2xl border-2 border-slate-100 bg-white text-deep-navy hover:bg-deep-navy hover:text-white transition-all shadow-xl" />
-            <CarouselNext className="-right-12 w-12 h-12 rounded-2xl border-2 border-slate-100 bg-white text-deep-navy hover:bg-deep-navy hover:text-white transition-all shadow-xl" />
+            <CarouselPrevious className="-left-12 w-12 h-12 rounded-2xl border-2 border-border bg-card text-foreground hover:bg-deep-navy hover:text-white transition-all shadow-xl" />
+            <CarouselNext className="-right-12 w-12 h-12 rounded-2xl border-2 border-border bg-card text-foreground hover:bg-deep-navy hover:text-white transition-all shadow-xl" />
           </Carousel>
         </motion.div>
 

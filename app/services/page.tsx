@@ -116,22 +116,22 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 md:py-32 bg-white overflow-hidden">
+      <section className="py-24 md:py-32 bg-background overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service) => (
               <div
                 key={service.title}
-                className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-electric-blue/30 hover:bg-white hover:shadow-2xl transition-all duration-300 group"
+                className="p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group"
               >
-                <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-deep-navy group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-background flex items-center justify-center text-foreground group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm mb-6 border border-border">
                   <service.icon className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-black text-deep-navy mb-4 tracking-tight uppercase group-hover:text-electric-blue transition-colors">{service.title}</h3>
-                <p className="text-slate-500 font-medium leading-relaxed mb-6">{service.description}</p>
+                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight uppercase group-hover:text-electric-blue transition-colors">{service.title}</h3>
+                <p className="text-muted-foreground font-medium leading-relaxed mb-6">{service.description}</p>
                 <ul className="space-y-3">
                   {service.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3 text-deep-navy font-bold text-sm">
+                    <li key={feature} className="flex items-start gap-3 text-foreground font-bold text-sm">
                       <div className="w-5 h-5 rounded-full bg-electric-blue/10 flex items-center justify-center shrink-0 mt-0.5">
                         <CheckCircle className="h-3 w-3 text-electric-blue" />
                       </div>
@@ -146,12 +146,12 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-slate-50">
+      <section className="py-24 md:py-32 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-6xl font-black text-deep-navy mb-8 tracking-tight leading-[1.1]">
+          <h2 className="text-4xl md:text-6xl font-black text-foreground mb-8 tracking-tight leading-[1.1]">
             Ready to <span className="text-electric-blue text-glow">Discuss Requirements?</span>
           </h2>
-          <p className="text-xl text-slate-500 mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
             Contact our team today for a tailored quote and discover how we can support your cold chain needs.
           </p>
           <Button asChild size="lg" className="bg-deep-navy text-white hover:bg-black font-bold px-10 py-8 rounded-2xl shadow-xl">

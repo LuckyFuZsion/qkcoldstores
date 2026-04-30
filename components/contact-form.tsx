@@ -21,6 +21,12 @@ interface ContactFormProps {
 export function ContactForm({ variant = "default" }: ContactFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const fieldClassName =
+    "bg-white text-deep-navy border-slate-200 placeholder:text-slate-400 focus-visible:border-electric-blue dark:bg-white dark:text-deep-navy dark:border-slate-200 dark:placeholder:text-slate-400"
+  const labelClassName = "text-deep-navy dark:text-deep-navy"
+  const compactFieldClassName =
+    "bg-white text-deep-navy border-slate-200 placeholder:text-slate-400 focus-visible:border-electric-blue dark:bg-white/10 dark:border-white/20 dark:text-white dark:placeholder:text-white/50"
+  const compactLabelClassName = "text-deep-navy dark:text-white"
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -59,36 +65,36 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="name-compact">Name</Label>
+            <Label htmlFor="name-compact" className={compactLabelClassName}>Name</Label>
             <Input
               id="name-compact"
               name="name"
               placeholder="Your name"
               required
-              className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-electric-blue"
+              className={compactFieldClassName}
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email-compact">Email</Label>
+            <Label htmlFor="email-compact" className={compactLabelClassName}>Email</Label>
             <Input
               id="email-compact"
               name="email"
               type="email"
               placeholder="your@email.com"
               required
-              className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-electric-blue"
+              className={compactFieldClassName}
             />
           </div>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="message-compact">Message</Label>
+          <Label htmlFor="message-compact" className={compactLabelClassName}>Message</Label>
           <Textarea
             id="message-compact"
             name="message"
             placeholder="Tell us about your cold storage needs..."
             rows={3}
             required
-            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-electric-blue resize-none"
+            className={`${compactFieldClassName} resize-none`}
           />
         </div>
         <Button 
@@ -113,50 +119,54 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid sm:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <Label htmlFor="name">Full Name *</Label>
+          <Label htmlFor="name" className={labelClassName}>Full Name *</Label>
           <Input
             id="name"
             name="name"
             placeholder="John Smith"
             required
+            className={fieldClassName}
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="company">Company Name</Label>
+          <Label htmlFor="company" className={labelClassName}>Company Name</Label>
           <Input
             id="company"
             name="company"
             placeholder="Your company"
+            className={fieldClassName}
           />
         </div>
       </div>
       
       <div className="grid sm:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <Label htmlFor="email">Email Address *</Label>
+          <Label htmlFor="email" className={labelClassName}>Email Address *</Label>
           <Input
             id="email"
             name="email"
             type="email"
             placeholder="john@company.com"
             required
+            className={fieldClassName}
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="phone">Phone Number</Label>
+          <Label htmlFor="phone" className={labelClassName}>Phone Number</Label>
           <Input
             id="phone"
             name="phone"
             type="tel"
             placeholder="01234 567 890"
+            className={fieldClassName}
           />
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="service">Service Interest</Label>
+        <Label htmlFor="service" className={labelClassName}>Service Interest</Label>
         <Select name="service">
-          <SelectTrigger>
+          <SelectTrigger className={fieldClassName}>
             <SelectValue placeholder="Select a service" />
           </SelectTrigger>
           <SelectContent>
@@ -172,14 +182,14 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="message">Your Message *</Label>
+        <Label htmlFor="message" className={labelClassName}>Your Message *</Label>
         <Textarea
           id="message"
           name="message"
           placeholder="Tell us about your cold storage requirements, volume expectations, or any questions you have..."
           rows={5}
           required
-          className="resize-none"
+          className={`${fieldClassName} resize-none`}
         />
       </div>
 

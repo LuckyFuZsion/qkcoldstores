@@ -30,7 +30,7 @@ const features = [
 
 export function WhyChooseUs() {
   return (
-    <section className="py-24 md:py-32 bg-white overflow-hidden">
+    <section className="py-24 md:py-32 bg-background overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
           <motion.div
@@ -40,11 +40,11 @@ export function WhyChooseUs() {
             transition={{ duration: 0.8 }}
           >
             <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Choice Partner</span>
-            <h2 className="text-4xl md:text-6xl font-black text-deep-navy mb-8 tracking-tight leading-[1.1]">
+            <h2 className="text-4xl md:text-6xl font-black text-foreground mb-8 tracking-tight leading-[1.1]">
               Cold Storage for the <br />
               <span className="text-electric-blue">Food Manufacturing Sector</span>
             </h2>
-            <p className="text-xl text-slate-600 mb-8 leading-relaxed font-medium">
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed font-medium">
               For over 25 years, we have been a trusted leader in temperature-controlled 
               storage solutions across the East Midlands. We help our food partners 
               not only fulfil their storage needs but also alleviate complexity in the cold chain.
@@ -56,7 +56,7 @@ export function WhyChooseUs() {
                 "Advanced Empirica stock management system",
                 "Strategically located adjacent to the A1"
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-deep-navy font-bold">
+                <li key={i} className="flex items-center gap-3 text-foreground font-bold">
                   <CheckCircle2 className="w-6 h-6 text-electric-blue shrink-0" />
                   <span>{item}</span>
                 </li>
@@ -74,7 +74,7 @@ export function WhyChooseUs() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-slate-50">
+            <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card">
               <img 
                 src="/portrait.png" 
                 alt="Temperature Controlled Cold Store Facility" 
@@ -90,10 +90,10 @@ export function WhyChooseUs() {
         </div>
 
         {/* Integrated Services Grid */}
-        <div className="pt-24 border-t border-slate-100">
+        <div className="pt-24 border-t border-border">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-5xl font-black text-deep-navy mb-6 tracking-tight">Integrated Cold Chain Services</h3>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium">
+            <h3 className="text-3xl md:text-5xl font-black text-foreground mb-6 tracking-tight">Integrated Cold Chain Services</h3>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
               We provide a complete solution for your temperature-sensitive products, 
               helping you shorten your cold chain and reduce risk.
             </p>
@@ -107,13 +107,13 @@ export function WhyChooseUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-electric-blue/30 hover:bg-white hover:shadow-2xl transition-all duration-300 group"
+                className="p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group"
               >
-                <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-deep-navy group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-background flex items-center justify-center text-foreground group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm mb-6 border border-border">
                   <feature.icon className="h-8 w-8" />
                 </div>
-                <h4 className="text-xl font-black text-deep-navy mb-4 tracking-tight uppercase group-hover:text-electric-blue transition-colors">{feature.title}</h4>
-                <p className="text-slate-500 font-medium leading-relaxed mb-6">{feature.description}</p>
+                <h4 className="text-xl font-black text-foreground mb-4 tracking-tight uppercase group-hover:text-electric-blue transition-colors">{feature.title}</h4>
+                <p className="text-muted-foreground font-medium leading-relaxed mb-6">{feature.description}</p>
                 <Link href="/services" className="inline-flex items-center gap-2 text-electric-blue font-bold text-sm group-hover:gap-3 transition-all">
                   LEARN MORE <ArrowRight className="w-4 h-4" />
                 </Link>

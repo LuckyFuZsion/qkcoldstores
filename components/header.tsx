@@ -4,11 +4,19 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, Menu, X } from "lucide-react"
+import { ChevronRight, Menu, Moon, Sun, X } from "lucide-react"
+import { useTheme } from "next-themes"
+import { Switch } from "@/components/ui/switch"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
@@ -42,11 +50,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ${
-          isScrolled 
-            ? "bg-white/90 backdrop-blur-xl border-b border-slate-100 py-4 shadow-sm" 
-            : "bg-transparent py-6"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 bg-white backdrop-blur-xl border-b border-slate-100 py-0 shadow-sm`}
       >
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
@@ -55,22 +59,20 @@ export function Header() {
               <Image
                 src="/images/qk-logo.png"
                 alt="QK Coldstores"
-                width={160}
-                height={80}
-                className="h-12 md:h-14 w-auto"
+                width={224}
+                height={112}
+                className="h-20 w-auto object-contain"
                 priority
               />
             </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => (
+              {navLinks.filter(link => link.label !== "Home").map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-xl hover:bg-white/10 ${
-                    isScrolled ? "text-deep-navy" : "text-white"
-                  }`}
+                  className={`px-4 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-xl hover:bg-slate-50 text-deep-navy`}
                 >
                   {link.label}
                 </Link>
@@ -79,6 +81,19 @@ export function Header() {
 
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-4">
+              <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+                <Sun className="h-4 w-4 text-slate-500" />
+                {mounted ? (
+                  <Switch
+                    aria-label="Toggle dark mode"
+                    checked={theme === "dark"}
+                    onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+                  />
+                ) : (
+                  <div className="h-[1.15rem] w-8 rounded-full bg-slate-200" aria-hidden="true" />
+                )}
+                <Moon className="h-4 w-4 text-slate-500" />
+              </div>
               <Button
                 asChild
                 className="bg-deep-navy hover:bg-black text-white font-bold px-6 py-5 rounded-xl shadow-lg transition-all hover:-translate-y-0.5 active:translate-y-0"
@@ -87,20 +102,32 @@ export function Header() {
               </Button>
             </div>
 
-            {/* Mobile hamburger trigger */}
+            {/* Mobile top bar actions */}
             {!isMenuOpen && (
-              <button
-                type="button"
-                onClick={() => setIsMenuOpen(true)}
-                aria-label="Open menu"
-                className={`lg:hidden flex h-12 w-12 items-center justify-center rounded-2xl border transition-all duration-300 ${
-                  isScrolled
-                    ? "border-slate-200 bg-white text-deep-navy shadow-sm"
-                    : "border-white/20 bg-white/10 backdrop-blur-md text-white"
-                }`}
-              >
-                <Menu className="h-6 w-6" />
-              </button>
+              <div className="lg:hidden flex items-center gap-3">
+                <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+                  <Sun className="h-4 w-4 text-slate-500" />
+                  {mounted ? (
+                    <Switch
+                      aria-label="Toggle dark mode"
+                      checked={theme === "dark"}
+                      onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+                    />
+                  ) : (
+                    <div className="h-[1.15rem] w-8 rounded-full bg-slate-200" aria-hidden="true" />
+                  )}
+                  <Moon className="h-4 w-4 text-slate-500" />
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setIsMenuOpen(true)}
+                  aria-label="Open menu"
+                  className={`flex h-12 w-12 items-center justify-center rounded-2xl border transition-all duration-300 border-slate-200 bg-white text-deep-navy shadow-sm`}
+                >
+                  <Menu className="h-6 w-6" />
+                </button>
+              </div>
             )}
           </div>
         </nav>
@@ -119,15 +146,30 @@ export function Header() {
                 alt="QK Coldstores"
                 width={140}
                 height={70}
-                className="h-10 w-auto"
+                className="h-10 w-auto object-contain"
               />
-              <button
-                type="button"
-                onClick={close}
-                className="h-12 w-12 flex items-center justify-center rounded-2xl bg-slate-50 text-deep-navy"
-              >
-                <X className="h-6 w-6" />
-              </button>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+                  <Sun className="h-4 w-4 text-slate-500" />
+                  {mounted ? (
+                    <Switch
+                      aria-label="Toggle dark mode"
+                      checked={theme === "dark"}
+                      onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+                    />
+                  ) : (
+                    <div className="h-[1.15rem] w-8 rounded-full bg-slate-200" aria-hidden="true" />
+                  )}
+                  <Moon className="h-4 w-4 text-slate-500" />
+                </div>
+                <button
+                  type="button"
+                  onClick={close}
+                  className="h-12 w-12 flex items-center justify-center rounded-2xl bg-slate-50 text-deep-navy border border-slate-200"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
             </div>
 
             <div className="flex-grow overflow-y-auto px-6 py-4">

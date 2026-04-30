@@ -30,16 +30,27 @@
   --deep-navy: oklch(0.22 0.04 255);
   --electric-blue: oklch(0.6 0.18 245);
   --ice-blue: oklch(0.92 0.03 230);
+  /* Logo accent (red) */
+  --logo-red: oklch(0.62 0.23 25);
 }
 
 .dark {
-  --background: oklch(0.12 0.02 255);
+  /* Dark default: deep navy surfaces with high contrast text */
+  --background: oklch(0.13 0.03 255);
   --foreground: oklch(0.98 0.01 230);
-  --card: oklch(0.15 0.02 255);
+  --card: oklch(0.16 0.03 255);
   --card-foreground: oklch(0.98 0.01 230);
   --primary: oklch(0.98 0.01 230);
   --primary-foreground: oklch(0.12 0.02 255);
-  --border: oklch(0.25 0.02 255);
+  /* Grey section panel (less blue, more neutral) */
+  --secondary: oklch(0.22 0.01 255);
+  --secondary-foreground: oklch(0.98 0.01 230);
+  --muted: oklch(0.22 0.01 255);
+  --muted-foreground: oklch(0.78 0.02 245);
+  --popover: oklch(0.16 0.03 255);
+  --popover-foreground: oklch(0.98 0.01 230);
+  --input: oklch(0.25 0.03 255);
+  --border: oklch(0.25 0.03 255);
 }
 
 @theme inline {
@@ -48,12 +59,20 @@
   --color-ice-blue: var(--ice-blue);
   --color-deep-navy: var(--deep-navy);
   --color-electric-blue: var(--electric-blue);
+  --color-logo-red: var(--logo-red);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-input: var(--input);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);

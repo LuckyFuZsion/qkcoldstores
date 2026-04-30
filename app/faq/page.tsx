@@ -39,17 +39,17 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Section */}
-      <div className="bg-white">
+      <div className="bg-background">
         <FAQSection />
       </div>
 
       {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-slate-50">
+      <section className="py-24 md:py-32 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-6xl font-black text-deep-navy mb-8 tracking-tight leading-[1.1]">
+          <h2 className="text-4xl md:text-6xl font-black text-foreground mb-8 tracking-tight leading-[1.1]">
             Still Have <span className="text-electric-blue text-glow">Questions?</span>
           </h2>
-          <p className="text-xl text-slate-500 mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
             Our team is happy to answer any questions you may have about our services.
           </p>
           <Button asChild size="lg" className="bg-deep-navy text-white hover:bg-black font-bold px-10 py-8 rounded-2xl shadow-xl">
