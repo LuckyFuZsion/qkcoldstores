@@ -60,32 +60,36 @@ const jsonLd = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Bulk Cold Storage",
-          description: "Temperature-controlled warehousing with capacity for over 30,000 pallets",
+          name: "Storage",
+          description:
+            "In excess of 250,000 sq ft of cold storage for frozen and chilled goods, with capacity for over 50,000 pallets.",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Blast Freezing",
-          description: "Rapid blast freezing services to preserve product quality",
+          name: "Blast Freezing & Tempering",
+          description:
+            "State-of-the-art blast freezing handling approximately 800 tonnes per week, plus controlled tempering services for safe, gradual thawing.",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Cold Chain Distribution",
-          description: "Temperature-controlled logistics across the East Midlands",
+          name: "Fresh Packing",
+          description:
+            "Fresh packing line averaging 300 tonnes per week, handling all protein products to customer specification.",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Inventory Management",
-          description: "Emperica stock management system with real-time visibility",
+          name: "Handling",
+          description:
+            "Specialised cold store handling including case picking, handballing, labelling and de-topping.",
         },
       },
     ],

@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Warehouse, Snowflake, Truck, ClipboardList, ArrowRight, Thermometer, ShieldCheck, Globe } from "lucide-react"
+import { Warehouse, Snowflake, Package, Boxes, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 import { motion } from "framer-motion"
@@ -10,33 +10,27 @@ import { motion } from "framer-motion"
 const services = [
   {
     icon: Warehouse,
-    title: "Temperature Controlled Storage",
-    description: "State-of-the-art facilities with 30,000 pallet locations across multiple temperature zones (-25°C to +5°C).",
+    title: "Storage",
+    description:
+      "In excess of 250,000 sq ft of cold storage for frozen and chilled goods, with capacity for over 50,000 pallets.",
   },
   {
     icon: Snowflake,
-    title: "Blast Freezing",
-    description: "Rapid core temperature reduction to preserve nutrients and texture for all food product types.",
+    title: "Blast Freezing & Tempering",
+    description:
+      "State-of-the-art blast freezing handling ~800 tonnes per week, plus controlled tempering for safe, gradual thawing.",
   },
   {
-    icon: Thermometer,
-    title: "Controlled Tempering",
-    description: "Specialized facilities to safely bring products to required ambient or chilled temperatures.",
+    icon: Package,
+    title: "Fresh Packing",
+    description:
+      "A fresh packing line growing from 60 to 300 tonnes per week, handling all protein products to customer specification.",
   },
   {
-    icon: ShieldCheck,
-    title: "Vet Services & Compliance",
-    description: "Full veterinary inspection support and BRC AA standard compliance for all export/import requirements.",
-  },
-  {
-    icon: Truck,
-    title: "Integrated Logistics",
-    description: "Comprehensive distribution network covering the East Midlands and UK-wide via our modern fleet.",
-  },
-  {
-    icon: Globe,
-    title: "Export & Import Services",
-    description: "Specialists in container and overland transport, managing complex international cold chain movements.",
+    icon: Boxes,
+    title: "Handling",
+    description:
+      "Specialised cold store handling including case picking, handballing, labelling and de-topping.",
   },
 ]
 
@@ -74,7 +68,7 @@ export function ServicesPreview() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <motion.div
               key={service.title}

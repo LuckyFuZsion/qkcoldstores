@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
+import { AnimatedHeading } from "@/components/animated-heading"
 import { Shield, Database, Eye, Lock, UserCheck, FileText, Mail, Clock } from "lucide-react"
 
 export const metadata = {
@@ -14,18 +15,24 @@ export default function PrivacyPolicyPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-deep-navy via-deep-navy/95 to-deep-navy/90">
+      <section className="pt-72 pb-36 bg-gradient-to-br from-deep-navy via-deep-navy/95 to-deep-navy/90">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-electric-blue/20 mb-6">
-              <Shield className="h-8 w-8 text-electric-blue" />
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 text-balance">
-              Privacy Policy
-            </h1>
-            <p className="text-xl text-ice-blue/80">
-              QK Cold Stores (Marston) Ltd.
-            </p>
+            <AnimatedHeading delay={0.1} duration={0.6}>
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-electric-blue/20 mb-6">
+                <Shield className="h-8 w-8 text-electric-blue" />
+              </div>
+            </AnimatedHeading>
+            <AnimatedHeading delay={0.2}>
+              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 text-balance">
+                Privacy Policy
+              </h1>
+            </AnimatedHeading>
+            <AnimatedHeading delay={0.4}>
+              <p className="text-xl text-ice-blue/80">
+                QK Cold Stores (Marston) Ltd.
+              </p>
+            </AnimatedHeading>
           </div>
         </div>
       </section>

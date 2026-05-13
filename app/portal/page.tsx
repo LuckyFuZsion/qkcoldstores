@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ClientPortalSection } from "@/components/client-portal-section"
+import { AnimatedHeading } from "@/components/animated-heading"
 
 export const metadata = {
   title: "Customer Portal | QK Coldstores",
@@ -13,14 +14,18 @@ export default function PortalPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-deep-navy to-deep-navy/90">
+      <section className="pt-72 pb-36 bg-gradient-to-b from-deep-navy to-deep-navy/90">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 text-balance">
-            Customer Portal
-          </h1>
-          <p className="text-xl text-ice-blue/80 max-w-2xl mx-auto text-pretty">
-            Access your inventory and manage your stock through our Emperica system
-          </p>
+          <AnimatedHeading delay={0.2}>
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 text-balance">
+              Customer Portal
+            </h1>
+          </AnimatedHeading>
+          <AnimatedHeading delay={0.4}>
+            <p className="text-xl text-ice-blue/80 max-w-2xl mx-auto text-pretty">
+              Access your inventory and manage your stock through our Emperica system
+            </p>
+          </AnimatedHeading>
         </div>
       </section>
 

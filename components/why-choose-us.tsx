@@ -1,30 +1,34 @@
 "use client"
 
-import { ShieldCheck, Snowflake, Clock, Award, CheckCircle2, ArrowRight } from "lucide-react"
+import { Warehouse, Snowflake, Package, Boxes, CheckCircle2, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 const features = [
   {
+    icon: Warehouse,
+    title: "Storage",
+    description:
+      "250,000+ sq ft of frozen and chilled cold storage with capacity for over 50,000 pallets.",
+  },
+  {
     icon: Snowflake,
-    title: "Blast Freezing",
-    description: "Rapid temperature reduction to lock in product freshness and extend shelf life.",
+    title: "Blast Freezing & Tempering",
+    description:
+      "~800 tonnes per week of blast freezing, plus controlled tempering for safe thawing.",
   },
   {
-    icon: ShieldCheck,
-    title: "Up-Tempering",
-    description: "Controlled tempering facilities to safely bring products to required temperatures.",
+    icon: Package,
+    title: "Fresh Packing",
+    description:
+      "300 tonnes per week of fresh packing, handling all protein products to customer spec.",
   },
   {
-    icon: Clock,
-    title: "24/7 Operations",
-    description: "Round-the-clock access and monitoring to meet the food sector's demands.",
-  },
-  {
-    icon: Award,
-    title: "BRC Accredited",
-    description: "Upholding the highest operational standards with AA standard accreditation.",
+    icon: Boxes,
+    title: "Handling",
+    description:
+      "Specialised handling including case picking, handballing, labelling and de-topping.",
   },
 ]
 
@@ -83,7 +87,7 @@ export function WhyChooseUs() {
             </div>
             {/* Floating Stat */}
             <div className="absolute -bottom-10 -left-10 bg-electric-blue p-8 rounded-[2rem] shadow-2xl text-white max-w-[200px]">
-              <div className="text-4xl font-black mb-1">30K+</div>
+              <div className="text-4xl font-black mb-1">50K+</div>
               <div className="text-sm font-bold uppercase tracking-wider opacity-80 leading-tight">Pallet Positions Available</div>
             </div>
           </motion.div>

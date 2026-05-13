@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
+import { AnimatedHeading } from "@/components/animated-heading"
 import { Star, Quote, MessageSquare, ShieldCheck, Zap, Award } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -90,7 +91,7 @@ export default function TestimonialsPage() {
       <Header />
       
       {/* Modern Hero */}
-      <section className="relative pt-40 pb-24 overflow-hidden bg-deep-navy">
+      <section className="relative pt-[22.5rem] pb-[13.5rem] overflow-hidden bg-deep-navy">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-electric-blue rounded-full blur-[120px] -mr-64 -mt-64" />
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-ice-blue rounded-full blur-[120px] -ml-64 -mb-64" />
@@ -98,17 +99,23 @@ export default function TestimonialsPage() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 text-ice-blue text-sm font-medium mb-6 animate-fade-in">
-              <MessageSquare className="w-4 h-4" />
-              <span>Real Feedback from the Road</span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">
-              What the Industry <span className="text-electric-blue text-glow">Says About Us</span>
-            </h1>
-            <p className="text-xl text-ice-blue/80 leading-relaxed max-w-2xl mx-auto text-pretty">
-              From independent drivers to national fleet managers, we've built our reputation on 
-              speed, safety, and professional service.
-            </p>
+            <AnimatedHeading delay={0.1} duration={0.6}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 text-ice-blue text-sm font-medium mb-6">
+                <MessageSquare className="w-4 h-4" />
+                <span>Real Feedback from the Road</span>
+              </div>
+            </AnimatedHeading>
+            <AnimatedHeading delay={0.2}>
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">
+                What the Industry <span className="text-electric-blue text-glow">Says About Us</span>
+              </h1>
+            </AnimatedHeading>
+            <AnimatedHeading delay={0.4}>
+              <p className="text-xl text-ice-blue/80 leading-relaxed max-w-2xl mx-auto text-pretty">
+                From independent drivers to national fleet managers, we&apos;ve built our reputation on
+                speed, safety, and professional service.
+              </p>
+            </AnimatedHeading>
           </div>
         </div>
       </section>

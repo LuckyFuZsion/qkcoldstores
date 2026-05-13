@@ -13,12 +13,10 @@ const quickLinks = [
 ]
 
 const services = [
-  "Bulk Cold Storage",
-  "Blast Freezing",
-  "Up-Tempering",
-  "Integrated Logistics",
-  "Export & Import",
-  "Inventory Management",
+  "Storage",
+  "Blast Freezing & Tempering",
+  "Fresh Packing",
+  "Handling",
 ]
 
 export function Footer() {
