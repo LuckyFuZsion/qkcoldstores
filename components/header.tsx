@@ -44,6 +44,7 @@ export function Header() {
     { href: "/location", label: "Location" },
     { href: "/testimonials", label: "Reviews" },
     { href: "/faq", label: "FAQ" },
+    { href: "/vacancies", label: "Vacancies" },
     { href: "/contact", label: "Contact" },
   ]
 

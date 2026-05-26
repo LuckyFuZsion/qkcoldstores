@@ -157,6 +157,28 @@ export default function PrivacyPolicyPage() {
                     </p>
                   </CardContent>
                 </Card>
+
+                <Card className="border-border/50">
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-foreground mb-3">Recruitment and Job Applications</h3>
+                    <p className="text-muted-foreground leading-relaxed mb-3">
+                      When you submit a job application or CV through our vacancies page, we collect personal information including 
+                      your name, email address, phone number, cover note, and your uploaded CV document. This information is used 
+                      solely for the purpose of evaluating your suitability for current or future roles at QK Cold Stores.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mb-3">
+                      Your recruitment data is stored securely for a maximum period of 6 months from the date of submission, 
+                      after which it is automatically and permanently deleted from our systems, including any uploaded documents.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      The legal basis for processing this data is your explicit consent, which is obtained at the point of submission. 
+                      You may request early deletion of your recruitment data at any time by contacting us at{" "}
+                      <a href="mailto:info@qkcoldstores.co.uk" className="text-electric-blue hover:underline">
+                        info@qkcoldstores.co.uk
+                      </a>.
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
             </div>
 
@@ -225,12 +247,16 @@ export default function PrivacyPolicyPage() {
                 <h2 className="text-2xl font-bold text-foreground">Data Retention</h2>
               </div>
               <div className="bg-secondary/30 rounded-xl p-6 border border-border/50">
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed mb-4">
                   We will only retain your personal data for as long as necessary to fulfil the purposes we collected it for, 
                   including for the purposes of satisfying any legal, accounting, or reporting requirements. To determine the 
                   appropriate retention period for personal data, we consider the amount, nature, and sensitivity of the personal data, 
                   the potential risk of harm from unauthorised use or disclosure of your personal data, the purposes for which we 
                   process your personal data and whether we can achieve those purposes through other means, and the applicable legal requirements.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">Recruitment data:</strong> CVs, personal details and cover notes submitted through our 
+                  vacancies page are retained for a maximum of 6 months from the date of submission and are then automatically deleted.
                 </p>
               </div>
             </div>

@@ -49,7 +49,7 @@ export function WhyChooseUs() {
               <span className="text-electric-blue">Food Manufacturing Sector</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed font-medium">
-              For over 25 years, we have been a trusted leader in temperature-controlled 
+              For over 30 years, we have been a trusted leader in temperature-controlled 
               storage solutions across the East Midlands. We help our food partners 
               not only fulfil their storage needs but also alleviate complexity in the cold chain.
             </p>
@@ -80,7 +80,7 @@ export function WhyChooseUs() {
           >
             <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card">
               <img 
-                src="/portrait.png" 
+                src="/images/qk-coldstores-2.webp" 
                 alt="Temperature Controlled Cold Store Facility" 
                 className="w-full h-full object-cover"
               />

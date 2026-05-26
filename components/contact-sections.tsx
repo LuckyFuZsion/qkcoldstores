@@ -55,17 +55,24 @@ const contactCards = [
   },
   {
     icon: Clock,
-    title: "Operating Hours",
+    title: "Opening Hours",
     content: (
-      <div className="text-muted-foreground font-medium leading-relaxed">
+      <div className="text-muted-foreground font-medium leading-relaxed space-y-1">
         <div className="flex justify-between gap-4">
-          <span className="font-bold text-foreground">Warehouse:</span>
-          <span>24/7</span>
+          <span className="font-bold text-foreground">Sun - Fri:</span>
+          <span>22:00 - 21:00</span>
         </div>
         <div className="flex justify-between gap-4">
-          <span className="font-bold text-foreground">Office:</span>
-          <span>Mon-Fri 8am-6pm</span>
+          <span className="font-bold text-foreground">Saturday:</span>
+          <span>06:00 - 12:00</span>
         </div>
+        <div className="flex justify-between gap-4">
+          <span className="font-bold text-foreground">Sunday:</span>
+          <span>06:00 - 12:00</span>
+        </div>
+        <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest mt-2">
+          Hours may vary on public holidays
+        </p>
       </div>
     ),
   },

@@ -9,6 +9,7 @@ const quickLinks = [
   { label: "Location", href: "/location" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "FAQ", href: "/faq" },
+  { label: "Vacancies", href: "/vacancies" },
   { label: "Contact Us", href: "/contact" },
 ]
 
@@ -120,6 +121,30 @@ export function Footer() {
                 </a>
               </li>
             </ul>
+
+            <div>
+              <h3 className="font-black text-xl uppercase tracking-tight mb-4 flex items-center gap-2">
+                <Clock className="w-5 h-5 text-electric-blue" />
+                Opening Hours
+              </h3>
+              <ul className="space-y-2 text-muted-foreground font-bold text-sm">
+                <li className="flex justify-between gap-4">
+                  <span>Sun - Fri</span>
+                  <span>22:00 - 21:00</span>
+                </li>
+                <li className="flex justify-between gap-4">
+                  <span>Saturday</span>
+                  <span>06:00 - 12:00</span>
+                </li>
+                <li className="flex justify-between gap-4">
+                  <span>Sunday</span>
+                  <span>06:00 - 12:00</span>
+                </li>
+              </ul>
+              <p className="text-muted-foreground text-xs mt-2">
+                Hours may vary on public holidays
+              </p>
+            </div>
           </div>
         </div>
       </div>

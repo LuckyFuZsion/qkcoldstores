@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 const stats = [
-  { icon: Clock, value: "25+", label: "Years Experience" },
-  { icon: Users, value: "500+", label: "Clients Served" },
-  { icon: Award, value: "AA", label: "BRC Standard" },
+  { icon: Clock, value: "30+", label: "Years Experience" },
+  { icon: Users, value: "40+", label: "Active Customers" },
+  { icon: Award, value: "30K+", label: "Pallet Capacity" },
 ]
 
 export function AboutSection() {
@@ -26,7 +26,7 @@ export function AboutSection() {
           >
             <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card">
               <img
-                src="/landscape.png"
+                src="/images/qk-coldstores-4.webp"
                 alt="Industrial Cold Storage Racking"
                 className="w-full h-[500px] lg:h-[600px] object-cover"
               />
@@ -53,28 +53,26 @@ export function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">About QK Coldstores</span>
+            <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">About QK Cold Stores</span>
             <h2 className="text-4xl md:text-6xl font-black text-foreground mb-8 tracking-tight leading-[1.1]">
-              Your Trusted Cold <br />
-              <span className="text-electric-blue">Chain Partner</span>
+              Providers of <br />
+              <span className="text-electric-blue">Temperature-Controlled Storage</span>
             </h2>
             
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed font-medium">
-              QK Cold Stores (Marston) Limited is located directly adjacent to the A1 five miles north of Grantham in Lincolnshire. 
-              Our state-of-the-art facility serves businesses across the East Midlands and beyond.
+              Providers of temperature-controlled storage services for an ever-growing food industry, with over 30 years of experience.
             </p>
             
             <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-              Our facility includes 30,000 system controlled pallet storage locations, extensive blast freezing & tempering facilities, 
-              and a dedicated chill storage area. We are container & overland import & export specialists, offering full vet services where required.
+              Our facility is strategically located on the outskirts of Grantham, in Lincolnshire. We offer a comprehensive range of services, including but not limited to storage, blast freezing and tempering, as well as fresh packing and order picking.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-12">
               {[
-                "BRC Accredited (AA Standard)",
-                "Soil Association Approved",
-                "Integrated Logistics Fleet",
-                "Advanced Inventory Tracking"
+                "BRCGS Accredited Storage and Distribution",
+                "Organic Certified",
+                "Red Tractor Approved",
+                "BRCGS Food Safety"
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-electric-blue/10 flex items-center justify-center shrink-0">

@@ -11,35 +11,35 @@ import {
 const faqs = [
   {
     question: "What temperature ranges do you offer for cold storage?",
-    answer: "We provide multi-temperature storage zones ranging from -25°C for deep-frozen products to +5°C for chilled goods. Each zone is independently monitored and controlled 24/7 to ensure optimal product preservation.",
+    answer: "We provide multi-temperature storage zones ranging from -25°C for blast-frozen products to +5°C for chilled goods. Each zone is independently monitored and controlled 24/7 to ensure optimal product preservation.",
   },
   {
-    question: "What accreditations and certifications does QK Coldstores hold?",
-    answer: "QK Coldstores is BRC Storage & Distribution accredited, ensuring the highest standards of food safety and quality. We also maintain HACCP certification and comply with all relevant food safety regulations.",
+    question: "What accreditations and certifications does QK Cold Stores hold?",
+    answer: "QK Cold Stores is BRC Storage & Distribution accredited, ensuring the highest standards of food safety and quality. We also maintain HACCP certification and comply with all relevant food safety regulations. We are also accredited to BRCGS Food Safety and START! Standard.",
   },
   {
-    question: "How does the Emperica stock management system work?",
-    answer: "Emperica is our advanced inventory management platform that provides real-time stock visibility, FIFO/FEFO management, batch tracking, and comprehensive reporting. Clients can access their inventory data 24/7 through our secure online portal.",
+    question: "How does the Empirica stock management system work?",
+    answer: "Empirica is our advanced inventory management platform that provides real-time stock visibility, FIFO/FEFO management, batch tracking, and comprehensive reporting. Clients can access their inventory data 24/7 through our secure online portal.",
   },
   {
     question: "What is your blast freezing capacity?",
-    answer: "Our blast freezing facility can rapidly reduce product temperatures to -25°C or below, preserving quality and extending shelf life. We handle a variety of products including fresh produce, prepared foods, and seafood with batch tracking throughout the process.",
+    answer: "Our blast freezing facility can rapidly reduce product temperatures to -25°C or below, preserving quality and extending shelf life. We handle a variety of products including fresh produce, prepared foods and drinks with batch tracking throughout the process, which are validated.",
   },
   {
-    question: "Which areas do you cover for distribution?",
-    answer: "Our primary service area covers the East Midlands, including Lincolnshire, Nottinghamshire, Leicestershire, and surrounding counties. We also offer nationwide distribution through our partner network for larger shipments.",
+    question: "What is your pallet capacity?",
+    answer: "We have on site four blast freezers, with a total pallet space of 344.",
   },
   {
-    question: "What security measures are in place at your facility?",
-    answer: "Our Marston facility features 24/7 CCTV monitoring, controlled access systems, perimeter fencing, and on-site security personnel. All staff undergo thorough background checks and receive regular training on security protocols.",
-  },
-  {
-    question: "How do I become a client of QK Coldstores?",
-    answer: "Simply contact us through our website or call our commercial team. We'll arrange a facility visit, discuss your specific requirements, and provide a tailored proposal. We offer flexible contract arrangements to suit businesses of all sizes.",
+    question: "How do I become a customer of QK Cold Stores?",
+    answer: "Simply contact us through our website or call our commercial team. We'll arrange a facility visit, discuss your specific requirements, and provide a tailored proposal. We offer flexible contract arrangements to suit businesses of all sizes. Please contact info@qkcoldstores.co.uk for further information.",
   },
   {
     question: "Do you offer short-term or seasonal storage options?",
     answer: "Yes, we understand that storage needs can fluctuate. We offer flexible arrangements including short-term contracts and seasonal storage options to accommodate peak periods, product launches, or temporary overflow requirements.",
+  },
+  {
+    question: "What time can we access the site?",
+    answer: "Our opening hours are: Sunday 22:00 - Friday 21:00, Saturday 06:00 - 12:00, Sunday 06:00 - 12:00. Hours do differentiate for public holidays, which customers are notified of in advance.",
   },
 ]
 

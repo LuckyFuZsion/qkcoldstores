@@ -29,9 +29,9 @@ const values = [
 ]
 
 const stats = [
-  { value: "25+", label: "Years Experience" },
+  { value: "30+", label: "Years Experience" },
   { value: "30K+", label: "Pallet Capacity" },
-  { value: "100+", label: "Active Clients" },
+  { value: "40+", label: "Active Customers" },
   { value: "24/7", label: "Operations" },
 ]
 
@@ -48,28 +48,29 @@ export function AboutSections() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Our History</span>
+              <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Our Story</span>
               <h2 className="text-4xl md:text-6xl font-black text-foreground mb-8 tracking-tight leading-[1.1]">
                 Our <span className="text-electric-blue">Story</span>
               </h2>
               <div className="space-y-6 text-xl text-muted-foreground font-medium leading-relaxed">
                 <p>
-                  Founded in Marston, near Grantham, QK Coldstores has grown from a small family operation
-                  into one of the East Midlands&apos; most trusted cold storage providers.
-                </p>
-                <p>
                   Our journey began with a simple mission: to provide reliable, high-quality
-                  temperature-controlled storage that businesses could depend on. Over 25 years later,
+                  temperature-controlled storage that businesses could depend on. Over 30 years later,
                   that mission remains at the heart of everything we do.
                 </p>
                 <p>
-                  Today, we operate state-of-the-art facilities with over 30,000 pallet spaces,
-                  serving clients ranging from local producers to major national retailers.
-                  Despite our growth, we&apos;ve never lost the personal touch that defines a family business.
+                  We have fostered enduring relationships with long term clients while continuously
+                  expanding our customer base. Our dedicated, hands-on team is deeply passionate
+                  about the industry and committed to delivering exceptional service.
+                </p>
+                <p>
+                  Our facility is strategically located on the outskirts of Grantham, in Lincolnshire.
+                  We offer a comprehensive range of services, including but not limited to storage,
+                  blast freezing and tempering, as well as fresh packing and order picking.
                 </p>
               </div>
               <div className="grid sm:grid-cols-2 gap-6 mt-12">
-                {["BRC Accredited Storage", "HACCP Certified", "Organic Certified", "Red Tractor Approved"].map((item, i) => (
+                {["BRCGS Accredited Storage and Distribution", "BRCGS Food Safety", "Organic Certified", "Red Tractor Approved"].map((item, i) => (
                   <motion.div
                     key={item}
                     initial={{ opacity: 0, y: 12 }}
