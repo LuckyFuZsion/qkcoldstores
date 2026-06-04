@@ -63,7 +63,7 @@ export function AboutSection() {
             </p>
             
             <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-              Our facility is strategically located on the outskirts of Grantham, in Lincolnshire. We offer a comprehensive range of services, including but not limited to storage, blast freezing and tempering, as well as packing opportunities and order picking.
+              Our facility is strategically located on the outskirts of Grantham adjacent to the A1, in Lincolnshire. We offer a comprehensive range of services, including but not limited to storage, blast freezing and tempering, as well as packing opportunities and order picking.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-12">

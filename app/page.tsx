@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { ServicesPreview } from "@/components/services-preview"
+import { EnvironmentPreview } from "@/components/environment-preview"
 import { WhyChooseUs } from "@/components/why-choose-us"
 import { TestimonialsPreview } from "@/components/testimonials-preview"
 import { LocationPreview } from "@/components/location-preview"
@@ -34,10 +35,21 @@ const jsonLd = {
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      opens: "00:00",
-      closes: "23:59",
-      description: "24/7 Operations",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sunday"],
+      opens: "22:00",
+      closes: "21:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "06:00",
+      closes: "12:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Sunday",
+      opens: "06:00",
+      closes: "12:00",
     },
   ],
   areaServed: [
@@ -62,7 +74,7 @@ const jsonLd = {
           "@type": "Service",
           name: "Storage",
           description:
-            "In excess of 250,000 sq ft of cold storage for frozen and chilled goods, with capacity for over 50,000 pallets.",
+            "In excess of 250,000 sq ft of cold storage for frozen, chilled and ambient goods, with capacity for over 50,000 pallets.",
         },
       },
       {
@@ -80,7 +92,7 @@ const jsonLd = {
           "@type": "Service",
           name: "Fresh Packing",
           description:
-            "Fresh packing line averaging 300 tonnes per week, handling all protein products to customer specification.",
+            "Since its inception in 2020, our fresh packing line has steadily grown to handling an average of 300 tonnes per week in 2026, handling all protein products to customer specification.",
         },
       },
       {
@@ -113,6 +125,7 @@ export default function HomePage() {
         <HeroSection />
         <AboutSection />
         <ServicesPreview />
+        <EnvironmentPreview />
         <WhyChooseUs />
         <TestimonialsPreview />
         <LocationPreview />

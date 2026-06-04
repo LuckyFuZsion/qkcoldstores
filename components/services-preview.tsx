@@ -24,7 +24,7 @@ const services = [
     icon: Package,
     title: "Fresh Packing",
     description:
-      "A fresh meat packing line which handles around 300 tonnes per week, handling all protein products to customer specification.",
+      "Since its inception in 2020, our fresh packing line has steadily grown to handling an average of 300 tonnes per week in 2026, handling all protein products to customer specification.",
   },
   {
     icon: Boxes,

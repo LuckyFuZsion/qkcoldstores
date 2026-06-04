@@ -19,7 +19,7 @@ const contactCards = [
   },
   {
     icon: Phone,
-    title: "Phone",
+    title: "Direct Line",
     content: (
       <>
         <a

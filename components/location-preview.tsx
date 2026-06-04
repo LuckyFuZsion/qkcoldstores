@@ -75,9 +75,9 @@ export function LocationPreview() {
             {/* Contact Info */}
             <div className="grid grid-cols-1 gap-6 mb-12">
               {[
-                { icon: MapPin, title: "Headquarters", text: "2 Toll Bar Road, Marston, Grantham, NG32 2HT" },
-                { icon: Phone, title: "Direct Line", text: "01400 259300" },
-                { icon: Mail, title: "Email", text: "info@qkcoldstores.co.uk" },
+                { icon: MapPin, title: "Headquarters", text: "2 Toll Bar Road, Marston, Grantham, NG32 2HT", href: null as string | null },
+                { icon: Phone, title: "Direct Line", text: "01400 259300", href: "tel:+441400259300" },
+                { icon: Mail, title: "Email", text: "info@qkcoldstores.co.uk", href: "mailto:info@qkcoldstores.co.uk" },
               ].map((item, i) => (
                 <motion.div 
                   key={i}
@@ -92,7 +92,16 @@ export function LocationPreview() {
                   </div>
                   <div>
                     <p className="text-xs font-black text-muted-foreground uppercase tracking-[0.2em] mb-1">{item.title}</p>
-                    <p className="text-lg font-bold text-foreground">{item.text}</p>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="text-lg font-bold text-foreground hover:text-electric-blue transition-colors break-all"
+                      >
+                        {item.text}
+                      </a>
+                    ) : (
+                      <p className="text-lg font-bold text-foreground">{item.text}</p>
+                    )}
                   </div>
                 </motion.div>
               ))}

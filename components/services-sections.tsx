@@ -18,12 +18,12 @@ const services = [
     icon: Warehouse,
     title: "Storage",
     description:
-      "QK Cold Stores provides in excess of 250,000 square feet of cold storage capacity for both frozen and chilled goods, with the ability to accommodate over 50,000 pallets simultaneously.",
+      "QK Cold Stores provides in excess of 250,000 square feet of cold storage capacity for frozen, chilled and ambient goods, with the ability to accommodate over 50,000 pallets simultaneously.",
     features: [
       "250,000+ sq ft of capacity",
       "50,000+ pallet positions",
-      "Frozen and chilled storage",
-      "24/7 temperature monitoring",
+      "Frozen, chilled and ambient storage",
+      "24/7 temperature auditable monitoring",
     ],
   },
   {

@@ -14,9 +14,9 @@ const contactInfo = [
   },
   {
     icon: Phone,
-    label: "Phone",
-    value: "01234 567 890",
-    href: "tel:+441234567890",
+    label: "Direct Line",
+    value: "01400 259300",
+    href: "tel:+441400259300",
   },
   {
     icon: Mail,
@@ -26,8 +26,8 @@ const contactInfo = [
   },
   {
     icon: Clock,
-    label: "Operations",
-    value: "24/7 Operations\nOffice: Mon-Fri 8am-6pm",
+    label: "Opening Hours",
+    value: "Sun - Fri: 22:00 - 21:00\nSaturday: 06:00 - 12:00\nSunday: 06:00 - 12:00\nHours may vary on public holidays",
     href: null,
   },
 ]

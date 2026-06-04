@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     question: "What is your blast freezing capacity?",
-    answer: "Our blast freezing facility can rapidly reduce product temperatures to -25°C or below, preserving quality and extending shelf life. We handle a variety of products including fresh produce, prepared foods and drinks with batch tracking throughout the process, which are validated. We have over 50,000 pallet capacity across our site.",
+    answer: "Our blast freezing facility can rapidly reduce product temperatures to -25°C or below, preserving quality and extending shelf life. We handle a variety of products including fresh produce, prepared foods and drinks with batch tracking throughout the process, which are validated. We have over 50K pallet capacity across our site.",
   },
   {
     question: "How do I become a customer of QK Cold Stores?",
