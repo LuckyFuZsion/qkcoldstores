@@ -16,7 +16,7 @@ const jsonLd = {
   name: "QK Cold Stores (Marston) Ltd",
   description: "Premium temperature-controlled warehousing, blast freezing, and distribution services in Grantham, Marston and the East Midlands.",
   url: "https://qkcoldstores.co.uk",
-  telephone: "+441234567890",
+  telephone: "+441400259300",
   email: "info@qkcoldstores.co.uk",
   address: {
     "@type": "PostalAddress",
@@ -71,7 +71,7 @@ const jsonLd = {
           "@type": "Service",
           name: "Blast Freezing & Tempering",
           description:
-            "State-of-the-art blast freezing handling approximately 800 tonnes per week, plus controlled tempering services for safe, gradual thawing.",
+            "Blast freezing handling approximately 800 tonnes per week, plus controlled rapid air tempering services for safe, gradual thawing.",
         },
       },
       {

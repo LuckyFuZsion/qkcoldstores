@@ -12,19 +12,19 @@ const services = [
     icon: Warehouse,
     title: "Storage",
     description:
-      "In excess of 250,000 sq ft of cold storage for frozen and chilled goods, with capacity for over 50,000 pallets.",
+      "In excess of 250,000 sq ft of cold storage for frozen, chilled and ambient goods, with capacity for over 50,000 pallets.",
   },
   {
     icon: Snowflake,
     title: "Blast Freezing & Tempering",
     description:
-      "State-of-the-art blast freezing handling ~800 tonnes per week, plus controlled tempering for safe, gradual thawing.",
+      "Blast freezing handling ~800 tonnes per week, plus controlled rapid air tempering for safe, gradual thawing.",
   },
   {
     icon: Package,
     title: "Fresh Packing",
     description:
-      "A fresh packing line growing from 60 to 300 tonnes per week, handling all protein products to customer specification.",
+      "A fresh meat packing line which handles around 300 tonnes per week, handling all protein products to customer specification.",
   },
   {
     icon: Boxes,
@@ -51,8 +51,8 @@ export function ServicesPreview() {
           >
             <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Our Services</span>
             <h2 className="text-4xl md:text-6xl font-black text-foreground tracking-tight leading-none">
-              Integrated Cold <br />
-              <span className="text-electric-blue">Chain Solutions</span>
+              Storage and <br />
+              <span className="text-electric-blue">Logistics</span>
             </h2>
           </motion.div>
           <motion.div

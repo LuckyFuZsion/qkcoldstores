@@ -37,7 +37,7 @@ export function CTASection() {
                 </div>
                 <div>
                   <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-1">Call Our Team</p>
-                  <a href="tel:+441234567890" className="text-2xl font-black text-foreground hover:text-electric-blue transition-colors">01246 854999</a>
+                  <a href="tel:+441400259300" className="text-2xl font-black text-foreground hover:text-electric-blue transition-colors">01400 259300</a>
                 </div>
               </div>
             </div>

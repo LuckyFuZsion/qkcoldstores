@@ -41,11 +41,6 @@ const extendedSupport: TeamMember[] = [
   { name: "Mark Austin", role: "Contract and Services Lead" },
 ]
 
-const workforceStats = [
-  { value: "100+", label: "Permanent Staff" },
-  { value: "40+", label: "Agency Personnel" },
-]
-
 export function TeamSection() {
   return (
     <section className="py-24 bg-background">
@@ -63,30 +58,9 @@ export function TeamSection() {
             The Experts Behind Your Cold Chain
           </h2>
           <p className="text-muted-foreground text-lg">
-            We employ more than 100 permanent staff members, supported by over 40 additional agency personnel.
-            Our Senior Leadership team is dedicated to supporting and guiding our workforce to ensure
-            continued success and growth.
+            We employ more than 120 employees at our site. Our Senior Leadership team is dedicated to supporting and guiding our workforce to ensure continued success and growth.
           </p>
         </motion.div>
-
-        {/* Workforce Stats */}
-        <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto mb-24">
-          {workforceStats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-card border border-border rounded-3xl p-8 text-center transition-all hover:shadow-md"
-            >
-              <div className="text-4xl sm:text-5xl font-black text-electric-blue mb-2">{stat.value}</div>
-              <div className="text-muted-foreground font-medium uppercase tracking-wider text-sm">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </div>
 
         <TeamGroup title="Senior Leadership Team" members={seniorLeadership} className="mb-24" />
         <TeamGroup title="Extended Leadership - Operational" members={extendedOperational} className="mb-24" />

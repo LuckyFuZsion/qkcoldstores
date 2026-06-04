@@ -76,8 +76,8 @@ export function LocationPreview() {
             <div className="grid grid-cols-1 gap-6 mb-12">
               {[
                 { icon: MapPin, title: "Headquarters", text: "2 Toll Bar Road, Marston, Grantham, NG32 2HT" },
-                { icon: Phone, title: "Direct Line", text: "01246 854999" },
-                { icon: Mail, title: "Enquiries", text: "enquiries@qkcoldstores.co.uk" },
+                { icon: Phone, title: "Direct Line", text: "01400 259300" },
+                { icon: Mail, title: "Email", text: "info@qkcoldstores.co.uk" },
               ].map((item, i) => (
                 <motion.div 
                   key={i}

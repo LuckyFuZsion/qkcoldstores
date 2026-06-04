@@ -2,27 +2,31 @@
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import { ChevronRight, ShieldCheck, Zap, Warehouse } from "lucide-react"
 import { motion } from "framer-motion"
 
 export function HeroSection() {
   return (
     <section className="relative min-h-[90svh] flex items-center justify-center overflow-hidden bg-deep-navy">
-      {/* Background with overlay */}
       <div className="absolute inset-0 z-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
-          style={{
-            backgroundImage: "url('/images/hero-bg.jpeg')",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-deep-navy/90 via-deep-navy/80 to-deep-navy/70 pointer-events-none" />
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <Image
+            src="/images/qk-logo.png"
+            alt=""
+            width={900}
+            height={450}
+            className="w-[min(85vw,720px)] h-auto opacity-[0.14] object-contain"
+            priority
+            aria-hidden
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-deep-navy/95 via-deep-navy/88 to-deep-navy/80 pointer-events-none" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         <div className="max-w-5xl mx-auto text-center">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -32,17 +36,17 @@ export function HeroSection() {
             <span className="text-electric-blue">Storage Solutions</span>
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-ice-blue/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed"
           >
-            Grantham&apos;s premier BRC-accredited facility providing 30,000 pallet locations, 
-            rapid blast freezing, and integrated logistics for the food sector.
+            Grantham&apos;s premier BRC-accredited facility providing 50,000+ pallet locations,
+            rapid blast freezing, and storage and logistics for the food sector.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -68,8 +72,7 @@ export function HeroSection() {
             </Button>
           </motion.div>
 
-          {/* Trust Badges - Magnavale Style */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
@@ -77,8 +80,8 @@ export function HeroSection() {
           >
             {[
               { icon: ShieldCheck, title: "BRC-Approved", desc: "AA Standard Accredited" },
-              { icon: Warehouse, title: "30K+ Pallets", desc: "System Controlled Locations" },
-              { icon: Zap, title: "Integrated Services", desc: "Blast Freezing & Logistics" },
+              { icon: Warehouse, title: "50,000+ Pallets", desc: "Cold Storage Capacity" },
+              { icon: Zap, title: "Storage and Logistics", desc: "Blast Freezing & More" },
             ].map((badge, i) => (
               <div key={i} className="flex items-center gap-4 text-left group">
                 <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center text-white group-hover:bg-electric-blue transition-all duration-300 shadow-sm">
