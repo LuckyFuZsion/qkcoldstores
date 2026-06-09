@@ -19,7 +19,7 @@ export function PageHero({
   bgOpacityClass = "opacity-30",
 }: PageHeroProps) {
   return (
-    <section className="relative min-h-[90svh] flex items-center justify-center overflow-hidden bg-deep-navy">
+    <section className="relative min-h-[90svh] flex items-center justify-center overflow-hidden bg-deep-navy pt-14 lg:pt-16">
       <div className="absolute inset-0 z-0">
         <div
           className={`absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none ${bgOpacityClass}`}
@@ -28,7 +28,7 @@ export function PageHero({
         <div className="absolute inset-0 bg-gradient-to-br from-deep-navy/90 via-deep-navy/80 to-deep-navy/70 pointer-events-none" />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20 text-center">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-12 text-center">
         {eyebrow ? (
           <motion.span
             initial={{ opacity: 0, y: 20 }}

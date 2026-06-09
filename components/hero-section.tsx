@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90svh] flex items-center justify-center overflow-hidden bg-deep-navy">
+    <section className="relative min-h-[90svh] flex items-center justify-center overflow-hidden bg-deep-navy pt-14 lg:pt-16">
       {/* Background with overlay */}
       <div className="absolute inset-0 z-0">
         <div 
@@ -20,7 +20,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-12">
         <div className="max-w-5xl mx-auto text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
