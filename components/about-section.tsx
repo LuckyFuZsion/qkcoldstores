@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 const stats = [
-  { icon: Clock, value: "30+", label: "Years Experience" },
-  { icon: Users, value: "40+", label: "Active Customers" },
-  { icon: Award, value: "30K+", label: "Pallet Capacity" },
+  { icon: Clock, value: "40+", label: "Years Experience" },
+  { icon: Users, value: "50+", label: "Active Customers" },
+  { icon: Award, value: "50,000+", label: "Pallet Capacity" },
 ]
 
 export function AboutSection() {
@@ -53,18 +53,17 @@ export function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">About QK Cold Stores</span>
             <h2 className="text-4xl md:text-6xl font-black text-foreground mb-8 tracking-tight leading-[1.1]">
               Providers of <br />
               <span className="text-electric-blue">Temperature-Controlled Storage</span>
             </h2>
             
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed font-medium">
-              Providers of temperature-controlled storage services for an ever-growing food industry, with over 30 years of experience.
+              Providers of temperature-controlled storage services for an ever-growing food industry, with over 40 years of experience.
             </p>
             
             <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-              Our facility is strategically located on the outskirts of Grantham, in Lincolnshire. We offer a comprehensive range of services, including but not limited to storage, blast freezing and tempering, as well as fresh packing and order picking.
+              Our facility is strategically located on the outskirts of Grantham adjacent to the A1, in Lincolnshire. We offer a comprehensive range of services, including but not limited to storage, blast freezing and tempering, as well as packing opportunities and order picking.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-12">

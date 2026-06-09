@@ -157,7 +157,7 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
             id="phone"
             name="phone"
             type="tel"
-            placeholder="01234 567 890"
+            placeholder="01400 259300"
             className={fieldClassName}
           />
         </div>

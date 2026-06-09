@@ -104,20 +104,20 @@ export function Footer() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="tel:+441246854999"
+                  href="tel:+441400259300"
                   className="text-muted-foreground hover:text-electric-blue font-bold flex items-center group transition-colors"
                 >
                   <span className="mr-2 h-0.5 w-0 bg-electric-blue transition-all group-hover:w-4" />
-                  01246 854999
+                  01400 259300
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:enquiries@qkcoldstores.co.uk"
+                  href="mailto:info@qkcoldstores.co.uk"
                   className="text-muted-foreground hover:text-electric-blue font-bold flex items-center group transition-colors"
                 >
                   <span className="mr-2 h-0.5 w-0 bg-electric-blue transition-all group-hover:w-4" />
-                  enquiries@qkcoldstores.co.uk
+                  info@qkcoldstores.co.uk
                 </a>
               </li>
             </ul>

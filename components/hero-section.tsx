@@ -38,8 +38,8 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-ice-blue/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed"
           >
-            Grantham&apos;s premier BRC-accredited facility providing 30,000 pallet locations, 
-            rapid blast freezing, and integrated logistics for the food sector.
+            Grantham&apos;s premier BRC-accredited facility providing 50,000+ pallet locations,
+            rapid blast freezing, and storage and logistics for the food sector.
           </motion.p>
 
           <motion.div 
@@ -77,8 +77,8 @@ export function HeroSection() {
           >
             {[
               { icon: ShieldCheck, title: "BRC-Approved", desc: "AA Standard Accredited" },
-              { icon: Warehouse, title: "30K+ Pallets", desc: "System Controlled Locations" },
-              { icon: Zap, title: "Integrated Services", desc: "Blast Freezing & Logistics" },
+              { icon: Warehouse, title: "50,000+ Pallets", desc: "Cold Storage Capacity" },
+              { icon: Zap, title: "Storage and Logistics", desc: "Blast Freezing & More" },
             ].map((badge, i) => (
               <div key={i} className="flex items-center gap-4 text-left group">
                 <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center text-white group-hover:bg-electric-blue transition-all duration-300 shadow-sm">

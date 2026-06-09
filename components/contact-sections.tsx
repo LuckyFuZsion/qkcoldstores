@@ -19,14 +19,14 @@ const contactCards = [
   },
   {
     icon: Phone,
-    title: "Phone",
+    title: "Direct Line",
     content: (
       <>
         <a
-          href="tel:+441246854999"
+          href="tel:+441400259300"
           className="text-2xl font-black text-foreground hover:text-electric-blue transition-colors"
         >
-          01246 854999
+          01400 259300
         </a>
         <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest mt-2">
           Available 24/7 for enquiries
@@ -40,10 +40,10 @@ const contactCards = [
     content: (
       <>
         <a
-          href="mailto:enquiries@qkcoldstores.co.uk"
+          href="mailto:info@qkcoldstores.co.uk"
           className="block w-full font-black text-foreground hover:text-electric-blue transition-colors leading-tight text-[clamp(0.8rem,2.6vw,1.125rem)] [overflow-wrap:anywhere] [word-break:break-all]"
         >
-          enquiries@qkcoldstores.co.uk
+          info@qkcoldstores.co.uk
         </a>
         <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest mt-2">
           We respond within 24 hours

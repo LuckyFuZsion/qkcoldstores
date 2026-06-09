@@ -10,19 +10,19 @@ const features = [
     icon: Warehouse,
     title: "Storage",
     description:
-      "250,000+ sq ft of frozen and chilled cold storage with capacity for over 50,000 pallets.",
+      "In excess of 250,000 sq ft of cold storage for frozen, chilled and ambient goods, with capacity for over 50,000 pallets.",
   },
   {
     icon: Snowflake,
     title: "Blast Freezing & Tempering",
     description:
-      "~800 tonnes per week of blast freezing, plus controlled tempering for safe thawing.",
+      "Blast freezing handling ~800 tonnes per week, plus controlled rapid air tempering for safe, gradual thawing.",
   },
   {
     icon: Package,
     title: "Fresh Packing",
     description:
-      "300 tonnes per week of fresh packing, handling all protein products to customer spec.",
+      "Since its inception in 2020, our fresh packing line has steadily grown to handling an average of 300 tonnes per week in 2026, handling all protein products to customer specification.",
   },
   {
     icon: Boxes,
@@ -49,7 +49,7 @@ export function WhyChooseUs() {
               <span className="text-electric-blue">Food Manufacturing Sector</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed font-medium">
-              For over 30 years, we have been a trusted leader in temperature-controlled 
+              For over 40 years, we have been a trusted leader in temperature-controlled 
               storage solutions across the East Midlands. We help our food partners 
               not only fulfil their storage needs but also alleviate complexity in the cold chain.
             </p>
@@ -58,7 +58,8 @@ export function WhyChooseUs() {
                 "BRC and Soil Association certified facilities",
                 "Members of the British Frozen Food Federation",
                 "Advanced Empirica stock management system",
-                "Strategically located adjacent to the A1"
+                "Strategically located adjacent to the A1",
+                "Red Tractor Approved"
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-foreground font-bold">
                   <CheckCircle2 className="w-6 h-6 text-electric-blue shrink-0" />
@@ -87,16 +88,16 @@ export function WhyChooseUs() {
             </div>
             {/* Floating Stat */}
             <div className="absolute -bottom-10 -left-10 bg-electric-blue p-8 rounded-[2rem] shadow-2xl text-white max-w-[200px]">
-              <div className="text-4xl font-black mb-1">50K+</div>
+              <div className="text-4xl font-black mb-1">50,000+</div>
               <div className="text-sm font-bold uppercase tracking-wider opacity-80 leading-tight">Pallet Positions Available</div>
             </div>
           </motion.div>
         </div>
 
-        {/* Integrated Services Grid */}
+        {/* Storage and Logistics Grid */}
         <div className="pt-24 border-t border-border">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-5xl font-black text-foreground mb-6 tracking-tight">Integrated Cold Chain Services</h3>
+            <h3 className="text-3xl md:text-5xl font-black text-foreground mb-6 tracking-tight">Storage and Logistics</h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
               We provide a complete solution for your temperature-sensitive products, 
               helping you shorten your cold chain and reduce risk.

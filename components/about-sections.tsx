@@ -29,9 +29,9 @@ const values = [
 ]
 
 const stats = [
-  { value: "30+", label: "Years Experience" },
-  { value: "30K+", label: "Pallet Capacity" },
-  { value: "40+", label: "Active Customers" },
+  { value: "40+", label: "Years Experience" },
+  { value: "50,000+", label: "Pallet Capacity" },
+  { value: "50+", label: "Active Customers" },
   { value: "24/7", label: "Operations" },
 ]
 
@@ -55,7 +55,7 @@ export function AboutSections() {
               <div className="space-y-6 text-xl text-muted-foreground font-medium leading-relaxed">
                 <p>
                   Our journey began with a simple mission: to provide reliable, high-quality
-                  temperature-controlled storage that businesses could depend on. Over 30 years later,
+                  temperature-controlled storage that businesses could depend on. Over 40 years later,
                   that mission remains at the heart of everything we do.
                 </p>
                 <p>
@@ -64,9 +64,9 @@ export function AboutSections() {
                   about the industry and committed to delivering exceptional service.
                 </p>
                 <p>
-                  Our facility is strategically located on the outskirts of Grantham, in Lincolnshire.
+                  Our facility is strategically located on the outskirts of Grantham adjacent to the A1, in Lincolnshire.
                   We offer a comprehensive range of services, including but not limited to storage,
-                  blast freezing and tempering, as well as fresh packing and order picking.
+                  blast freezing and tempering, as well as packing opportunities and order picking.
                 </p>
               </div>
               <div className="grid sm:grid-cols-2 gap-6 mt-12">

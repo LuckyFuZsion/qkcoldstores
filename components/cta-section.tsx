@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Phone, ArrowRight, MessageSquare } from "lucide-react"
+import { Phone, Mail, MessageSquare } from "lucide-react"
 import { ContactForm } from "@/components/contact-form"
 import { motion } from "framer-motion"
 
@@ -36,8 +36,22 @@ export function CTASection() {
                   <Phone className="w-8 h-8" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-1">Call Our Team</p>
-                  <a href="tel:+441234567890" className="text-2xl font-black text-foreground hover:text-electric-blue transition-colors">01246 854999</a>
+                  <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-1">Direct Line</p>
+                  <a href="tel:+441400259300" className="text-2xl font-black text-foreground hover:text-electric-blue transition-colors">01400 259300</a>
+                </div>
+              </div>
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-[1.25rem] bg-card flex items-center justify-center text-electric-blue shadow-sm border border-border">
+                  <Mail className="w-8 h-8" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-1">Email</p>
+                  <a
+                    href="mailto:info@qkcoldstores.co.uk"
+                    className="text-xl sm:text-2xl font-black text-foreground hover:text-electric-blue transition-colors break-all"
+                  >
+                    info@qkcoldstores.co.uk
+                  </a>
                 </div>
               </div>
             </div>
