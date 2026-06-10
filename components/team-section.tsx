@@ -1,51 +1,34 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { User } from "lucide-react"
-
-type TeamMember = {
-  name: string
-  role: string
-  bio?: string
-  /** Path under `public/`, e.g. `/Staff/Name.webp` */
-  image?: string
-}
-
-const seniorLeadership: TeamMember[] = [
-  { name: "Brent Richardson", role: "General Manager", image: "/Staff/Brent Richardson 2.webp" },
-  { name: "Rob Trevethick", role: "Head of Finance & HR", image: "/Staff/Rob Trevethick.webp" },
-  { name: "Darrell Swaine", role: "Commercial Manager" },
-  { name: "Adam Joslin", role: "Head of Business Development & Cold Storage" },
-]
-
-const extendedOperational: TeamMember[] = [
-  { name: "Chris Scrimshaw", role: "Cold Store Manager", image: "/Staff/Chris Scrimshaw.webp" },
-  { name: "Kim Aherne", role: "Stock Office Manager", image: "/Staff/Kim Aherne.webp" },
-  { name: "Adam Taylor", role: "Customer Services Manager" },
-  { name: "Matt Jopek", role: "Oil Plant Manager" },
-  { name: "Martin Ball", role: "Defrost Process Manager", image: "/Staff/Martin Ball.webp" },
-  { name: "Elaine Taylor", role: "Packing Manager", image: "/Staff/Elaine Taylor.webp" },
-  { name: "Paul Davies", role: "Bay Shift Manager", image: "/Staff/Paul Davies.webp" },
-  { name: "Andrew Courtney-Thompson", role: "Project Manager" },
-]
-
-const extendedSupport: TeamMember[] = [
-  { name: "Laura Hornsby", role: "HR Manager" },
-  { name: "Jill Cousins", role: "Technical Manager", image: "/Staff/Jill Cousins.webp" },
-  { name: "Rebecca Saywood", role: "Health, Safety and Environmental Officer", image: "/Staff/Rebecca Saywood.webp" },
-  { name: "Brian Hopkinson", role: "Maintenance Manager", image: "/Staff/Brian Hopkinson.webp" },
-  { name: "Dan Lovatt", role: "Management Accountant", image: "/Staff/Dan Lovatt.webp" },
-  { name: "Lauren Richardson-Whalley", role: "Project Lead" },
-  { name: "Mark Austin", role: "Contract and Services Lead" },
-]
+import {
+  getAllTeamMembers,
+  groupTeamMembers,
+  TEAM_GROUP_LABELS,
+  TEAM_GROUP_ORDER,
+  type TeamMemberRecord,
+} from "@/lib/team-members"
 
 export function TeamSection() {
+  const [members, setMembers] = useState<TeamMemberRecord[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getAllTeamMembers()
+      .then(setMembers)
+      .catch(console.error)
+      .finally(() => setLoading(false))
+  }, [])
+
+  const grouped = groupTeamMembers(members)
+
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,9 +45,31 @@ export function TeamSection() {
           </p>
         </motion.div>
 
-        <TeamGroup title="Senior Leadership Team" members={seniorLeadership} className="mb-24" />
-        <TeamGroup title="Extended Leadership - Operational" members={extendedOperational} className="mb-24" />
-        <TeamGroup title="Extended Leadership - Support Services" members={extendedSupport} />
+        {loading ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="aspect-[4/5] rounded-3xl bg-card border border-border animate-pulse" />
+            ))}
+          </div>
+        ) : members.length === 0 ? (
+          <p className="text-center text-muted-foreground font-medium">
+            Team information is being updated. Please check back soon.
+          </p>
+        ) : (
+          TEAM_GROUP_ORDER.map((group, groupIndex) => {
+            const groupMembers = grouped[group]
+            if (groupMembers.length === 0) return null
+
+            return (
+              <TeamGroup
+                key={group}
+                title={TEAM_GROUP_LABELS[group]}
+                members={groupMembers}
+                className={groupIndex < TEAM_GROUP_ORDER.length - 1 ? "mb-24" : ""}
+              />
+            )
+          })
+        )}
       </div>
     </section>
   )
@@ -76,7 +81,7 @@ function TeamGroup({
   className = "",
 }: {
   title: string
-  members: TeamMember[]
+  members: TeamMemberRecord[]
   className?: string
 }) {
   return (
@@ -95,7 +100,7 @@ function TeamGroup({
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {members.map((member, i) => (
           <motion.div
-            key={member.name}
+            key={member.id}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -109,18 +114,19 @@ function TeamGroup({
   )
 }
 
-function TeamMemberCard({ member }: { member: TeamMember }) {
+function TeamMemberCard({ member }: { member: TeamMemberRecord }) {
   return (
     <Card className="group overflow-hidden border-border hover:border-electric-blue/30 transition-all duration-300 hover:shadow-xl rounded-3xl bg-card">
       <CardContent className="p-0">
         <div className="relative aspect-[4/5] bg-secondary flex items-center justify-center overflow-hidden">
-          {member.image ? (
+          {member.imageUrl ? (
             <Image
-              src={member.image}
+              src={member.imageUrl}
               alt={`${member.name}, ${member.role}`}
               fill
               sizes="(max-width: 768px) 100vw, 25vw"
               className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              unoptimized
             />
           ) : (
             <User className="w-24 h-24 text-muted-foreground/50 transition-transform duration-500 group-hover:scale-110" />

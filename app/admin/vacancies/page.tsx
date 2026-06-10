@@ -9,6 +9,7 @@ import {
   LogOut,
   Briefcase,
   Users,
+  User,
   FileText,
   Download,
   X,
@@ -54,10 +55,12 @@ import {
   type Vacancy,
   type Application,
 } from "@/lib/vacancies"
+import { TeamTab } from "@/components/admin/team-tab"
+import { downloadCloudinaryFile } from "@/lib/cloudinary"
 import Image from "next/image"
 import Link from "next/link"
 
-type Tab = "vacancies" | "applications"
+type Tab = "vacancies" | "applications" | "team"
 
 export default function AdminVacanciesPage() {
   const { user, loading, logout } = useAuth()
@@ -127,6 +130,7 @@ export default function AdminVacanciesPage() {
             {[
               { key: "vacancies" as Tab, label: "Vacancies", icon: Briefcase },
               { key: "applications" as Tab, label: "Applications", icon: Users },
+              { key: "team" as Tab, label: "Team", icon: User },
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -147,7 +151,13 @@ export default function AdminVacanciesPage() {
 
       {/* Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {activeTab === "vacancies" ? <VacanciesTab /> : <ApplicationsTab />}
+        {activeTab === "vacancies" ? (
+          <VacanciesTab />
+        ) : activeTab === "applications" ? (
+          <ApplicationsTab />
+        ) : (
+          <TeamTab />
+        )}
       </div>
     </div>
   )
@@ -631,13 +641,21 @@ function ApplicationsTab() {
                     <Button
                       variant="outline"
                       size="sm"
-                      asChild
                       className="rounded-lg font-bold text-xs"
+                      onClick={async () => {
+                        try {
+                          await downloadCloudinaryFile(app.cvUrl, app.cvFileName)
+                        } catch (err) {
+                          alert(
+                            err instanceof Error
+                              ? err.message
+                              : "Could not download this CV. Please try again."
+                          )
+                        }
+                      }}
                     >
-                      <a href={app.cvUrl} target="_blank" rel="noopener noreferrer">
-                        <Download className="w-4 h-4 mr-1" />
-                        Download CV ({app.cvFileName})
-                      </a>
+                      <Download className="w-4 h-4 mr-1" />
+                      Download CV ({app.cvFileName})
                     </Button>
                     <Button
                       variant="ghost"

@@ -13,7 +13,7 @@ export function HeroSection() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
           style={{
-            backgroundImage: "url('/images/hero-bg.jpeg')",
+            backgroundImage: "url('/Website%20background.webp')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-deep-navy/90 via-deep-navy/80 to-deep-navy/70 pointer-events-none" />

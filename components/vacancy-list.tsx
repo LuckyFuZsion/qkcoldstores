@@ -6,6 +6,7 @@ import { Briefcase, PoundSterling, FileText, Download, ChevronDown, ChevronUp } 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { getActiveVacancies, type Vacancy } from "@/lib/vacancies"
+import { downloadCloudinaryFile } from "@/lib/cloudinary"
 
 export function VacancyList({ onApply }: { onApply: (vacancyId: string, vacancyTitle: string) => void }) {
   const [vacancies, setVacancies] = useState<Vacancy[]>([])
@@ -101,14 +102,25 @@ export function VacancyList({ onApply }: { onApply: (vacancyId: string, vacancyT
             {vacancy.specDocumentUrl && (
               <Button
                 variant="outline"
-                asChild
                 className="font-bold rounded-xl"
+                onClick={async () => {
+                  try {
+                    await downloadCloudinaryFile(
+                      vacancy.specDocumentUrl!,
+                      vacancy.specDocumentName ?? "job-specification"
+                    )
+                  } catch (err) {
+                    alert(
+                      err instanceof Error
+                        ? err.message
+                        : "Could not download this file. Please try again."
+                    )
+                  }
+                }}
               >
-                <a href={vacancy.specDocumentUrl} target="_blank" rel="noopener noreferrer">
-                  <Download className="w-4 h-4 mr-2" />
-                  <FileText className="w-4 h-4 mr-2" />
-                  {vacancy.specDocumentName || "Job Specification"}
-                </a>
+                <Download className="w-4 h-4 mr-2" />
+                <FileText className="w-4 h-4 mr-2" />
+                {vacancy.specDocumentName || "Job Specification"}
               </Button>
             )}
           </div>

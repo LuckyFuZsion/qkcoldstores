@@ -13,9 +13,7 @@ import {
   Timestamp,
 } from "firebase/firestore"
 import { db } from "./firebase"
-
-const CLOUDINARY_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!
-const CLOUDINARY_UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!
+import { uploadDocumentToCloudinary } from "./cloudinary"
 
 export interface Vacancy {
   id: string
@@ -38,27 +36,12 @@ export interface Application {
   message: string
   cvUrl: string
   cvFileName: string
+  cvPublicId?: string | null
+  cvResourceType?: string | null
   vacancyId: string | null
   vacancyTitle: string | null
   submittedAt: Timestamp
   expiresAt: Timestamp
-}
-
-async function uploadToCloudinary(file: File, folder: string): Promise<string> {
-  const formData = new FormData()
-  formData.append("file", file)
-  formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET)
-  formData.append("folder", folder)
-  formData.append("resource_type", "auto")
-
-  const res = await fetch(
-    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`,
-    { method: "POST", body: formData }
-  )
-
-  if (!res.ok) throw new Error("Upload failed")
-  const data = await res.json()
-  return data.secure_url
 }
 
 // --- Vacancies ---
@@ -93,7 +76,8 @@ export async function createVacancy(
   let specDocumentName: string | null = null
 
   if (specFile) {
-    specDocumentUrl = await uploadToCloudinary(specFile, "qk-job-specs")
+    const upload = await uploadDocumentToCloudinary(specFile, "qk-job-specs")
+    specDocumentUrl = upload.secureUrl
     specDocumentName = specFile.name
   }
 
@@ -117,7 +101,8 @@ export async function updateVacancy(
   const updates: Record<string, any> = { ...data, updatedAt: serverTimestamp() }
 
   if (specFile) {
-    updates.specDocumentUrl = await uploadToCloudinary(specFile, "qk-job-specs")
+    const upload = await uploadDocumentToCloudinary(specFile, "qk-job-specs")
+    updates.specDocumentUrl = upload.secureUrl
     updates.specDocumentName = specFile.name
   }
 
@@ -142,7 +127,7 @@ export async function submitApplication(
   },
   cvFile: File
 ): Promise<string> {
-  const cvUrl = await uploadToCloudinary(cvFile, "qk-cvs")
+  const upload = await uploadDocumentToCloudinary(cvFile, "qk-cvs")
 
   const now = new Date()
   const expiresAt = new Date(now)
@@ -150,7 +135,9 @@ export async function submitApplication(
 
   const docRef = await addDoc(collection(db, "applications"), {
     ...data,
-    cvUrl,
+    cvUrl: upload.secureUrl,
+    cvPublicId: upload.publicId,
+    cvResourceType: upload.resourceType,
     cvFileName: cvFile.name,
     submittedAt: serverTimestamp(),
     expiresAt: Timestamp.fromDate(expiresAt),
