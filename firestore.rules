@@ -1,0 +1,57 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isNonEmptyString(value, maxLen) {
+      return value is string && value.size() > 0 && value.size() <= maxLen;
+    }
+
+    function isOptionalString(value, maxLen) {
+      return value == null || (value is string && value.size() <= maxLen);
+    }
+
+    // --- Vacancies ---
+    // Public: read active vacancies only (matches getActiveVacancies query).
+    // Admin: full CRUD when signed in.
+    match /vacancies/{vacancyId} {
+      allow read: if isSignedIn() || (resource != null && resource.data.status == "active");
+      allow create, update, delete: if isSignedIn();
+    }
+
+    // --- Applications ---
+    // Public: submit CV applications only (no read/update/delete).
+    // Admin: read and delete when signed in.
+    match /applications/{applicationId} {
+      allow read, delete: if isSignedIn();
+      allow update: if false;
+      allow create: if
+        isNonEmptyString(request.resource.data.firstName, 100) &&
+        isNonEmptyString(request.resource.data.lastName, 100) &&
+        isNonEmptyString(request.resource.data.email, 200) &&
+        isOptionalString(request.resource.data.phone, 50) &&
+        isOptionalString(request.resource.data.message, 5000) &&
+        isNonEmptyString(request.resource.data.cvUrl, 500) &&
+        isNonEmptyString(request.resource.data.cvFileName, 255) &&
+        request.resource.data.cvUrl.matches("https://res\\.cloudinary\\.com/.+") &&
+        isOptionalString(request.resource.data.vacancyId, 128) &&
+        isOptionalString(request.resource.data.vacancyTitle, 200) &&
+        isOptionalString(request.resource.data.cvPublicId, 256) &&
+        isOptionalString(request.resource.data.cvResourceType, 32) &&
+        request.resource.data.expiresAt is timestamp &&
+        request.resource.data.submittedAt == request.time;
+    }
+
+    // --- Team members ---
+    // Public: read team page.
+    // Admin: full CRUD when signed in.
+    match /teamMembers/{memberId} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+  }
+}
