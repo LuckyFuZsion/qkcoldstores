@@ -1,8 +1,12 @@
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Shield, ExternalLink, Lock, FileText, BarChart3 } from "lucide-react"
+import { EMPERICA_PORTAL_URL } from "@/lib/site-config"
 
 export function ClientPortalSection() {
+  const portalConfigured = EMPERICA_PORTAL_URL.length > 0
+
   return (
     <section className="py-24 bg-deep-navy relative overflow-hidden">
       {/* Background pattern */}
@@ -53,21 +57,29 @@ export function ClientPortalSection() {
                 size="lg"
                 className="bg-electric-blue hover:bg-electric-blue/90 text-white font-semibold text-lg px-8 py-6 shadow-xl shadow-electric-blue/25"
               >
-                <a 
-                  href="https://emperica.example.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <Lock className="h-5 w-5" />
-                  Access Emperica Stock System
-                  <ExternalLink className="h-4 w-4" />
-                </a>
+                {portalConfigured ? (
+                  <a
+                    href={EMPERICA_PORTAL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <Lock className="h-5 w-5" />
+                    Access Emperica Stock System
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                ) : (
+                  <Link href="/contact" className="flex items-center gap-2">
+                    <Lock className="h-5 w-5" />
+                    Contact Us for Portal Access
+                  </Link>
+                )}
               </Button>
-              {/* Tooltip */}
               <div className="absolute -bottom-8 left-0 text-ice-blue/60 text-sm flex items-center gap-1">
                 <Shield className="h-3 w-3" />
-                Redirecting to secure external portal
+                {portalConfigured
+                  ? "Redirecting to secure external portal"
+                  : "Portal access is arranged through our commercial team"}
               </div>
             </div>
           </div>

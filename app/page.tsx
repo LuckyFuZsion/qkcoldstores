@@ -56,7 +56,7 @@ const jsonLd = {
     { "@type": "AdministrativeArea", name: "East Midlands" },
   ],
   priceRange: "$$",
-  image: "https://qkcoldstores.co.uk/og-image.jpg",
+  image: "https://qkcoldstores.co.uk/images/facility-013.webp",
   sameAs: [],
   hasOfferCatalog: {
     "@type": "OfferCatalog",

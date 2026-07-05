@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { MapPin, Phone, Mail, Clock, Facebook, Linkedin, Twitter, ArrowUpRight } from "lucide-react"
+import { Clock } from "lucide-react"
 import { OPENING_HOURS_TEXT } from "@/lib/services-content"
 import { AccreditationMarquee } from "@/components/accreditation-marquee"
 
@@ -11,6 +11,7 @@ const quickLinks = [
   { label: "Location", href: "/location" },
   { label: "FAQ", href: "/faq" },
   { label: "Vacancies", href: "/vacancies" },
+  { label: "Customer Portal", href: "/portal" },
   { label: "Contact Us", href: "/contact" },
 ]
 
@@ -46,23 +47,6 @@ export function Footer() {
             <p className="text-muted-foreground text-lg font-medium leading-relaxed">
               Premium temperature-controlled warehousing and value-added services for the food manufacturing sector.
             </p>
-            {/* Social Links */}
-            <div className="flex gap-3">
-              {[
-                { icon: Facebook, label: "Facebook" },
-                { icon: Linkedin, label: "LinkedIn" },
-                { icon: Twitter, label: "Twitter" },
-              ].map((social) => (
-                <a 
-                  key={social.label}
-                  href="#" 
-                  className="w-12 h-12 rounded-xl bg-card flex items-center justify-center text-foreground hover:bg-electric-blue hover:text-white transition-all duration-300 shadow-sm border border-border"
-                  aria-label={social.label}
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -151,7 +135,6 @@ export function Footer() {
           <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-bold uppercase tracking-widest text-muted-foreground">
               <Link href="/privacy" className="hover:text-deep-navy transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-deep-navy transition-colors">Terms of Service</Link>
               <Link href="/cookies" className="hover:text-deep-navy transition-colors">Cookie Policy</Link>
             </div>
             <p className="text-muted-foreground text-sm font-bold uppercase tracking-widest">

@@ -12,7 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Send, CheckCircle } from "lucide-react"
+import { Send, CheckCircle, AlertCircle } from "lucide-react"
+import { submitEnquiry } from "@/lib/enquiries"
 
 interface ContactFormProps {
   variant?: "default" | "compact"
@@ -21,6 +22,8 @@ interface ContactFormProps {
 export function ContactForm({ variant = "default" }: ContactFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [service, setService] = useState<string>("")
   const fieldClassName =
     "bg-white text-deep-navy border-slate-200 placeholder:text-slate-400 focus-visible:border-electric-blue dark:bg-white dark:text-deep-navy dark:border-slate-200 dark:placeholder:text-slate-400"
   const labelClassName = "text-deep-navy dark:text-deep-navy"
@@ -31,12 +34,29 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Mock submission delay
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    setError(null)
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    try {
+      await submitEnquiry({
+        name: String(formData.get("name") ?? ""),
+        company: String(formData.get("company") ?? "") || undefined,
+        email: String(formData.get("email") ?? ""),
+        phone: String(formData.get("phone") ?? "") || undefined,
+        service: service || undefined,
+        message: String(formData.get("message") ?? ""),
+      })
+      form.reset()
+      setService("")
+      setIsSubmitted(true)
+    } catch (err) {
+      console.error(err)
+      setError("Something went wrong. Please try again or call us on 01400 259300.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (isSubmitted) {
@@ -49,8 +69,8 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
         <p className="text-muted-foreground max-w-sm">
           Thank you for contacting us. Our team will get back to you within 24 hours.
         </p>
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           className="mt-6"
           onClick={() => setIsSubmitted(false)}
         >
@@ -59,6 +79,13 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
       </div>
     )
   }
+
+  const errorBanner = error ? (
+    <div className="flex items-center gap-2 text-destructive text-sm font-medium p-3 rounded-xl bg-destructive/10">
+      <AlertCircle className="w-4 h-4 shrink-0" />
+      {error}
+    </div>
+  ) : null
 
   if (variant === "compact") {
     return (
@@ -97,8 +124,9 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
             className={`${compactFieldClassName} resize-none`}
           />
         </div>
-        <Button 
-          type="submit" 
+        {errorBanner}
+        <Button
+          type="submit"
           disabled={isSubmitting}
           className="w-full bg-electric-blue hover:bg-electric-blue/90 text-white font-semibold"
         >
@@ -138,7 +166,7 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
           />
         </div>
       </div>
-      
+
       <div className="grid sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="email" className={labelClassName}>Email Address *</Label>
@@ -165,18 +193,18 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
 
       <div className="space-y-2">
         <Label htmlFor="service" className={labelClassName}>Service Interest</Label>
-        <Select name="service">
+        <Select value={service} onValueChange={setService}>
           <SelectTrigger className={fieldClassName}>
             <SelectValue placeholder="Select a service" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="cold-storage">Bulk Cold Storage</SelectItem>
-            <SelectItem value="blast-freezing">Blast Freezing</SelectItem>
-            <SelectItem value="distribution">Distribution</SelectItem>
-            <SelectItem value="inventory">Inventory Management</SelectItem>
-            <SelectItem value="cross-docking">Cross-Docking</SelectItem>
-            <SelectItem value="order-fulfilment">Order Fulfilment</SelectItem>
-            <SelectItem value="other">Other / General Enquiry</SelectItem>
+            <SelectItem value="Storage">Storage</SelectItem>
+            <SelectItem value="Blast Freezing">Blast Freezing</SelectItem>
+            <SelectItem value="Tempering">Tempering</SelectItem>
+            <SelectItem value="Container Loading and Unloading">Container Loading and Unloading</SelectItem>
+            <SelectItem value="Fresh Packing">Fresh Packing</SelectItem>
+            <SelectItem value="Handling">Handling</SelectItem>
+            <SelectItem value="Other / General Enquiry">Other / General Enquiry</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -193,8 +221,10 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
         />
       </div>
 
-      <Button 
-        type="submit" 
+      {errorBanner}
+
+      <Button
+        type="submit"
         size="lg"
         disabled={isSubmitting}
         className="w-full sm:w-auto bg-electric-blue hover:bg-electric-blue/90 text-white font-semibold"

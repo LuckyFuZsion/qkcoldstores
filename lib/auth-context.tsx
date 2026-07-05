@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut, type User } from "firebase/auth"
 import { auth } from "./firebase"
+import { isAdminEmail } from "./site-config"
 
 interface AuthContextType {
   user: User | null
@@ -23,15 +24,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user)
+    const unsubscribe = onAuthStateChanged(auth, async (nextUser) => {
+      if (nextUser && !isAdminEmail(nextUser.email)) {
+        await signOut(auth)
+        setUser(null)
+        setLoading(false)
+        return
+      }
+      setUser(nextUser)
       setLoading(false)
     })
     return unsubscribe
   }, [])
 
   const login = async (email: string, password: string) => {
-    await signInWithEmailAndPassword(auth, email, password)
+    const credential = await signInWithEmailAndPassword(auth, email, password)
+    if (!isAdminEmail(credential.user.email)) {
+      await signOut(auth)
+      throw new Error("Unauthorized")
+    }
   }
 
   const logout = async () => {

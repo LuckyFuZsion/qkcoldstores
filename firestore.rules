@@ -19,7 +19,7 @@ service cloud.firestore {
     // Public: read active vacancies only (matches getActiveVacancies query).
     // Admin: full CRUD when signed in.
     match /vacancies/{vacancyId} {
-      allow read: if isSignedIn() || (resource != null && resource.data.status == "active");
+      allow read: if resource.data.status == "active" || isSignedIn();
       allow create, update, delete: if isSignedIn();
     }
 
@@ -43,6 +43,22 @@ service cloud.firestore {
         isOptionalString(request.resource.data.cvPublicId, 256) &&
         isOptionalString(request.resource.data.cvResourceType, 32) &&
         request.resource.data.expiresAt is timestamp &&
+        request.resource.data.submittedAt == request.time;
+    }
+
+    // --- Enquiries ---
+    // Public: submit contact form only (no read/update/delete).
+    // Admin: read, update status, and delete when signed in.
+    match /enquiries/{enquiryId} {
+      allow read, update, delete: if isSignedIn();
+      allow create: if
+        isNonEmptyString(request.resource.data.name, 100) &&
+        isNonEmptyString(request.resource.data.email, 200) &&
+        isNonEmptyString(request.resource.data.message, 5000) &&
+        isOptionalString(request.resource.data.company, 200) &&
+        isOptionalString(request.resource.data.phone, 50) &&
+        isOptionalString(request.resource.data['service'], 200) &&
+        request.resource.data.status == "new" &&
         request.resource.data.submittedAt == request.time;
     }
 

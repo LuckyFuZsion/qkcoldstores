@@ -18,8 +18,8 @@ const faqs = [
     answer: "QK Cold Stores is BRC Storage & Distribution accredited, ensuring the highest standards of food safety and quality. We also maintain HACCP certification and comply with all relevant food safety regulations. We are also accredited to BRCGS Food Safety and START! Standard.",
   },
   {
-    question: "How does the Empirica stock management system work?",
-    answer: "Empirica is our advanced inventory management platform that provides real-time stock visibility, FIFO/FEFO management, batch tracking, and comprehensive reporting. Clients can access their inventory data 24/7 through our secure online portal.",
+    question: "How does the Emperica stock management system work?",
+    answer: "Emperica is our advanced inventory management platform that provides real-time stock visibility, FIFO/FEFO management, batch tracking, and comprehensive reporting. Clients can access their inventory data 24/7 through our secure online portal.",
   },
   {
     question: "What is your blast freezing capacity?",
@@ -61,7 +61,7 @@ export function FAQSection() {
             </p>
             <p className="text-muted-foreground">
               Can&apos;t find what you&apos;re looking for?{" "}
-              <a href="/location" className="text-electric-blue font-medium hover:underline">
+              <a href="/contact" className="text-electric-blue font-medium hover:underline">
                 Contact our team
               </a>{" "}
               for personalised assistance.

@@ -22,6 +22,7 @@ import {
   ChevronDown,
   ChevronUp,
   AlertCircle,
+  Inbox,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -56,11 +57,13 @@ import {
   type Application,
 } from "@/lib/vacancies"
 import { TeamTab } from "@/components/admin/team-tab"
+import { EnquiriesTab } from "@/components/admin/enquiries-tab"
+import { AdminLoadError } from "@/components/admin/load-error"
 import { downloadCloudinaryFile } from "@/lib/cloudinary"
 import Image from "next/image"
 import Link from "next/link"
 
-type Tab = "vacancies" | "applications" | "team"
+type Tab = "vacancies" | "applications" | "enquiries" | "team"
 
 export default function AdminVacanciesPage() {
   const { user, loading, logout } = useAuth()
@@ -130,6 +133,7 @@ export default function AdminVacanciesPage() {
             {[
               { key: "vacancies" as Tab, label: "Vacancies", icon: Briefcase },
               { key: "applications" as Tab, label: "Applications", icon: Users },
+              { key: "enquiries" as Tab, label: "Enquiries", icon: Inbox },
               { key: "team" as Tab, label: "Team", icon: User },
             ].map((tab) => (
               <button
@@ -155,6 +159,8 @@ export default function AdminVacanciesPage() {
           <VacanciesTab />
         ) : activeTab === "applications" ? (
           <ApplicationsTab />
+        ) : activeTab === "enquiries" ? (
+          <EnquiriesTab />
         ) : (
           <TeamTab />
         )}
@@ -168,15 +174,17 @@ export default function AdminVacanciesPage() {
 function VacanciesTab() {
   const [vacancies, setVacancies] = useState<Vacancy[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [editing, setEditing] = useState<Vacancy | null>(null)
   const [deleteTarget, setDeleteTarget] = useState<Vacancy | null>(null)
 
   const loadVacancies = () => {
     setLoading(true)
+    setLoadError(null)
     getAllVacancies()
       .then(setVacancies)
-      .catch(console.error)
+      .catch(() => setLoadError("Could not load vacancies. Please try again."))
       .finally(() => setLoading(false))
   }
 
@@ -219,6 +227,8 @@ function VacanciesTab() {
             <div key={i} className="h-24 rounded-xl bg-card border border-border animate-pulse" />
           ))}
         </div>
+      ) : loadError ? (
+        <AdminLoadError message={loadError} onRetry={loadVacancies} />
       ) : vacancies.length === 0 ? (
         <div className="text-center py-16 rounded-xl bg-card border border-border">
           <Briefcase className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
@@ -469,14 +479,16 @@ function VacancyForm({
 function ApplicationsTab() {
   const [applications, setApplications] = useState<Application[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [deleteTarget, setDeleteTarget] = useState<Application | null>(null)
 
   const loadApplications = () => {
     setLoading(true)
+    setLoadError(null)
     getAllApplications()
       .then(setApplications)
-      .catch(console.error)
+      .catch(() => setLoadError("Could not load applications. Please try again."))
       .finally(() => setLoading(false))
   }
 
@@ -553,6 +565,8 @@ function ApplicationsTab() {
             <div key={i} className="h-24 rounded-xl bg-card border border-border animate-pulse" />
           ))}
         </div>
+      ) : loadError ? (
+        <AdminLoadError message={loadError} onRetry={loadApplications} />
       ) : applications.length === 0 ? (
         <div className="text-center py-16 rounded-xl bg-card border border-border">
           <Users className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />

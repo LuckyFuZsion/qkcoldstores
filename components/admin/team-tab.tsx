@@ -50,10 +50,12 @@ import {
   type TeamGroup,
   type TeamMemberRecord,
 } from "@/lib/team-members"
+import { AdminLoadError } from "@/components/admin/load-error"
 
 export function TeamTab() {
   const [members, setMembers] = useState<TeamMemberRecord[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [editing, setEditing] = useState<TeamMemberRecord | null>(null)
   const [deleteTarget, setDeleteTarget] = useState<TeamMemberRecord | null>(null)
@@ -62,9 +64,10 @@ export function TeamTab() {
 
   const loadMembers = () => {
     setLoading(true)
+    setLoadError(null)
     getAllTeamMembers()
       .then(setMembers)
-      .catch(console.error)
+      .catch(() => setLoadError("Could not load team members. Please try again."))
       .finally(() => setLoading(false))
   }
 
@@ -162,6 +165,8 @@ export function TeamTab() {
             <div key={i} className="h-24 rounded-xl bg-card border border-border animate-pulse" />
           ))}
         </div>
+      ) : loadError ? (
+        <AdminLoadError message={loadError} onRetry={loadMembers} />
       ) : (
         <div className="space-y-12">
           {grouped.map(({ group, label, members: groupMembers }) =>

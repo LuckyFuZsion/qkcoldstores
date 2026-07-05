@@ -19,7 +19,7 @@ const nextConfig = {
     return [
       {
         source: '/login',
-        destination: '/',
+        destination: '/admin',
         permanent: true,
       },
     ]

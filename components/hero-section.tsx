@@ -2,43 +2,20 @@
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import Image from "next/image"
 import { ChevronRight, ShieldCheck, Warehouse, Camera } from "lucide-react"
 import { motion } from "framer-motion"
-import { FACILITY_IMAGE } from "@/lib/services-content"
 import { AccreditationMarquee } from "@/components/accreditation-marquee"
+import { HeroLogo } from "@/components/hero-logo"
+import { HeroBackground } from "@/components/hero-background"
 
 export function HeroSection() {
   return (
     <section className="relative min-h-[90svh] flex items-center justify-center overflow-x-hidden bg-deep-navy pt-14 lg:pt-16">
-      <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
-          style={{
-            backgroundImage: `url('${FACILITY_IMAGE}')`,          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-deep-navy/90 via-deep-navy/80 to-deep-navy/70 pointer-events-none" />
-      </div>
+      <HeroBackground />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-12">
         <div className="max-w-5xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="flex justify-center mb-8"
-          >
-            <div className="bg-white/95 rounded-2xl lg:rounded-3xl shadow-2xl px-6 py-4 lg:px-10 lg:py-6 border border-white/20">
-              <Image
-                src="/images/qk-logo.png"
-                alt="QK Coldstores"
-                width={480}
-                height={240}
-                className="h-16 sm:h-20 lg:h-28 w-auto object-contain"
-                priority
-              />
-            </div>
-          </motion.div>
+          <HeroLogo />
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

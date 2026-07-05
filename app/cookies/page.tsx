@@ -1,6 +1,6 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { AnimatedHeading } from "@/components/animated-heading"
+import { PageHero } from "@/components/page-hero"
 import { Cookie, Database, Eye, Clock, Shield, Settings } from "lucide-react"
 
 export const metadata = {
@@ -12,24 +12,17 @@ export default function CookiePolicyPage() {
   return (
     <main>
       <Header />
-      
-      {/* Hero Section */}
-      <section className="pt-72 pb-36 bg-deep-navy">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <AnimatedHeading delay={0.2}>
-              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 text-balance">
-                Cookie Policy
-              </h1>
-            </AnimatedHeading>
-            <AnimatedHeading delay={0.4}>
-              <p className="text-xl text-ice-blue/80">
-                QK Cold Stores (Marston) Ltd. - How we use cookies and similar technologies
-              </p>
-            </AnimatedHeading>
-          </div>
-        </div>
-      </section>
+
+      <PageHero
+        title="Cookie Policy"
+        subtitle="QK Cold Stores (Marston) Ltd - how we use cookies and similar technologies."
+        eyebrow={
+          <span className="inline-flex items-center justify-center gap-2">
+            <Cookie className="h-4 w-4" />
+            Cookies
+          </span>
+        }
+      />
 
       {/* Content */}
       <section className="py-16 bg-background">

@@ -31,7 +31,7 @@ export default function AdminLoginPage() {
       await login(email, password)
       router.replace("/admin/vacancies")
     } catch {
-      setError("Invalid email or password.")
+      setError("Invalid email or password, or this account is not authorized for admin access.")
     } finally {
       setSubmitting(false)
     }
@@ -60,7 +60,7 @@ export default function AdminLoginPage() {
           </div>
           <h1 className="text-2xl font-black text-foreground tracking-tight">Admin Login</h1>
           <p className="text-muted-foreground text-sm font-medium mt-2">
-            Sign in to manage vacancies, applications and team
+            Sign in to manage vacancies, applications, enquiries and team
           </p>
         </div>
 
