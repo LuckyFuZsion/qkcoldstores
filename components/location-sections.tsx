@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { MapPin, Phone, Mail, Clock, Car, Truck, Building2 } from "lucide-react"
@@ -100,11 +101,15 @@ export function LocationSections() {
               transition={{ duration: 0.7 }}
               className="relative h-[500px] lg:h-auto rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card bg-card"
             >
-              <img
-                src="/images/site-map.webp"
-                alt="QK Cold Stores site map"
-                className="w-full h-full object-contain bg-white p-4"
-              />
+              <div className="relative w-full h-full bg-white p-4">
+                <Image
+                  src="/images/site-map.webp"
+                  alt="QK Cold Stores site map"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-contain"
+                />
+              </div>
             </motion.div>
           </div>
 

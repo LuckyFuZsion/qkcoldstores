@@ -4,7 +4,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Leaf, CheckCircle, ChevronRight } from "lucide-react"
-import { additionalServices, serviceDetailItems } from "@/lib/services-content"
+import { additionalServices, serviceDetailItems, SERVICE_SLUGS } from "@/lib/services-content"
 
 export function ServicesSections() {
   return (
@@ -15,11 +15,12 @@ export function ServicesSections() {
             {serviceDetailItems.map((service, i) => (
               <motion.div
                 key={service.title}
+                id={service.slug}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group"
+                className="scroll-mt-28 p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group"
               >
                 <div className="w-16 h-16 rounded-2xl bg-background flex items-center justify-center text-foreground group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm mb-6 border border-border">
                   <service.icon className="h-8 w-8" />
@@ -63,7 +64,7 @@ export function ServicesSections() {
         </div>
       </section>
 
-      <section className="py-24 md:py-32 bg-secondary overflow-hidden">
+      <section id={SERVICE_SLUGS.environment} className="scroll-mt-28 py-24 md:py-32 bg-secondary overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}

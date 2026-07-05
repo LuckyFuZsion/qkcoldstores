@@ -60,7 +60,8 @@ export default function AdminLoginPage() {
           </div>
           <h1 className="text-2xl font-black text-foreground tracking-tight">Admin Login</h1>
           <p className="text-muted-foreground text-sm font-medium mt-2">
-            Sign in to manage vacancies, applications, enquiries and team
+            Sign in to manage vacancies, applications, enquiries and team. A full site guide is
+            available in the Guide tab after login.
           </p>
         </div>
 

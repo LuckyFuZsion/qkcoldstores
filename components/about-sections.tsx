@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { CheckCircle, ChevronRight, Award, Users, Clock, Shield } from "lucide-react"
 import { FACILITY_IMAGE } from "@/lib/services-content"
@@ -95,11 +96,15 @@ export function AboutSections() {
               className="relative"
             >
               <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card">
-                <img
-                  src={FACILITY_IMAGE}
-                  alt="QK Coldstores Facility"
-                  className="w-full h-[500px] object-cover"
-                />
+                <div className="relative w-full h-[500px]">
+                  <Image
+                    src={FACILITY_IMAGE}
+                    alt="QK Coldstores Facility"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
               </div>
               <div className="absolute -bottom-10 -left-10 bg-card rounded-[2rem] shadow-2xl p-10 hidden sm:block border border-border">
                 <div className="grid grid-cols-2 gap-10">

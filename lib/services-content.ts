@@ -36,6 +36,7 @@ export const brcsLogoHeightClass = BRCS_LOGO_HEIGHT
 export type ServicePreview = {
   icon: LucideIcon
   title: string
+  slug: string
   description: string
 }
 
@@ -43,40 +44,60 @@ export type ServiceDetail = ServicePreview & {
   features: string[]
 }
 
+export const SERVICE_SLUGS = {
+  storage: "storage",
+  blastFreezing: "blast-freezing",
+  tempering: "tempering",
+  containerLoading: "container-loading",
+  freshPacking: "fresh-packing",
+  handling: "handling",
+  environment: "environment",
+} as const
+
+export function serviceHref(slug: string) {
+  return `/services#${slug}`
+}
+
 export const servicePreviewItems: ServicePreview[] = [
   {
     icon: Warehouse,
     title: "Storage",
+    slug: SERVICE_SLUGS.storage,
     description:
       "In excess of 250,000 sq ft of cold storage for frozen, chilled and ambient goods, with capacity for over 50,000 pallets.",
   },
   {
     icon: Snowflake,
     title: "Blast Freezing",
+    slug: SERVICE_SLUGS.blastFreezing,
     description:
       "State-of-the-art blast freezing capabilities handling approximately 800 tonnes per week, ensuring efficient and high-quality freezing for large volumes of goods.",
   },
   {
     icon: Thermometer,
     title: "Tempering",
+    slug: SERVICE_SLUGS.tempering,
     description:
       "Controlled tempering services ensuring safe and gradual thawing of frozen goods to optimal temperatures for further processing or distribution.",
   },
   {
     icon: Container,
     title: "Container Loading and Unloading",
+    slug: SERVICE_SLUGS.containerLoading,
     description:
       "Efficient container loading and unloading with experienced personnel, appropriate handling equipment, and strict temperature management procedures.",
   },
   {
     icon: Package,
     title: "Fresh Packing",
+    slug: SERVICE_SLUGS.freshPacking,
     description:
       "Since its inception in 2020, our fresh packing line has steadily grown to handling an average of 300 tonnes per week in 2026, handling all protein products to customer specification.",
   },
   {
     icon: Boxes,
     title: "Handling",
+    slug: SERVICE_SLUGS.handling,
     description:
       "Specialised cold store handling including case picking, handballing, labelling and de-topping.",
   },
@@ -86,6 +107,7 @@ export const serviceDetailItems: ServiceDetail[] = [
   {
     icon: Warehouse,
     title: "Storage",
+    slug: SERVICE_SLUGS.storage,
     description:
       "QK Cold Stores provides in excess of 250,000 square feet of cold storage capacity for frozen, chilled and ambient goods, with the ability to accommodate over 50,000 pallets simultaneously.",
     features: [
@@ -98,6 +120,7 @@ export const serviceDetailItems: ServiceDetail[] = [
   {
     icon: Snowflake,
     title: "Blast Freezing",
+    slug: SERVICE_SLUGS.blastFreezing,
     description:
       "Blast freezing is a crucial process for preserving the quality and freshness of perishable goods. Our facility is equipped with state-of-the-art blast freezing capabilities, with the capacity to handle approximately 800 tonnes per week, ensuring efficient and high-quality freezing for large volumes of goods.",
     features: [
@@ -110,6 +133,7 @@ export const serviceDetailItems: ServiceDetail[] = [
   {
     icon: Thermometer,
     title: "Tempering",
+    slug: SERVICE_SLUGS.tempering,
     description:
       "Our cold store is fully equipped to offer controlled tempering services, ensuring safe and gradual thawing of frozen goods to optimal temperatures for further processing or distribution.",
     features: [
@@ -122,6 +146,7 @@ export const serviceDetailItems: ServiceDetail[] = [
   {
     icon: Container,
     title: "Container Loading and Unloading",
+    slug: SERVICE_SLUGS.containerLoading,
     description:
       "Our cold store provides efficient container loading and unloading services to support the smooth movement of temperature-controlled products throughout the supply chain. With experienced personnel, appropriate handling equipment, and strict temperature management procedures, we can safely unload incoming refrigerated containers and load outbound shipments while maintaining product integrity.",
     features: [
@@ -134,6 +159,7 @@ export const serviceDetailItems: ServiceDetail[] = [
   {
     icon: Package,
     title: "Fresh Packing",
+    slug: SERVICE_SLUGS.freshPacking,
     description:
       "Since its inception in 2020, our fresh packing line has steadily grown to handling an average of 300 tonnes per week in 2026. Our facility handles a wide variety of protein products, packing to each customer's exact specifications with quality and efficiency at every stage.",
     features: [
@@ -146,6 +172,7 @@ export const serviceDetailItems: ServiceDetail[] = [
   {
     icon: Boxes,
     title: "Handling",
+    slug: SERVICE_SLUGS.handling,
     description:
       "Cold store handling requires specialised training and equipment to ensure activities are carried out efficiently and in compliance with food safety regulations, keeping perishable goods at optimal conditions throughout the storage and handling process.",
     features: [
@@ -155,6 +182,15 @@ export const serviceDetailItems: ServiceDetail[] = [
       "De-topping",
     ],
   },
+]
+
+export const footerServiceLinks = [
+  { label: "Storage", slug: SERVICE_SLUGS.storage },
+  { label: "Blast Freezing", slug: SERVICE_SLUGS.blastFreezing },
+  { label: "Tempering", slug: SERVICE_SLUGS.tempering },
+  { label: "Container Loading", slug: SERVICE_SLUGS.containerLoading },
+  { label: "Fresh Packing", slug: SERVICE_SLUGS.freshPacking },
+  { label: "Handling", slug: SERVICE_SLUGS.handling },
 ]
 
 export const additionalServices = [

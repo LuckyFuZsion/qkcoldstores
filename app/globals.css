@@ -91,6 +91,10 @@
     @apply bg-background text-foreground antialiased;
   }
 
+  [id] {
+    scroll-margin-top: 7rem;
+  }
+
   .text-glow {
     text-shadow: 0 0 30px rgba(100, 180, 255, 0.4);
   }

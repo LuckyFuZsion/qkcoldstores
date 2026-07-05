@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Leaf, ArrowRight } from "lucide-react"
+import { SERVICE_SLUGS, serviceHref } from "@/lib/services-content"
 
 export function EnvironmentPreview() {
   return (
@@ -36,7 +37,7 @@ export function EnvironmentPreview() {
             </p>
           </div>
           <Link
-            href="/services"
+            href={serviceHref(SERVICE_SLUGS.environment)}
             className="inline-flex items-center gap-2 mt-10 text-electric-blue font-bold text-sm uppercase tracking-wide hover:gap-3 transition-all"
           >
             View all services <ArrowRight className="w-4 h-4" />

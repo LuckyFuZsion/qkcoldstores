@@ -23,6 +23,7 @@ import {
   ChevronUp,
   AlertCircle,
   Inbox,
+  BookOpen,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -58,12 +59,13 @@ import {
 } from "@/lib/vacancies"
 import { TeamTab } from "@/components/admin/team-tab"
 import { EnquiriesTab } from "@/components/admin/enquiries-tab"
+import { GuideTab } from "@/components/admin/guide-tab"
 import { AdminLoadError } from "@/components/admin/load-error"
 import { downloadCloudinaryFile } from "@/lib/cloudinary"
 import Image from "next/image"
 import Link from "next/link"
 
-type Tab = "vacancies" | "applications" | "enquiries" | "team"
+type Tab = "vacancies" | "applications" | "enquiries" | "team" | "guide"
 
 export default function AdminVacanciesPage() {
   const { user, loading, logout } = useAuth()
@@ -135,6 +137,7 @@ export default function AdminVacanciesPage() {
               { key: "applications" as Tab, label: "Applications", icon: Users },
               { key: "enquiries" as Tab, label: "Enquiries", icon: Inbox },
               { key: "team" as Tab, label: "Team", icon: User },
+              { key: "guide" as Tab, label: "Guide", icon: BookOpen },
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -161,8 +164,10 @@ export default function AdminVacanciesPage() {
           <ApplicationsTab />
         ) : activeTab === "enquiries" ? (
           <EnquiriesTab />
-        ) : (
+        ) : activeTab === "team" ? (
           <TeamTab />
+        ) : (
+          <GuideTab />
         )}
       </div>
     </div>

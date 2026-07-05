@@ -2,15 +2,23 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
 import { ContactSections } from "@/components/contact-sections"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { breadcrumbsFor } from "@/lib/breadcrumbs"
 
-export const metadata = {
+import { pageMetadata } from "@/lib/metadata"
+
+export const metadata = pageMetadata({
   title: "Contact Us | QK Coldstores",
-  description: "Get in touch with QK Coldstores for all your cold storage and logistics needs. Located in Grantham, serving the East Midlands.",
-}
+  description:
+    "Get in touch with QK Coldstores for all your cold storage and logistics needs. Located in Grantham, serving the East Midlands.",
+  path: "/contact",
+})
 
 export default function ContactPage() {
   return (
-    <main>
+    <>
+      <BreadcrumbSchema items={breadcrumbsFor("/contact", "Contact")} />
+      <main>
       <Header />
 
       <PageHero
@@ -24,5 +32,6 @@ export default function ContactPage() {
 
       <Footer />
     </main>
+    </>
   )
 }

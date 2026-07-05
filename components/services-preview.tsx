@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { additionalServices, servicePreviewItems } from "@/lib/services-content"
+import { additionalServices, servicePreviewItems, serviceHref, SERVICE_SLUGS } from "@/lib/services-content"
 
 export function ServicesPreview() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -75,7 +75,7 @@ export function ServicesPreview() {
                     {service.description}
                   </CardDescription>
                   <div className="mt-8">
-                    <Link href="/services" className="inline-flex items-center gap-2 text-electric-blue font-bold text-sm group-hover:gap-3 transition-all">
+                    <Link href={serviceHref(service.slug)} className="inline-flex items-center gap-2 text-electric-blue font-bold text-sm group-hover:gap-3 transition-all">
                       EXPLORE SERVICE <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>

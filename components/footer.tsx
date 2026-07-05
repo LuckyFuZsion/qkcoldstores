@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Clock } from "lucide-react"
-import { OPENING_HOURS_TEXT } from "@/lib/services-content"
+import { OPENING_HOURS_TEXT, footerServiceLinks, serviceHref } from "@/lib/services-content"
 import { AccreditationMarquee } from "@/components/accreditation-marquee"
 
 const quickLinks = [
@@ -15,14 +15,7 @@ const quickLinks = [
   { label: "Contact Us", href: "/contact" },
 ]
 
-const services = [
-  "Storage",
-  "Blast Freezing",
-  "Tempering",
-  "Container Loading",
-  "Fresh Packing",
-  "Handling",
-]
+const services = footerServiceLinks
 
 export function Footer() {
   return (
@@ -72,13 +65,13 @@ export function Footer() {
             <h3 className="font-black text-xl uppercase tracking-tight mb-8">Services</h3>
             <ul className="space-y-4">
               {services.map((service) => (
-                <li key={service}>
+                <li key={service.label}>
                   <Link 
-                    href="/services" 
+                    href={serviceHref(service.slug)} 
                     className="text-muted-foreground hover:text-electric-blue font-bold flex items-center group transition-colors"
                   >
                     <span className="mr-2 h-0.5 w-0 bg-electric-blue transition-all group-hover:w-4" />
-                    {service}
+                    {service.label}
                   </Link>
                 </li>
               ))}

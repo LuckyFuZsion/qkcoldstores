@@ -90,7 +90,7 @@ export function ContactSections() {
               <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden shrink-0 border-4 border-white shadow-lg">
                 <Image
                   src="/images/gemma.webp"
-                  alt="Gemma"
+                  alt="Gemma, QK Coldstores enquiries contact"
                   fill
                   className="object-cover"
                 />

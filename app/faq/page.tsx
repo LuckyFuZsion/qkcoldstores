@@ -4,14 +4,25 @@ import { FAQSection } from "@/components/faq-section"
 import { PageHero } from "@/components/page-hero"
 import { FAQCta } from "@/components/faq-cta"
 
-export const metadata = {
+import { JsonLdScript } from "@/components/json-ld-script"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { breadcrumbsFor } from "@/lib/breadcrumbs"
+import { buildFAQPageJsonLd } from "@/lib/json-ld"
+import { pageMetadata } from "@/lib/metadata"
+
+export const metadata = pageMetadata({
   title: "FAQ | QK Coldstores",
-  description: "Frequently asked questions about QK Coldstores cold storage services, facilities, and capabilities in Grantham.",
-}
+  description:
+    "Frequently asked questions about QK Coldstores cold storage services, facilities, and capabilities in Grantham.",
+  path: "/faq",
+})
 
 export default function FAQPage() {
   return (
-    <main>
+    <>
+      <JsonLdScript data={buildFAQPageJsonLd()} />
+      <BreadcrumbSchema items={breadcrumbsFor("/faq", "FAQ")} />
+      <main>
       <Header />
 
       <PageHero
@@ -26,6 +37,7 @@ export default function FAQPage() {
       <FAQCta />
 
       <Footer />
-    </main>
+      </main>
+    </>
   )
 }

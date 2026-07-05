@@ -3,15 +3,23 @@ import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
 import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Database, Eye, Lock, UserCheck, FileText, Mail, Clock } from "lucide-react"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { breadcrumbsFor } from "@/lib/breadcrumbs"
 
-export const metadata = {
+import { pageMetadata } from "@/lib/metadata"
+
+export const metadata = pageMetadata({
   title: "Privacy Policy | QK Coldstores",
-  description: "Privacy policy for QK Cold Stores (Marston) Ltd. Learn how we collect, use, and protect your personal data.",
-}
+  description:
+    "Privacy policy for QK Cold Stores (Marston) Ltd. Learn how we collect, use, and protect your personal data.",
+  path: "/privacy",
+})
 
 export default function PrivacyPolicyPage() {
   return (
-    <main>
+    <>
+      <BreadcrumbSchema items={breadcrumbsFor("/privacy", "Privacy Policy")} />
+      <main>
       <Header />
       
       <PageHero
@@ -262,7 +270,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                   <div className="space-y-2 text-ice-blue/90">
                     <p><strong className="text-white">QK Cold Stores (Marston) Ltd.</strong></p>
-                    <p>Gonerby Road, Marston</p>
+                    <p>2 Toll Bar Road, Marston</p>
                     <p>Grantham, Lincolnshire NG32 2HT</p>
                     <p className="mt-4">
                       <a href="mailto:info@qkcoldstores.co.uk" className="text-electric-blue hover:underline">
@@ -303,5 +311,6 @@ export default function PrivacyPolicyPage() {
 
       <Footer />
     </main>
+    </>
   )
 }

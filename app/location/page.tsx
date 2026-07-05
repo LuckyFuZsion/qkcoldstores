@@ -1,17 +1,24 @@
-import { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
 import { LocationSections } from "@/components/location-sections"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { breadcrumbsFor } from "@/lib/breadcrumbs"
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/metadata"
+
+export const metadata = pageMetadata({
   title: "Location | QK Coldstores",
-  description: "Find QK Coldstores in Marston, Grantham. Strategically located for easy access across the East Midlands with excellent transport links.",
-}
+  description:
+    "Find QK Coldstores in Marston, Grantham. Strategically located for easy access across the East Midlands with excellent transport links.",
+  path: "/location",
+})
 
 export default function LocationPage() {
   return (
-    <main className="min-h-screen">
+    <>
+      <BreadcrumbSchema items={breadcrumbsFor("/location", "Location")} />
+      <main className="min-h-screen">
       <Header />
 
       <PageHero
@@ -23,5 +30,6 @@ export default function LocationPage() {
 
       <Footer />
     </main>
+    </>
   )
 }

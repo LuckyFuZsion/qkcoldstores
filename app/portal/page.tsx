@@ -2,15 +2,24 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
 import { ClientPortalSection } from "@/components/client-portal-section"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { breadcrumbsFor } from "@/lib/breadcrumbs"
 
-export const metadata = {
+import { pageMetadata } from "@/lib/metadata"
+
+export const metadata = pageMetadata({
   title: "Customer Portal | QK Coldstores",
-  description: "Access the QK Coldstores Emperica stock system for real-time inventory management and reporting.",
-}
+  description:
+    "Access the QK Coldstores Emperica stock system for real-time inventory management and reporting.",
+  path: "/portal",
+  noIndex: true,
+})
 
 export default function PortalPage() {
   return (
-    <main>
+    <>
+      <BreadcrumbSchema items={breadcrumbsFor("/portal", "Customer Portal")} />
+      <main>
       <Header />
 
       <PageHero
@@ -22,5 +31,6 @@ export default function PortalPage() {
 
       <Footer />
     </main>
+    </>
   )
 }

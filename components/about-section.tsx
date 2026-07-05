@@ -4,6 +4,7 @@ import { CheckCircle2, Award, Users, Clock, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 
 const stats = [
   { icon: Clock, value: "40+", label: "Years Experience" },
@@ -25,11 +26,15 @@ export function AboutSection() {
             className="relative"
           >
             <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card">
-              <img
-                src="/images/qk-coldstores-4.webp"
-                alt="Industrial Cold Storage Racking"
-                className="w-full h-[500px] lg:h-[600px] object-cover"
-              />
+              <div className="relative w-full h-[500px] lg:h-[600px]">
+                <Image
+                  src="/images/qk-coldstores-4.webp"
+                  alt="Industrial Cold Storage Racking"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
             
             {/* Floating stats card */}

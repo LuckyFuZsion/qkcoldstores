@@ -4,7 +4,8 @@ import { CheckCircle2, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { additionalServices, servicePreviewItems } from "@/lib/services-content"
+import Image from "next/image"
+import { additionalServices, servicePreviewItems, serviceHref } from "@/lib/services-content"
 
 export function WhyChooseUs() {
   return (
@@ -53,11 +54,13 @@ export function WhyChooseUs() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card">
-              <img
+            <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card">
+              <Image
                 src="/images/qk-coldstores-2.webp"
                 alt="Temperature Controlled Cold Store Facility"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
               />
             </div>
             <div className="absolute -bottom-10 -left-10 bg-electric-blue p-8 rounded-[2rem] shadow-2xl text-white max-w-[200px]">
@@ -91,7 +94,7 @@ export function WhyChooseUs() {
                 </div>
                 <h4 className="text-xl font-black text-foreground mb-4 tracking-tight uppercase group-hover:text-electric-blue transition-colors">{feature.title}</h4>
                 <p className="text-muted-foreground font-medium leading-relaxed mb-6">{feature.description}</p>
-                <Link href="/services" className="inline-flex items-center gap-2 text-electric-blue font-bold text-sm group-hover:gap-3 transition-all">
+                <Link href={serviceHref(feature.slug)} className="inline-flex items-center gap-2 text-electric-blue font-bold text-sm group-hover:gap-3 transition-all">
                   LEARN MORE <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>

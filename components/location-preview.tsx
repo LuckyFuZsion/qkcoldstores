@@ -107,6 +107,28 @@ export function LocationPreview() {
               ))}
             </div>
 
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mb-12"
+            >
+              <p className="text-xs font-black text-muted-foreground uppercase tracking-[0.2em] mb-4">
+                Areas we serve
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {areasServed.map((area) => (
+                  <span
+                    key={area}
+                    className="px-4 py-2 rounded-full bg-secondary text-foreground text-sm font-bold border border-border"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
             {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}

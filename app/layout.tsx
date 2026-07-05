@@ -1,29 +1,15 @@
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
-import { ThemeProvider } from '@/components/theme-provider'
-import { UnregisterServiceWorkers } from '@/components/unregister-service-workers'
-import { FirebaseAnalytics } from '@/components/firebase-analytics'
+import { Geist, Geist_Mono } from "next/font/google"
+import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
+import { UnregisterServiceWorkers } from "@/components/unregister-service-workers"
+import { ConsentGatedAnalytics } from "@/components/consent-gated-analytics"
+import { CookieConsentBanner } from "@/components/cookie-consent-banner"
+import { rootMetadata } from "@/lib/metadata"
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" })
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
 
-export const metadata: Metadata = {
-  title: 'QK Coldstores | Precision Cold Storage & Logistics in Grantham',
-  description: 'QK Coldstores provides premium temperature-controlled warehousing, blast freezing, and distribution services in Grantham, Marston and the East Midlands. Your trusted partner for cold chain logistics.',
-  keywords: ['cold storage', 'cold storage Grantham', 'temperature controlled warehouse', 'blast freezing', 'cold chain logistics', 'Marston', 'East Midlands', 'frozen storage', 'distribution'],
-  generator: 'v0.app',
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/favicon.ico',
-  },
-  openGraph: {
-    title: 'QK Coldstores | Precision Cold Storage & Logistics',
-    description: 'Grantham\'s premier temperature-controlled warehousing solution',
-    type: 'website',
-  },
-}
+export const metadata = rootMetadata
 
 export default function RootLayout({
   children,
@@ -32,12 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className="font-sans antialiased">
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <UnregisterServiceWorkers />
-          <FirebaseAnalytics />
+          <ConsentGatedAnalytics />
           {children}
-          {process.env.NODE_ENV === 'production' && <Analytics />}
+          <CookieConsentBanner />
         </ThemeProvider>
       </body>
     </html>

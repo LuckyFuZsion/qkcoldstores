@@ -2,6 +2,14 @@ import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { pageMetadata } from "@/lib/metadata"
+
+export const metadata = pageMetadata({
+  title: "Page Not Found | QK Coldstores",
+  description: "The page you are looking for could not be found.",
+  path: "/404",
+  noIndex: true,
+})
 
 export default function NotFound() {
   return (

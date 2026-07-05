@@ -11,7 +11,7 @@ import { HeroBackground } from "@/components/hero-background"
 export function HeroSection() {
   return (
     <section className="relative min-h-[90svh] flex items-center justify-center overflow-x-hidden bg-deep-navy pt-14 lg:pt-16">
-      <HeroBackground />
+      <HeroBackground priority />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-12">
         <div className="max-w-5xl mx-auto text-center">
@@ -23,8 +23,8 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 tracking-tight leading-[0.95]"
           >
-            Temperature-Controlled <br />
-            <span className="text-electric-blue">Storage Solutions</span>
+            QK Coldstores <br />
+            <span className="text-electric-blue">Cold Storage in Grantham</span>
           </motion.h1>
 
           <motion.p

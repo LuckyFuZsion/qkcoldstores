@@ -2,16 +2,23 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
 import { ServicesSections } from "@/components/services-sections"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { breadcrumbsFor } from "@/lib/breadcrumbs"
 
-export const metadata = {
+import { pageMetadata } from "@/lib/metadata"
+
+export const metadata = pageMetadata({
   title: "Services | QK Coldstores",
   description:
     "QK Coldstores services in Grantham: large-scale cold storage, blast freezing and tempering, fresh packing and cold store handling.",
-}
+  path: "/services",
+})
 
 export default function ServicesPage() {
   return (
-    <main>
+    <>
+      <BreadcrumbSchema items={breadcrumbsFor("/services", "Services")} />
+      <main>
       <Header />
 
       <PageHero
@@ -23,5 +30,6 @@ export default function ServicesPage() {
 
       <Footer />
     </main>
+    </>
   )
 }
