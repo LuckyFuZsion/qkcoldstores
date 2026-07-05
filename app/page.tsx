@@ -4,7 +4,6 @@ import { AboutSection } from "@/components/about-section"
 import { ServicesPreview } from "@/components/services-preview"
 import { EnvironmentPreview } from "@/components/environment-preview"
 import { WhyChooseUs } from "@/components/why-choose-us"
-import { TestimonialsPreview } from "@/components/testimonials-preview"
 import { LocationPreview } from "@/components/location-preview"
 import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
@@ -35,21 +34,16 @@ const jsonLd = {
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sunday"],
-      opens: "22:00",
-      closes: "21:00",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      opens: "00:00",
+      closes: "23:59",
     },
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Saturday",
-      opens: "06:00",
-      closes: "12:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Sunday",
-      opens: "06:00",
-      closes: "12:00",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "17:00",
+      description: "Office hours",
     },
   ],
   areaServed: [
@@ -81,9 +75,27 @@ const jsonLd = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Blast Freezing & Tempering",
+          name: "Blast Freezing",
           description:
-            "Blast freezing handling approximately 800 tonnes per week, plus controlled rapid air tempering services for safe, gradual thawing.",
+            "State-of-the-art blast freezing capabilities handling approximately 800 tonnes per week.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Tempering",
+          description:
+            "Controlled tempering services for safe and gradual thawing of frozen goods.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Container Loading and Unloading",
+          description:
+            "Efficient container loading and unloading with strict temperature management procedures.",
         },
       },
       {
@@ -106,11 +118,6 @@ const jsonLd = {
       },
     ],
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "127",
-  },
 }
 
 export default function HomePage() {
@@ -127,7 +134,6 @@ export default function HomePage() {
         <ServicesPreview />
         <EnvironmentPreview />
         <WhyChooseUs />
-        <TestimonialsPreview />
         <LocationPreview />
         <CTASection />
         <Footer />

@@ -1,36 +1,10 @@
 "use client"
 
-import { Warehouse, Snowflake, Package, Boxes, CheckCircle2, ArrowRight } from "lucide-react"
+import { CheckCircle2, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-
-const features = [
-  {
-    icon: Warehouse,
-    title: "Storage",
-    description:
-      "In excess of 250,000 sq ft of cold storage for frozen, chilled and ambient goods, with capacity for over 50,000 pallets.",
-  },
-  {
-    icon: Snowflake,
-    title: "Blast Freezing & Tempering",
-    description:
-      "Blast freezing handling ~800 tonnes per week, plus controlled rapid air tempering for safe, gradual thawing.",
-  },
-  {
-    icon: Package,
-    title: "Fresh Packing",
-    description:
-      "Since its inception in 2020, our fresh packing line has steadily grown to handling an average of 300 tonnes per week in 2026, handling all protein products to customer specification.",
-  },
-  {
-    icon: Boxes,
-    title: "Handling",
-    description:
-      "Specialised handling including case picking, handballing, labelling and de-topping.",
-  },
-]
+import { additionalServices, servicePreviewItems } from "@/lib/services-content"
 
 export function WhyChooseUs() {
   return (
@@ -49,8 +23,8 @@ export function WhyChooseUs() {
               <span className="text-electric-blue">Food Manufacturing Sector</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed font-medium">
-              For over 40 years, we have been a trusted leader in temperature-controlled 
-              storage solutions across the East Midlands. We help our food partners 
+              For over 40 years, we have been a trusted leader in temperature-controlled
+              storage solutions across the East Midlands. We help our food partners
               not only fulfil their storage needs but also alleviate complexity in the cold chain.
             </p>
             <ul className="space-y-4 mb-10">
@@ -59,7 +33,7 @@ export function WhyChooseUs() {
                 "Members of the British Frozen Food Federation",
                 "Advanced Empirica stock management system",
                 "Strategically located adjacent to the A1",
-                "Red Tractor Approved"
+                "Red Tractor Approved",
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-foreground font-bold">
                   <CheckCircle2 className="w-6 h-6 text-electric-blue shrink-0" />
@@ -80,13 +54,12 @@ export function WhyChooseUs() {
             className="relative"
           >
             <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card">
-              <img 
-                src="/images/qk-coldstores-2.webp" 
-                alt="Temperature Controlled Cold Store Facility" 
+              <img
+                src="/images/qk-coldstores-2.webp"
+                alt="Temperature Controlled Cold Store Facility"
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* Floating Stat */}
             <div className="absolute -bottom-10 -left-10 bg-electric-blue p-8 rounded-[2rem] shadow-2xl text-white max-w-[200px]">
               <div className="text-4xl font-black mb-1">50,000+</div>
               <div className="text-sm font-bold uppercase tracking-wider opacity-80 leading-tight">Pallet Positions Available</div>
@@ -94,20 +67,19 @@ export function WhyChooseUs() {
           </motion.div>
         </div>
 
-        {/* Storage and Logistics Grid */}
         <div className="pt-24 border-t border-border">
           <div className="text-center mb-16">
             <h3 className="text-3xl md:text-5xl font-black text-foreground mb-6 tracking-tight">Storage and Logistics</h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
-              We provide a complete solution for your temperature-sensitive products, 
+              We provide a complete solution for your temperature-sensitive products,
               helping you shorten your cold chain and reduce risk.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <motion.div 
-                key={feature.title} 
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {servicePreviewItems.map((feature, index) => (
+              <motion.div
+                key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -125,6 +97,26 @@ export function WhyChooseUs() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mt-8 p-8 rounded-[2rem] bg-card border border-border"
+          >
+            <h4 className="text-xl font-black text-foreground mb-6 tracking-tight uppercase">Additional Services</h4>
+            <ul className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {additionalServices.map((item) => (
+                <li
+                  key={item}
+                  className="text-muted-foreground font-bold text-sm uppercase tracking-tight px-4 py-3 rounded-xl bg-background border border-border"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
       </div>
     </section>

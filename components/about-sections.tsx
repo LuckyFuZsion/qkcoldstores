@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { CheckCircle, ChevronRight, Award, Users, Clock, Shield } from "lucide-react"
+import { FACILITY_IMAGE } from "@/lib/services-content"
 
 const values = [
   {
@@ -48,15 +49,13 @@ export function AboutSections() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Our Story</span>
+              <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Our Mission</span>
               <h2 className="text-4xl md:text-6xl font-black text-foreground mb-8 tracking-tight leading-[1.1]">
-                Our <span className="text-electric-blue">Story</span>
+                Our <span className="text-electric-blue">Mission</span>
               </h2>
               <div className="space-y-6 text-xl text-muted-foreground font-medium leading-relaxed">
                 <p>
-                  Our journey began with a simple mission: to provide reliable, high-quality
-                  temperature-controlled storage that businesses could depend on. Over 40 years later,
-                  that mission remains at the heart of everything we do.
+                  Our mission is to deliver exceptional temperature-controlled storage solutions that empowers our customers to grow. We pride ourselves on service excellence and ensure flexibility, integrity, and reliability are at the core of everything we do. Through a dedicated, hands-on approach we deliver on our promises that continue to build longstanding relationships with our clients and partners.
                 </p>
                 <p>
                   We have fostered enduring relationships with long term clients while continuously
@@ -97,7 +96,7 @@ export function AboutSections() {
             >
               <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card">
                 <img
-                  src="https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1935"
+                  src={FACILITY_IMAGE}
                   alt="QK Coldstores Facility"
                   className="w-full h-[500px] object-cover"
                 />

@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react"
 import { motion } from "framer-motion"
+import { FACILITY_IMAGE } from "@/lib/services-content"
 
 type PageHeroProps = {
   title: ReactNode
@@ -15,7 +16,7 @@ export function PageHero({
   title,
   subtitle,
   eyebrow,
-  backgroundImage = "/landscape.png",
+  backgroundImage = FACILITY_IMAGE,
   bgOpacityClass = "opacity-30",
 }: PageHeroProps) {
   return (

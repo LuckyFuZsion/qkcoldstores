@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     question: "What is your blast freezing capacity?",
-    answer: "Our blast freezing facility can rapidly reduce product temperatures to -25°C or below, preserving quality and extending shelf life. We handle a variety of products including fresh produce, prepared foods and drinks with batch tracking throughout the process, which are validated. We have over 50K pallet capacity across our site.",
+    answer: "We have over 50K pallet capacity across our site. Our blast freezing facility can rapidly reduce product temperatures to -25°C or below, preserving quality and extending shelf life. We handle a variety of products including fresh produce, prepared foods and drinks with batch tracking throughout the process, which are validated.",
   },
   {
     question: "How do I become a customer of QK Cold Stores?",
@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     question: "What time can we access the site?",
-    answer: "Our opening hours are: Sunday 22:00 - Friday 21:00, Saturday 06:00 - 12:00, Sunday 06:00 - 12:00. Hours do differentiate for public holidays, which customers are notified of in advance.",
+    answer: "We operate 24/7. Intake hours may vary. Office hours are Monday to Friday, 9am - 5pm.",
   },
 ]
 

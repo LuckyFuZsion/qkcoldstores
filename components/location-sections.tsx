@@ -4,6 +4,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { MapPin, Phone, Mail, Clock, Car, Truck, Building2 } from "lucide-react"
+import { OPENING_HOURS_TEXT } from "@/lib/services-content"
 
 const contactInfo = [
   {
@@ -27,7 +28,7 @@ const contactInfo = [
   {
     icon: Clock,
     label: "Opening Hours",
-    value: "Sun - Fri: 22:00 - 21:00\nSaturday: 06:00 - 12:00\nSunday: 06:00 - 12:00\nHours may vary on public holidays",
+    value: `${OPENING_HOURS_TEXT.operational}\n${OPENING_HOURS_TEXT.operationalNote}\n${OPENING_HOURS_TEXT.office}`,
     href: null,
   },
 ]
@@ -71,7 +72,7 @@ export function LocationSections() {
       {/* Map Section */}
       <section className="py-24 md:py-32 bg-background overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-20">
+          <div className="grid lg:grid-cols-2 gap-8">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -92,17 +93,33 @@ export function LocationSections() {
               />
             </motion.div>
 
-            <div className="space-y-8">
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Get in Touch</span>
-                <h2 className="text-4xl md:text-5xl font-black text-foreground mb-8 tracking-tight">Contact Information</h2>
-              </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="relative h-[500px] lg:h-auto rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card bg-card"
+            >
+              <img
+                src="/images/site-map.webp"
+                alt="QK Cold Stores site map"
+                className="w-full h-full object-contain bg-white p-4"
+              />
+            </motion.div>
+          </div>
 
+          <div className="grid lg:grid-cols-2 gap-20 mt-20">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Get in Touch</span>
+              <h2 className="text-4xl md:text-5xl font-black text-foreground mb-8 tracking-tight">Contact Information</h2>
+            </motion.div>
+
+            <div className="space-y-8">
               <div className="grid gap-6">
                 {contactInfo.map((item, i) => (
                   <motion.div

@@ -1,8 +1,10 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { ContactForm } from "@/components/contact-form"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import { OPENING_HOURS_TEXT } from "@/lib/services-content"
 
 const contactCards = [
   {
@@ -57,21 +59,14 @@ const contactCards = [
     icon: Clock,
     title: "Opening Hours",
     content: (
-      <div className="text-muted-foreground font-medium leading-relaxed space-y-1">
-        <div className="flex justify-between gap-4">
-          <span className="font-bold text-foreground">Sun - Fri:</span>
-          <span>22:00 - 21:00</span>
-        </div>
-        <div className="flex justify-between gap-4">
-          <span className="font-bold text-foreground">Saturday:</span>
-          <span>06:00 - 12:00</span>
-        </div>
-        <div className="flex justify-between gap-4">
-          <span className="font-bold text-foreground">Sunday:</span>
-          <span>06:00 - 12:00</span>
-        </div>
-        <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest mt-2">
-          Hours may vary on public holidays
+      <div className="text-muted-foreground font-medium leading-relaxed space-y-2">
+        <p>
+          <span className="font-bold text-foreground">{OPENING_HOURS_TEXT.operational}</span>
+          <br />
+          {OPENING_HOURS_TEXT.operationalNote}
+        </p>
+        <p>
+          <span className="font-bold text-foreground">{OPENING_HOURS_TEXT.office}</span>
         </p>
       </div>
     ),
@@ -81,11 +76,41 @@ const contactCards = [
 export function ContactSections() {
   return (
     <>
-      {/* Contact Content */}
       <section className="py-24 md:py-32 bg-ice-blue/20 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-16 max-w-3xl"
+          >
+            <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Your Contact</span>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 p-8 rounded-[2rem] bg-card border border-border shadow-xl">
+              <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden shrink-0 border-4 border-white shadow-lg">
+                <Image
+                  src="/images/gemma.webp"
+                  alt="Gemma"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <h2 className="text-3xl font-black text-foreground tracking-tight mb-2">Gemma</h2>
+                <p className="text-muted-foreground font-medium text-lg mb-4">
+                  Get in touch with Gemma for enquiries about our cold storage and logistics services.
+                </p>
+                <a
+                  href="mailto:info@qkcoldstores.co.uk"
+                  className="text-electric-blue font-bold hover:underline"
+                >
+                  info@qkcoldstores.co.uk
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
           <div className="grid lg:grid-cols-3 gap-20">
-            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -104,7 +129,6 @@ export function ContactSections() {
               </div>
             </motion.div>
 
-            {/* Contact Information */}
             <div className="space-y-8">
               {contactCards.map((card, i) => (
                 <motion.div
@@ -131,7 +155,6 @@ export function ContactSections() {
         </div>
       </section>
 
-      {/* Map Section */}
       <section className="bg-secondary/30">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

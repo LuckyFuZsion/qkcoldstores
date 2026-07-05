@@ -3,75 +3,16 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import {
-  Warehouse,
-  Snowflake,
-  Package,
-  Boxes,
-  Leaf,
-  CheckCircle,
-  ChevronRight,
-} from "lucide-react"
-
-const services = [
-  {
-    icon: Warehouse,
-    title: "Storage",
-    description:
-      "QK Cold Stores provides in excess of 250,000 square feet of cold storage capacity for frozen, chilled and ambient goods, with the ability to accommodate over 50,000 pallets simultaneously.",
-    features: [
-      "250,000+ sq ft of capacity",
-      "50,000+ pallet positions",
-      "Frozen, chilled and ambient storage",
-      "24/7 temperature auditable monitoring",
-    ],
-  },
-  {
-    icon: Snowflake,
-    title: "Blast Freezing & Tempering",
-    description:
-      "Blast freezing is a crucial process for preserving the quality and freshness of perishable goods. Our facility handles approximately 800 tonnes per week to ensure efficient, high-quality freezing for large volumes. We also offer controlled rapid air tempering services for safe and gradual thawing of frozen goods to optimal temperatures for further processing or distribution.",
-    features: [
-      "~800 tonnes per week capacity",
-      "Rapid core temperature reduction",
-      "Controlled tempering services",
-      "Quality and freshness preserved",
-    ],
-  },
-  {
-    icon: Package,
-    title: "Fresh Packing",
-    description:
-      "Since its inception in 2020, our fresh packing line has steadily grown to handling an average of 300 tonnes per week in 2026. Our facility handles a wide variety of protein products, packing to each customer's exact specifications with quality and efficiency at every stage.",
-    features: [
-      "Operating since 2020",
-      "300+ tonnes per week",
-      "All protein products handled",
-      "Packed to customer specification",
-    ],
-  },
-  {
-    icon: Boxes,
-    title: "Handling",
-    description:
-      "Cold store handling requires specialised training and equipment to ensure activities are carried out efficiently and in compliance with food safety regulations, keeping perishable goods at optimal conditions throughout the storage and handling process.",
-    features: [
-      "Case picking",
-      "Handballing",
-      "Labelling",
-      "De-topping",
-    ],
-  },
-]
+import { Leaf, CheckCircle, ChevronRight } from "lucide-react"
+import { additionalServices, serviceDetailItems } from "@/lib/services-content"
 
 export function ServicesSections() {
   return (
     <>
-      {/* Services Grid */}
       <section className="py-24 md:py-32 bg-background overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {services.map((service, i) => (
+            {serviceDetailItems.map((service, i) => (
               <motion.div
                 key={service.title}
                 initial={{ opacity: 0, y: 24 }}
@@ -97,11 +38,31 @@ export function ServicesSections() {
                 </ul>
               </motion.div>
             ))}
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="md:col-span-2 p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300"
+            >
+              <h3 className="text-xl font-black text-foreground mb-6 tracking-tight uppercase">Additional Services</h3>
+              <ul className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {additionalServices.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-3 text-foreground font-bold text-sm uppercase tracking-tight px-4 py-3 rounded-xl bg-background border border-border"
+                  >
+                    <CheckCircle className="h-4 w-4 text-electric-blue shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Environment & Sustainability */}
       <section className="py-24 md:py-32 bg-secondary overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -135,7 +96,6 @@ export function ServicesSections() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-24 md:py-32 bg-background">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

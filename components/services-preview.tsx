@@ -2,37 +2,11 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Warehouse, Snowflake, Package, Boxes, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 import { motion } from "framer-motion"
-
-const services = [
-  {
-    icon: Warehouse,
-    title: "Storage",
-    description:
-      "In excess of 250,000 sq ft of cold storage for frozen, chilled and ambient goods, with capacity for over 50,000 pallets.",
-  },
-  {
-    icon: Snowflake,
-    title: "Blast Freezing & Tempering",
-    description:
-      "Blast freezing handling ~800 tonnes per week, plus controlled rapid air tempering for safe, gradual thawing.",
-  },
-  {
-    icon: Package,
-    title: "Fresh Packing",
-    description:
-      "Since its inception in 2020, our fresh packing line has steadily grown to handling an average of 300 tonnes per week in 2026, handling all protein products to customer specification.",
-  },
-  {
-    icon: Boxes,
-    title: "Handling",
-    description:
-      "Specialised cold store handling including case picking, handballing, labelling and de-topping.",
-  },
-]
+import { additionalServices, servicePreviewItems } from "@/lib/services-content"
 
 export function ServicesPreview() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -40,9 +14,8 @@ export function ServicesPreview() {
   return (
     <section className="py-24 md:py-32 bg-secondary overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -67,9 +40,8 @@ export function ServicesPreview() {
           </motion.div>
         </div>
 
-        {/* Services Grid */}
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {services.map((service, index) => (
+          {servicePreviewItems.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 20 }}
@@ -79,8 +51,8 @@ export function ServicesPreview() {
             >
               <Card
                 className={`group relative h-full overflow-hidden border border-border rounded-[2.5rem] transition-all duration-500 bg-card ${
-                  hoveredIndex === index 
-                    ? "shadow-2xl -translate-y-2" 
+                  hoveredIndex === index
+                    ? "shadow-2xl -translate-y-2"
                     : "shadow-lg"
                 }`}
                 onMouseEnter={() => setHoveredIndex(index)}
@@ -88,8 +60,8 @@ export function ServicesPreview() {
               >
                 <CardHeader className="p-10 pb-4">
                   <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-all duration-500 ${
-                    hoveredIndex === index 
-                      ? "bg-electric-blue text-white rotate-6 scale-110" 
+                    hoveredIndex === index
+                      ? "bg-electric-blue text-white rotate-6 scale-110"
                       : "bg-background text-foreground border border-border"
                   }`}>
                     <service.icon className="h-8 w-8" />
@@ -111,6 +83,30 @@ export function ServicesPreview() {
               </Card>
             </motion.div>
           ))}
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="md:col-span-2"
+          >
+            <Card className="border border-border rounded-[2.5rem] bg-card shadow-lg p-10">
+              <CardTitle className="text-2xl font-black text-foreground uppercase tracking-tight mb-6">
+                Additional Services
+              </CardTitle>
+              <ul className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {additionalServices.map((item) => (
+                  <li
+                    key={item}
+                    className="text-muted-foreground font-bold text-sm uppercase tracking-tight px-4 py-3 rounded-xl bg-background border border-border"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </motion.div>
         </div>
       </div>
     </section>

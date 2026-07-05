@@ -1,13 +1,14 @@
 import Link from "next/link"
 import Image from "next/image"
 import { MapPin, Phone, Mail, Clock, Facebook, Linkedin, Twitter, ArrowUpRight } from "lucide-react"
+import { OPENING_HOURS_TEXT } from "@/lib/services-content"
+import { AccreditationMarquee } from "@/components/accreditation-marquee"
 
 const quickLinks = [
   { label: "About Us", href: "/about" },
   { label: "Meet the Team", href: "/team" },
   { label: "What We Offer", href: "/services" },
   { label: "Location", href: "/location" },
-  { label: "Testimonials", href: "/testimonials" },
   { label: "FAQ", href: "/faq" },
   { label: "Vacancies", href: "/vacancies" },
   { label: "Contact Us", href: "/contact" },
@@ -15,7 +16,9 @@ const quickLinks = [
 
 const services = [
   "Storage",
-  "Blast Freezing & Tempering",
+  "Blast Freezing",
+  "Tempering",
+  "Container Loading",
   "Fresh Packing",
   "Handling",
 ]
@@ -128,55 +131,19 @@ export function Footer() {
                 Opening Hours
               </h3>
               <ul className="space-y-2 text-muted-foreground font-bold text-sm">
-                <li className="flex justify-between gap-4">
-                  <span>Sun - Fri</span>
-                  <span>22:00 - 21:00</span>
-                </li>
-                <li className="flex justify-between gap-4">
-                  <span>Saturday</span>
-                  <span>06:00 - 12:00</span>
-                </li>
-                <li className="flex justify-between gap-4">
-                  <span>Sunday</span>
-                  <span>06:00 - 12:00</span>
-                </li>
+                <li>{OPENING_HOURS_TEXT.operational}</li>
+                <li>{OPENING_HOURS_TEXT.operationalNote}</li>
+                <li>{OPENING_HOURS_TEXT.office}</li>
               </ul>
-              <p className="text-muted-foreground text-xs mt-2">
-                Hours may vary on public holidays
-              </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Accreditations Bar */}
-      <div className="bg-background border-t border-border py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-100 grayscale-0">
-            <Image
-              src="/brcgs-cert.svg"
-              alt="BRCGS Global Standard for Storage and Distribution"
-              width={120}
-              height={60}
-              className="h-16 w-auto object-contain"
-            />
-            <Image
-              src="/fsdf.jpg"
-              alt="FSDF - Food Storage & Distribution Federation"
-              width={120}
-              height={60}
-              className="h-16 w-auto object-contain"
-            />
-            <Image
-              src="/bfff.jpg"
-              alt="BFFF - British Frozen Food Federation"
-              width={120}
-              height={60}
-              className="h-16 w-auto object-contain"
-            />
-          </div>
-        </div>
-      </div>
+      <AccreditationMarquee
+        className="bg-white border-t border-border py-6 md:py-8"
+        logoClassName="h-12 md:h-16"
+      />
 
       {/* Bottom Bar */}
       <div className="bg-card border-t border-border py-10">

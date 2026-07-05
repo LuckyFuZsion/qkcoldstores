@@ -44,7 +44,6 @@ const navItems: NavEntry[] = [
     type: "group",
     label: "More",
     items: [
-      { href: "/testimonials", label: "Reviews" },
       { href: "/faq", label: "FAQ" },
       { href: "/vacancies", label: "Vacancies" },
     ],

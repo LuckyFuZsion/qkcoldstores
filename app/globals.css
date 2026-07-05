@@ -109,4 +109,24 @@
   .section-padding {
     @apply py-24 md:py-32;
   }
+
+  @keyframes accreditation-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .accreditation-marquee-track {
+    animation: accreditation-marquee 35s linear infinite;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .accreditation-marquee-track {
+      animation: none;
+    }
+  }
 }
