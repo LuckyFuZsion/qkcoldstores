@@ -8,7 +8,7 @@ import {
   type LucideIcon,
 } from "lucide-react"
 
-export const FACILITY_IMAGE = "/images/facility-013.webp"
+export const FACILITY_IMAGE = "/images/facility-013-hero.webp"
 
 export type AccreditationLogo = {
   src: string
@@ -20,15 +20,15 @@ export type AccreditationLogo = {
 const BRCS_LOGO_HEIGHT = "h-16 md:h-20"
 
 export const accreditationLogos: AccreditationLogo[] = [
-  { src: "/QK-New/Certifications/brcs-food-safety.png", alt: "BRCGS Food Safety", size: "brcs" },
-  { src: "/QK-New/Certifications/brcs-storage.png", alt: "BRCGS Storage and Distribution", size: "brcs", scale: 0.9 },
-  { src: "/QK-New/Certifications/brcs-start.png", alt: "BRCGS START", size: "brcs" },
+  { src: "/QK-New/Certifications/brcs-food-safety.webp", alt: "BRCGS Food Safety", size: "brcs" },
+  { src: "/QK-New/Certifications/brcs-storage.webp", alt: "BRCGS Storage and Distribution", size: "brcs", scale: 0.9 },
+  { src: "/QK-New/Certifications/brcs-start.webp", alt: "BRCGS START", size: "brcs" },
   { src: "/QK-New/Certifications/haccp.webp", alt: "HACCP" },
   { src: "/QK-New/Certifications/high-standards.webp", alt: "High Standards" },
-  { src: "/QK-New/Certifications/organic-food-federation.png", alt: "Organic Food Federation" },
+  { src: "/QK-New/Certifications/organic-food-federation.webp", alt: "Organic Food Federation" },
   { src: "/QK-New/Certifications/red-tractor.webp", alt: "Red Tractor" },
-  { src: "/fsdf.jpg", alt: "FSDF - Food Storage and Distribution Federation" },
-  { src: "/bfff.jpg", alt: "BFFF - British Frozen Food Federation" },
+  { src: "/fsdf.webp", alt: "FSDF - Food Storage and Distribution Federation" },
+  { src: "/bfff.webp", alt: "BFFF - British Frozen Food Federation" },
 ]
 
 export const brcsLogoHeightClass = BRCS_LOGO_HEIGHT

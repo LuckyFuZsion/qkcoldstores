@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { ContactForm } from "@/components/contact-form"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import { OPENING_HOURS_TEXT } from "@/lib/services-content"
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
 
 const contactCards = [
   {
@@ -92,6 +93,9 @@ export function ContactSections() {
                   src="/images/gemma.webp"
                   alt="Gemma, QK Coldstores enquiries contact"
                   fill
+                  sizes={IMAGE_SIZES.avatar}
+                  quality={IMAGE_QUALITY.content}
+                  loading="lazy"
                   className="object-cover"
                 />
               </div>

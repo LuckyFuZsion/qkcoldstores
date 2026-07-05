@@ -21,6 +21,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { cn } from "@/lib/utils"
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
 
 type NavLink = { href: string; label: string }
 
@@ -188,12 +189,14 @@ export function Header() {
         >
           <div className="bg-white border border-slate-100 border-l-0 rounded-br-xl lg:rounded-br-2xl shadow-lg px-2.5 py-2 pb-3 sm:px-3 sm:py-2.5 sm:pb-4 lg:px-4 lg:py-3 lg:pb-5">
             <Image
-              src="/images/qk-logo.png"
+              src="/images/qk-logo.webp"
               alt="QK Coldstores"
               width={358}
               height={179}
-              className="h-[2.8rem] sm:h-[3.2rem] lg:h-[4.8rem] w-auto object-contain block"
+              sizes={IMAGE_SIZES.headerLogo}
+              quality={IMAGE_QUALITY.logo}
               priority
+              className="h-[2.8rem] sm:h-[3.2rem] lg:h-[4.8rem] w-auto object-contain block"
             />
           </div>
         </Link>
@@ -266,10 +269,13 @@ export function Header() {
           <div className="flex flex-col h-full">
             <div className="flex items-center justify-between px-3 py-2 border-b border-slate-100">
               <Image
-                src="/images/qk-logo.png"
+                src="/images/qk-logo.webp"
                 alt="QK Coldstores"
                 width={280}
                 height={140}
+                sizes={IMAGE_SIZES.headerLogo}
+                quality={IMAGE_QUALITY.logo}
+                loading="lazy"
                 className="h-16 w-auto object-contain"
               />
               <div className="flex items-center gap-3">

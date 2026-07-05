@@ -2,7 +2,7 @@ import { FAQ_ITEMS } from "@/lib/faq-content"
 import { SITE_ADDRESS, SITE_URL, SOCIAL_PROFILES } from "@/lib/site-config"
 import type { Vacancy } from "@/lib/vacancies"
 
-export const OG_IMAGE_PATH = "/images/facility-013.webp"
+export const OG_IMAGE_PATH = "/images/facility-013-hero.webp"
 
 export function buildLocalBusinessJsonLd() {
   const schema: Record<string, unknown> = {
@@ -15,7 +15,7 @@ export function buildLocalBusinessJsonLd() {
     url: SITE_URL,
     telephone: "+441400259300",
     email: "info@qkcoldstores.co.uk",
-    logo: `${SITE_URL}/images/qk-logo.png`,
+    logo: `${SITE_URL}/images/qk-logo.webp`,
     image: `${SITE_URL}${OG_IMAGE_PATH}`,
     address: {
       "@type": "PostalAddress",
@@ -162,7 +162,7 @@ export function buildJobPostingJsonLd(vacancy: Vacancy) {
       "@type": "Organization",
       name: "QK Cold Stores (Marston) Ltd",
       sameAs: SITE_URL,
-      logo: `${SITE_URL}/images/qk-logo.png`,
+      logo: `${SITE_URL}/images/qk-logo.webp`,
     },
     jobLocation: {
       "@type": "Place",

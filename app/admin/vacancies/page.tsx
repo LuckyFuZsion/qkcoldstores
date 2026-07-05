@@ -95,10 +95,12 @@ export default function AdminVacanciesPage() {
             <div className="flex items-center gap-4">
               <div className="inline-flex items-center justify-center rounded-full bg-white p-2 shadow-sm">
                 <Image
-                  src="/images/qk-logo.png"
+                  src="/images/qk-logo.webp"
                   alt="QK Cold Stores"
                   width={120}
                   height={60}
+                  sizes="120px"
+                  loading="lazy"
                   className="h-6 w-auto"
                 />
               </div>

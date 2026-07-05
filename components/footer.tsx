@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Clock } from "lucide-react"
 import { OPENING_HOURS_TEXT, footerServiceLinks, serviceHref } from "@/lib/services-content"
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
 import { AccreditationMarquee } from "@/components/accreditation-marquee"
 
 const quickLinks = [
@@ -30,10 +31,13 @@ export function Footer() {
               className="inline-flex items-center justify-center transition-transform hover:scale-105 rounded-full bg-white p-4 dark:shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
             >
               <Image
-                src="/images/qk-logo.png"
+                src="/images/qk-logo.webp"
                 alt="QK Coldstores"
                 width={160}
                 height={80}
+                sizes={IMAGE_SIZES.footerLogo}
+                quality={IMAGE_QUALITY.logo}
+                loading="lazy"
                 className="h-10 w-auto"
               />
             </Link>

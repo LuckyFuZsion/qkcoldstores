@@ -6,6 +6,7 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { CheckCircle, ChevronRight, Award, Users, Clock, Shield } from "lucide-react"
 import { FACILITY_IMAGE } from "@/lib/services-content"
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
 
 const values = [
   {
@@ -101,7 +102,9 @@ export function AboutSections() {
                     src={FACILITY_IMAGE}
                     alt="QK Coldstores Facility"
                     fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    sizes={IMAGE_SIZES.contentHalf}
+                    quality={IMAGE_QUALITY.content}
+                    loading="lazy"
                     className="object-cover"
                   />
                 </div>

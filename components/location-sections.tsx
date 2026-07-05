@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { MapPin, Phone, Mail, Clock, Car, Truck, Building2 } from "lucide-react"
 import { OPENING_HOURS_TEXT } from "@/lib/services-content"
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
 
 const contactInfo = [
   {
@@ -106,7 +107,9 @@ export function LocationSections() {
                   src="/images/site-map.webp"
                   alt="QK Cold Stores site map"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes={IMAGE_SIZES.siteMap}
+                  quality={IMAGE_QUALITY.content}
+                  loading="lazy"
                   className="object-contain"
                 />
               </div>

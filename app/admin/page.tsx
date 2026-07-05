@@ -51,7 +51,7 @@ export default function AdminLoginPage() {
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center rounded-full bg-white p-4 mb-6 shadow-lg">
             <Image
-              src="/images/qk-logo.png"
+              src="/images/qk-logo.webp"
               alt="QK Cold Stores"
               width={160}
               height={80}

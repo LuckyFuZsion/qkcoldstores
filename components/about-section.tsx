@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
 
 const stats = [
   { icon: Clock, value: "40+", label: "Years Experience" },
@@ -31,7 +32,9 @@ export function AboutSection() {
                   src="/images/qk-coldstores-4.webp"
                   alt="Industrial Cold Storage Racking"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes={IMAGE_SIZES.contentHalf}
+                  quality={IMAGE_QUALITY.content}
+                  loading="lazy"
                   className="object-cover"
                 />
               </div>

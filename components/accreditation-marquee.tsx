@@ -2,11 +2,13 @@
 
 import Image from "next/image"
 import { accreditationLogos, brcsLogoHeightClass } from "@/lib/services-content"
+import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
 import { cn } from "@/lib/utils"
 
 type AccreditationMarqueeProps = {
   className?: string
   logoClassName?: string
+  priority?: boolean
 }
 
 function AccreditationLogoItem({
@@ -16,6 +18,7 @@ function AccreditationLogoItem({
   scale = 1,
   ariaHidden = false,
   logoClassName,
+  priority = false,
 }: {
   src: string
   alt: string
@@ -23,6 +26,7 @@ function AccreditationLogoItem({
   scale?: number
   ariaHidden?: boolean
   logoClassName: string
+  priority?: boolean
 }) {
   const isBrcs = size === "brcs"
 
@@ -39,6 +43,10 @@ function AccreditationLogoItem({
         alt={alt}
         width={200}
         height={80}
+        sizes={IMAGE_SIZES.accreditation}
+        quality={IMAGE_QUALITY.accreditation}
+        loading={priority ? undefined : "lazy"}
+        priority={priority}
         className={cn(
           "object-contain w-auto",
           isBrcs ? "h-full" : "h-full max-h-full"
@@ -53,6 +61,7 @@ function AccreditationLogoItem({
 export function AccreditationMarquee({
   className,
   logoClassName = "h-10 md:h-12",
+  priority = false,
 }: AccreditationMarqueeProps) {
   const marqueeLogos = [...accreditationLogos, ...accreditationLogos]
 
@@ -72,6 +81,7 @@ export function AccreditationMarquee({
               scale={logo.scale}
               ariaHidden={index >= accreditationLogos.length}
               logoClassName={logoClassName}
+              priority={priority && index === 0}
             />
           ))}
         </div>
@@ -86,6 +96,7 @@ export function AccreditationMarquee({
             size={logo.size}
             scale={logo.scale}
             logoClassName={logoClassName}
+            priority={priority}
           />
         ))}
       </div>

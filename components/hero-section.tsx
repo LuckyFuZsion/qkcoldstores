@@ -15,7 +15,7 @@ export function HeroSection() {
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-12">
         <div className="max-w-5xl mx-auto text-center">
-          <HeroLogo />
+          <HeroLogo priority />
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

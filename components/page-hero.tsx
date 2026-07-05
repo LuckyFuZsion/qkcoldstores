@@ -4,6 +4,7 @@ import type { ReactNode } from "react"
 import { motion } from "framer-motion"
 import { HeroLogo } from "@/components/hero-logo"
 import { HeroBackground } from "@/components/hero-background"
+import { PAGE_HERO_BACKGROUND } from "@/lib/image-config"
 
 type PageHeroProps = {
   title: ReactNode
@@ -18,7 +19,7 @@ export function PageHero({
 }: PageHeroProps) {
   return (
     <section className="relative min-h-[90svh] flex items-center justify-center overflow-x-hidden bg-deep-navy pt-14 lg:pt-16">
-      <HeroBackground />
+      <HeroBackground backgroundImage={PAGE_HERO_BACKGROUND} />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-12">
         <div className="max-w-5xl mx-auto text-center">
