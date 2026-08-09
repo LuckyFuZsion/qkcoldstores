@@ -3,9 +3,12 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { ContactForm } from "@/components/contact-form"
+import { FacilityMap } from "@/components/facility-map"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import { OPENING_HOURS_TEXT } from "@/lib/services-content"
 import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
+
+const ENQUIRIES_EMAIL = "enquiries@qkcoldstores.co.uk"
 
 const contactCards = [
   {
@@ -43,10 +46,10 @@ const contactCards = [
     content: (
       <>
         <a
-          href="mailto:info@qkcoldstores.co.uk"
+          href={`mailto:${ENQUIRIES_EMAIL}`}
           className="block w-full font-black text-foreground hover:text-electric-blue transition-colors leading-tight text-[clamp(0.8rem,2.6vw,1.125rem)] [overflow-wrap:anywhere] [word-break:break-all]"
         >
-          info@qkcoldstores.co.uk
+          {ENQUIRIES_EMAIL}
         </a>
         <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest mt-2">
           We respond within 24 hours
@@ -77,44 +80,11 @@ const contactCards = [
 export function ContactSections() {
   return (
     <>
+      {/* Contact Content */}
       <section className="py-24 md:py-32 bg-ice-blue/20 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16 max-w-3xl"
-          >
-            <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Your Contact</span>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 p-8 rounded-[2rem] bg-card border border-border shadow-xl">
-              <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden shrink-0 border-4 border-white shadow-lg">
-                <Image
-                  src="/images/gemma.webp"
-                  alt="Gemma, QK Coldstores enquiries contact"
-                  fill
-                  sizes={IMAGE_SIZES.avatar}
-                  quality={IMAGE_QUALITY.content}
-                  loading="lazy"
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <h2 className="text-3xl font-black text-foreground tracking-tight mb-2">Gemma</h2>
-                <p className="text-muted-foreground font-medium text-lg mb-4">
-                  Get in touch with Gemma for enquiries about our cold storage and logistics services.
-                </p>
-                <a
-                  href="mailto:info@qkcoldstores.co.uk"
-                  className="text-electric-blue font-bold hover:underline"
-                >
-                  info@qkcoldstores.co.uk
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
           <div className="grid lg:grid-cols-3 gap-20">
+            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -133,7 +103,28 @@ export function ContactSections() {
               </div>
             </motion.div>
 
+            {/* Contact Information */}
             <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-center text-center gap-4 p-8 rounded-[2rem] bg-card border border-border"
+              >
+                <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-4 border-white shadow-lg">
+                  <Image
+                    src="/images/gemma.webp"
+                    alt=""
+                    fill
+                    sizes={IMAGE_SIZES.avatar}
+                    quality={IMAGE_QUALITY.content}
+                    loading="lazy"
+                    className="object-cover"
+                  />
+                </div>
+              </motion.div>
+
               {contactCards.map((card, i) => (
                 <motion.div
                   key={card.title}
@@ -159,6 +150,7 @@ export function ContactSections() {
         </div>
       </section>
 
+      {/* Map Section */}
       <section className="bg-secondary/30">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -170,17 +162,8 @@ export function ContactSections() {
           <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
             Find Us
           </h2>
-          <div className="rounded-2xl overflow-hidden shadow-lg border border-border h-[400px]">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2402.5!2d-0.6936068!3d52.9659668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4879dd0a5f3d5555%3A0x2b7a28f0c7a7e4c5!2sQK%20Cold%20Stores%20(Marston)%20Ltd!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="QK Cold Stores (Marston) Ltd Location"
-            />
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-border h-[400px]">
+            <FacilityMap className="absolute inset-0" />
           </div>
         </motion.div>
       </section>

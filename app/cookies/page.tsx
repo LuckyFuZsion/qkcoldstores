@@ -8,8 +8,8 @@ import { breadcrumbsFor } from "@/lib/breadcrumbs"
 import { pageMetadata } from "@/lib/metadata"
 
 export const metadata = pageMetadata({
-  title: "Cookie Policy | QK Coldstores",
-  description: "Learn about how QK Coldstores uses cookies and similar technologies on our website.",
+  title: "Cookie Policy | QK Cold Stores",
+  description: "Learn about how QK Cold Stores uses cookies and similar technologies on our website.",
   path: "/cookies",
 })
 

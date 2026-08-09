@@ -7,7 +7,7 @@ import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react"
 
 const testimonials = [
   {
-    quote: "QK Coldstores has been instrumental in scaling our frozen food distribution. Their reliable temperature control and professional team give us complete peace of mind.",
+    quote: "QK Cold Stores has been instrumental in scaling our frozen food distribution. Their reliable temperature control and professional team give us complete peace of mind.",
     author: "Michael Crawford",
     role: "Supply Chain Director",
     company: "Premium Foods Ltd",
@@ -68,7 +68,7 @@ export function TestimonialsSection() {
             Trusted by Industry Leaders
           </h2>
           <p className="text-muted-foreground text-lg">
-            See what our clients say about partnering with QK Coldstores for their 
+            See what our clients say about partnering with QK Cold Stores for their 
             cold chain logistics needs.
           </p>
         </div>

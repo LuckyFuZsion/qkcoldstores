@@ -82,7 +82,7 @@ export function buildLocalBusinessJsonLd() {
             "@type": "Service",
             name: "Blast Freezing",
             description:
-              "State-of-the-art blast freezing capabilities handling approximately 800 tonnes per week.",
+              "Blast freezing capabilities handling approximately 800 tonnes per week.",
           },
         },
         {

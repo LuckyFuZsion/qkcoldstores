@@ -1,4 +1,4 @@
-# QK Coldstores
+# QK Cold Stores
 
 > Temperature-controlled cold storage, blast freezing, and logistics in Grantham, Lincolnshire.
 

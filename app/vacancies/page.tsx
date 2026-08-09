@@ -8,9 +8,9 @@ import { breadcrumbsFor } from "@/lib/breadcrumbs"
 import { pageMetadata } from "@/lib/metadata"
 
 export const metadata = pageMetadata({
-  title: "Vacancies | QK Coldstores",
+  title: "Vacancies | QK Cold Stores",
   description:
-    "View current job vacancies at QK Coldstores in Grantham, Lincolnshire. Join our team and build a career in cold chain logistics.",
+    "View current job vacancies at QK Cold Stores in Grantham, Lincolnshire. Join our team and build a career in cold chain logistics.",
   path: "/vacancies",
 })
 
@@ -24,7 +24,7 @@ export default function VacanciesPage() {
 
       <PageHero
         title={<>Join Our <span className="text-electric-blue">Team</span></>}
-        subtitle="Explore current vacancies and career opportunities at QK Coldstores."
+        subtitle="Explore current vacancies and career opportunities at QK Cold Stores."
       />
 
       <VacanciesSections />

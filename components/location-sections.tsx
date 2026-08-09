@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { MapPin, Phone, Mail, Clock, Car, Truck, Building2 } from "lucide-react"
 import { OPENING_HOURS_TEXT } from "@/lib/services-content"
 import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
+import { FacilityMap } from "@/components/facility-map"
 
 const contactInfo = [
   {
@@ -54,18 +55,10 @@ const transportLinks = [
 ]
 
 const areasServed = [
-  "Grantham",
-  "Marston",
-  "Newark",
-  "Sleaford",
-  "Stamford",
-  "Melton Mowbray",
-  "Bourne",
-  "Oakham",
-  "Nottingham",
-  "Lincoln",
-  "Leicester",
-  "Peterborough",
+  "Local",
+  "UK",
+  "European",
+  "Worldwide",
 ]
 
 export function LocationSections() {
@@ -80,19 +73,9 @@ export function LocationSections() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="relative h-[500px] lg:h-auto rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card bg-card"
+              className="relative h-[500px] lg:h-[650px] rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card bg-card"
             >
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2402.5!2d-0.6936068!3d52.9659668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4879dd0a5f3d5555%3A0x2b7a28f0c7a7e4c5!2sQK%20Cold%20Stores%20(Marston)%20Ltd!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="QK Cold Stores (Marston) Ltd Location"
-                className="absolute inset-0"
-              />
+              <FacilityMap className="absolute inset-0" />
             </motion.div>
 
             <motion.div
@@ -100,7 +83,7 @@ export function LocationSections() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="relative h-[500px] lg:h-auto rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card bg-card"
+              className="relative h-[500px] lg:h-[650px] rounded-[3rem] overflow-hidden shadow-2xl border-8 border-card bg-card"
             >
               <div className="relative w-full h-full bg-white p-4">
                 <Image

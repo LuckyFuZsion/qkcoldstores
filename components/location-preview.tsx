@@ -4,14 +4,13 @@ import { Button } from "@/components/ui/button"
 import { MapPin, Phone, Mail, ArrowRight, Globe } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import { FacilityMap } from "@/components/facility-map"
 
 const areasServed = [
-  "Grantham",
-  "Newark",
-  "Nottingham",
-  "Lincoln",
-  "Leicester",
-  "Peterborough",
+  "Local",
+  "UK",
+  "European",
+  "Worldwide",
 ]
 
 export function LocationPreview() {
@@ -27,27 +26,7 @@ export function LocationPreview() {
             transition={{ duration: 0.8 }}
             className="relative h-[500px] lg:h-[650px] rounded-[3rem] overflow-hidden shadow-2xl bg-card border-8 border-card"
           >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2402.5!2d-0.6936068!3d52.9659668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4879dd0a5f3d5555%3A0x2b7a28f0c7a7e4c5!2sQK%20Cold%20Stores%20(Marston)%20Ltd!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="QK Cold Stores (Marston) Ltd Location"
-              className="absolute inset-0 grayscale contrast-125"
-            />
-            {/* Overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-deep-navy/40 to-transparent pointer-events-none" />
-            
-            {/* Floating Map Label */}
-            <div className="absolute top-8 left-8 bg-card/90 backdrop-blur-md px-6 py-4 rounded-2xl shadow-2xl border border-border">
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-electric-blue animate-pulse" />
-                <span className="font-black text-foreground uppercase tracking-widest text-xs">Live Facility Status</span>
-              </div>
-            </div>
+            <FacilityMap className="absolute inset-0" />
           </motion.div>
 
           {/* Content */}

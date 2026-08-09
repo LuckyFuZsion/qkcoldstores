@@ -2,9 +2,9 @@ import type { Metadata } from "next"
 import { OG_IMAGE_PATH } from "@/lib/json-ld"
 import { SITE_URL } from "@/lib/site-config"
 
-export const SITE_NAME = "QK Coldstores"
+export const SITE_NAME = "QK Cold Stores"
 
-const OG_IMAGE_ALT = "QK Coldstores temperature-controlled cold storage facility in Grantham"
+const OG_IMAGE_ALT = "QK Cold Stores temperature-controlled cold storage facility in Grantham"
 
 const sharedOpenGraphImages = [
   {
@@ -57,9 +57,9 @@ export function pageMetadata({
 
 export const rootMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "QK Coldstores | Precision Cold Storage and Logistics in Grantham",
+  title: "QK Cold Stores | Precision Cold Storage and Logistics in Grantham",
   description:
-    "QK Coldstores provides premium temperature-controlled warehousing, blast freezing, and distribution services in Grantham, Marston and the East Midlands. Your trusted partner for cold chain logistics.",
+    "QK Cold Stores provides premium temperature-controlled warehousing, blast freezing, and distribution services in Grantham, Marston and the East Midlands. Your trusted partner for cold chain logistics.",
   keywords: [
     "cold storage",
     "cold storage Grantham",
@@ -80,7 +80,7 @@ export const rootMetadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "QK Coldstores | Precision Cold Storage and Logistics in Grantham",
+    title: "QK Cold Stores | Precision Cold Storage and Logistics in Grantham",
     description:
       "Grantham's premier temperature-controlled warehousing solution for the food manufacturing sector.",
     url: "/",
@@ -91,7 +91,7 @@ export const rootMetadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "QK Coldstores | Precision Cold Storage and Logistics in Grantham",
+    title: "QK Cold Stores | Precision Cold Storage and Logistics in Grantham",
     description:
       "Grantham's premier temperature-controlled warehousing solution for the food manufacturing sector.",
     images: [OG_IMAGE_PATH],

@@ -62,6 +62,17 @@ export async function updateEnquiryStatus(
   await updateDoc(doc(db, "enquiries", id), { status })
 }
 
+export async function updateEnquiryStatuses(
+  ids: string[],
+  status: EnquiryStatus
+): Promise<void> {
+  await Promise.all(ids.map((id) => updateEnquiryStatus(id, status)))
+}
+
 export async function deleteEnquiry(id: string): Promise<void> {
   await deleteDoc(doc(db, "enquiries", id))
+}
+
+export async function deleteEnquiries(ids: string[]): Promise<void> {
+  await Promise.all(ids.map((id) => deleteDoc(doc(db, "enquiries", id))))
 }

@@ -8,9 +8,9 @@ import { breadcrumbsFor } from "@/lib/breadcrumbs"
 import { pageMetadata } from "@/lib/metadata"
 
 export const metadata = pageMetadata({
-  title: "Services | QK Coldstores",
+  title: "Services | QK Cold Stores",
   description:
-    "QK Coldstores services in Grantham: large-scale cold storage, blast freezing and tempering, fresh packing and cold store handling.",
+    "QK Cold Stores services in Grantham: large-scale cold storage, blast freezing and tempering, fresh packing and cold store handling.",
   path: "/services",
 })
 

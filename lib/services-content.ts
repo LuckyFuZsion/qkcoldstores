@@ -23,11 +23,9 @@ export const accreditationLogos: AccreditationLogo[] = [
   { src: "/QK-New/Certifications/brcs-food-safety.webp", alt: "BRCGS Food Safety", size: "brcs" },
   { src: "/QK-New/Certifications/brcs-storage.webp", alt: "BRCGS Storage and Distribution", size: "brcs", scale: 0.9 },
   { src: "/QK-New/Certifications/brcs-start.webp", alt: "BRCGS START", size: "brcs" },
-  { src: "/QK-New/Certifications/haccp.webp", alt: "HACCP" },
-  { src: "/QK-New/Certifications/high-standards.webp", alt: "High Standards" },
-  { src: "/QK-New/Certifications/organic-food-federation.webp", alt: "Organic Food Federation" },
   { src: "/QK-New/Certifications/red-tractor.webp", alt: "Red Tractor" },
-  { src: "/fsdf.webp", alt: "FSDF - Food Storage and Distribution Federation" },
+  { src: "/QK-New/Certifications/organic-food-federation.webp", alt: "Organic Food Federation" },
+  { src: "/QK-New/Certifications/high-standards.webp", alt: "Cold Store Federation" },
   { src: "/bfff.webp", alt: "BFFF - British Frozen Food Federation" },
 ]
 
@@ -71,7 +69,7 @@ export const servicePreviewItems: ServicePreview[] = [
     title: "Blast Freezing",
     slug: SERVICE_SLUGS.blastFreezing,
     description:
-      "State-of-the-art blast freezing capabilities handling approximately 800 tonnes per week, ensuring efficient and high-quality freezing for large volumes of goods.",
+      "Blast freezing capabilities handling approximately 800 tonnes per week, ensuring efficient and high-quality freezing for large volumes of goods.",
   },
   {
     icon: Thermometer,
@@ -122,10 +120,10 @@ export const serviceDetailItems: ServiceDetail[] = [
     title: "Blast Freezing",
     slug: SERVICE_SLUGS.blastFreezing,
     description:
-      "Blast freezing is a crucial process for preserving the quality and freshness of perishable goods. Our facility is equipped with state-of-the-art blast freezing capabilities, with the capacity to handle approximately 800 tonnes per week, ensuring efficient and high-quality freezing for large volumes of goods.",
+      "Blast freezing is a crucial process for preserving the quality and freshness of perishable goods. Our facility is equipped with blast freezing capabilities, with the capacity to handle approximately 800 tonnes per week, ensuring efficient and high-quality freezing for large volumes of goods.",
     features: [
       "~800 tonnes per week capacity",
-      "State-of-the-art blast freezing",
+      "Rapid blast freezing",
       "Quality and freshness preserved",
       "Large volume handling",
     ],

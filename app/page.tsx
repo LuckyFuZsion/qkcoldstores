@@ -12,9 +12,9 @@ import { buildLocalBusinessJsonLd } from "@/lib/json-ld"
 import { pageMetadata } from "@/lib/metadata"
 
 export const metadata = pageMetadata({
-  title: "QK Coldstores | Cold Storage and Logistics in Grantham",
+  title: "QK Cold Stores | Cold Storage and Logistics in Grantham",
   description:
-    "QK Coldstores provides premium temperature-controlled warehousing, blast freezing, and distribution services in Grantham, Marston and the East Midlands.",
+    "QK Cold Stores provides premium temperature-controlled warehousing, blast freezing, and distribution services in Grantham, Marston and the East Midlands.",
   path: "/",
 })
 

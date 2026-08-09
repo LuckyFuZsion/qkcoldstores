@@ -11,9 +11,9 @@ import { buildFAQPageJsonLd } from "@/lib/json-ld"
 import { pageMetadata } from "@/lib/metadata"
 
 export const metadata = pageMetadata({
-  title: "FAQ | QK Coldstores",
+  title: "FAQ | QK Cold Stores",
   description:
-    "Frequently asked questions about QK Coldstores cold storage services, facilities, and capabilities in Grantham.",
+    "Frequently asked questions about QK Cold Stores cold storage services, facilities, and capabilities in Grantham.",
   path: "/faq",
 })
 

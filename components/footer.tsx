@@ -4,6 +4,7 @@ import { Clock } from "lucide-react"
 import { OPENING_HOURS_TEXT, footerServiceLinks, serviceHref } from "@/lib/services-content"
 import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
 import { AccreditationMarquee } from "@/components/accreditation-marquee"
+import { EMPERICA_PORTAL_URL } from "@/lib/site-config"
 
 const quickLinks = [
   { label: "About Us", href: "/about" },
@@ -12,9 +13,9 @@ const quickLinks = [
   { label: "Location", href: "/location" },
   { label: "FAQ", href: "/faq" },
   { label: "Vacancies", href: "/vacancies" },
-  { label: "Customer Portal", href: "/portal" },
+  { label: "Customer Portal", href: EMPERICA_PORTAL_URL, external: true },
   { label: "Contact Us", href: "/contact" },
-]
+] as const
 
 const services = footerServiceLinks
 
@@ -32,7 +33,7 @@ export function Footer() {
             >
               <Image
                 src="/images/qk-logo.webp"
-                alt="QK Coldstores"
+                alt="QK Cold Stores"
                 width={160}
                 height={80}
                 sizes={IMAGE_SIZES.footerLogo}
@@ -42,7 +43,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-muted-foreground text-lg font-medium leading-relaxed">
-              Premium temperature-controlled warehousing and value-added services for the food manufacturing sector.
+              Leading temperature-controlled warehousing and value-added services for the food manufacturing sector.
             </p>
           </div>
 
@@ -52,13 +53,25 @@ export function Footer() {
             <ul className="space-y-4">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <Link 
-                    href={link.href} 
-                    className="text-muted-foreground hover:text-electric-blue font-bold flex items-center group transition-colors"
-                  >
-                    <span className="mr-2 h-0.5 w-0 bg-electric-blue transition-all group-hover:w-4" />
-                    {link.label}
-                  </Link>
+                  {"external" in link && link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-electric-blue font-bold flex items-center group transition-colors"
+                    >
+                      <span className="mr-2 h-0.5 w-0 bg-electric-blue transition-all group-hover:w-4" />
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-muted-foreground hover:text-electric-blue font-bold flex items-center group transition-colors"
+                    >
+                      <span className="mr-2 h-0.5 w-0 bg-electric-blue transition-all group-hover:w-4" />
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -135,7 +148,7 @@ export function Footer() {
               <Link href="/cookies" className="hover:text-deep-navy transition-colors">Cookie Policy</Link>
             </div>
             <p className="text-muted-foreground text-sm font-bold uppercase tracking-widest">
-              &copy; {new Date().getFullYear()} QK Coldstores (Marston) Ltd.
+              &copy; {new Date().getFullYear()} QK Cold Stores (Marston) Ltd.
             </p>
           </div>
         </div>

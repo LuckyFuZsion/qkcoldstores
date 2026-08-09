@@ -9,7 +9,7 @@ import { breadcrumbsFor } from "@/lib/breadcrumbs"
 import { pageMetadata } from "@/lib/metadata"
 
 export const metadata = pageMetadata({
-  title: "Privacy Policy | QK Coldstores",
+  title: "Privacy Policy | QK Cold Stores",
   description:
     "Privacy policy for QK Cold Stores (Marston) Ltd. Learn how we collect, use, and protect your personal data.",
   path: "/privacy",

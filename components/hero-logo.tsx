@@ -19,7 +19,7 @@ export function HeroLogo({ priority = false }: HeroLogoProps) {
       <div className="bg-white/95 rounded-2xl lg:rounded-3xl shadow-2xl px-6 py-4 lg:px-10 lg:py-6 border border-white/20">
         <Image
           src="/images/qk-logo.webp"
-          alt="QK Coldstores"
+          alt="QK Cold Stores"
           width={480}
           height={240}
           sizes={IMAGE_SIZES.heroLogo}

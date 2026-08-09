@@ -40,14 +40,35 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
     const formData = new FormData(form)
 
     try {
-      await submitEnquiry({
+      const enquiry = {
         name: String(formData.get("name") ?? ""),
         company: String(formData.get("company") ?? "") || undefined,
         email: String(formData.get("email") ?? ""),
         phone: String(formData.get("phone") ?? "") || undefined,
         service: service || undefined,
         message: String(formData.get("message") ?? ""),
-      })
+      }
+
+      await submitEnquiry(enquiry)
+
+      // Notify QK admins by email - do not fail the form if Mailjet has an issue
+      try {
+        const notifyResponse = await fetch("/api/notify-enquiry", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(enquiry),
+        })
+        if (!notifyResponse.ok) {
+          const detail = await notifyResponse.text().catch(() => "")
+          console.error(
+            `Enquiry saved, but admin email notification failed (${notifyResponse.status}):`,
+            detail
+          )
+        }
+      } catch (notifyError) {
+        console.error("Enquiry saved, but admin email notification failed:", notifyError)
+      }
+
       form.reset()
       setService("")
       setIsSubmitted(true)

@@ -9,19 +9,22 @@ import {
   Inbox,
   User,
   Globe,
-  Shield,
-  Cloud,
-  Database,
   AlertTriangle,
   CheckCircle2,
   ExternalLink,
   Mail,
   FileText,
   Wrench,
+  Code2,
+  UserPlus,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ADMIN_EMAILS, EMPERICA_PORTAL_URL, PUBLIC_ROUTES, SITE_URL } from "@/lib/site-config"
+import { useAuth } from "@/lib/auth-context"
+
+/** Developer-only guide visibility - not for company site admins */
+const DEVELOPER_GUIDE_EMAIL = "info@webfuzsion.co.uk"
 
 function GuideSection({
   id,
@@ -66,7 +69,15 @@ function GuideCallout({
   return (
     <div className={`rounded-lg border p-4 ${styles[variant]}`}>
       <div className="flex items-start gap-3">
-        <Icon className={`w-5 h-5 shrink-0 mt-0.5 ${variant === "warning" ? "text-amber-600" : variant === "success" ? "text-green-600" : "text-electric-blue"}`} />
+        <Icon
+          className={`w-5 h-5 shrink-0 mt-0.5 ${
+            variant === "warning"
+              ? "text-amber-600"
+              : variant === "success"
+                ? "text-green-600"
+                : "text-electric-blue"
+          }`}
+        />
         <div>
           <p className="font-bold text-foreground mb-1">{title}</p>
           <div className="text-muted-foreground">{children}</div>
@@ -86,40 +97,41 @@ function GuideList({ items }: { items: string[] }) {
   )
 }
 
-const toc = [
-  { id: "overview", label: "Overview" },
-  { id: "login", label: "Signing in" },
-  { id: "vacancies", label: "Vacancies" },
-  { id: "applications", label: "Applications" },
-  { id: "enquiries", label: "Enquiries" },
-  { id: "team", label: "Team" },
-  { id: "static-content", label: "Static site content" },
-  { id: "public-pages", label: "Public pages" },
-  { id: "integrations", label: "Integrations" },
-  { id: "security", label: "Security" },
-  { id: "troubleshooting", label: "Troubleshooting" },
-  { id: "developer", label: "Developer notes" },
-]
-
 export function GuideTab() {
-  const portalConfigured = EMPERICA_PORTAL_URL.length > 0
+  const { user } = useAuth()
+  const showDeveloperGuide =
+    user?.email?.trim().toLowerCase() === DEVELOPER_GUIDE_EMAIL
+
+  const toc = [
+    { id: "overview", label: "Overview" },
+    { id: "login", label: "Signing in" },
+    { id: "adding-admins", label: "Adding colleagues" },
+    { id: "vacancies", label: "Job vacancies" },
+    { id: "applications", label: "CV applications" },
+    { id: "enquiries", label: "Contact messages" },
+    { id: "team", label: "Team page" },
+    { id: "portal", label: "Customer Portal" },
+    { id: "what-you-cannot-change", label: "What needs a developer" },
+    { id: "help", label: "If something goes wrong" },
+    ...(showDeveloperGuide ? [{ id: "developer", label: "Developer notes" }] : []),
+  ]
 
   return (
     <div className="max-w-4xl">
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
           <BookOpen className="w-8 h-8 text-electric-blue" />
-          <h1 className="text-2xl font-black text-foreground tracking-tight">Site Admin Guide</h1>
+          <h1 className="text-2xl font-black text-foreground tracking-tight">How to use this admin area</h1>
         </div>
         <p className="text-muted-foreground text-sm font-medium">
-          Everything you need to manage the QK Coldstores website day to day, including important
-          nuances and edge cases.
+          A plain-English guide for managing jobs, applications, contact messages, and the team
+          page on the QK Cold Stores website.
         </p>
       </div>
 
       <nav className="mb-8 p-4 rounded-xl bg-secondary/40 border border-border">
         <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
-          On this page
+          Jump to
         </p>
         <div className="flex flex-wrap gap-2">
           {toc.map((item) => (
@@ -135,376 +147,425 @@ export function GuideTab() {
       </nav>
 
       <div className="space-y-6">
-        <GuideSection id="overview" icon={Globe} title="Overview">
+        <GuideSection id="overview" icon={Globe} title="What this area is for">
           <p>
-            The QK Coldstores website is a marketing site with a built-in admin panel. Most
-            day-to-day content you can change yourself lives in this panel. Page copy, images,
-            services text, and accreditation logos are coded into the site and need a developer to
-            update.
+            This is the back office for the company website. From here you can update day-to-day
+            content that changes often. Things like page wording, photos of the building, and the
+            look of the site are handled by your web developer.
           </p>
-          <p className="font-bold text-foreground">What you manage here</p>
+          <p className="font-bold text-foreground">You can manage</p>
           <GuideList
             items={[
-              "Job vacancies (create, edit, close, delete)",
-              "CV applications submitted by candidates",
-              "Contact form enquiries",
-              "Team member profiles on the /team page",
+              "Job vacancies shown on the website",
+              "CV applications people have sent in",
+              "Messages from the Contact page form",
+              "People listed on the Meet the Team page",
             ]}
           />
-          <p className="font-bold text-foreground">Admin URL</p>
           <p>
-            Sign in at{" "}
+            Open this area at{" "}
             <Link href="/admin" className="text-electric-blue font-bold hover:underline">
               /admin
             </Link>
-            . After login you land on this dashboard. Use the tabs at the top to switch between
-            sections.
+            . After you sign in, use the tabs along the top to move between sections.
           </p>
-          <GuideCallout variant="info" title="Legacy /login URL">
-            <p>
-              Old bookmarks to <code className="text-xs bg-background px-1 py-0.5 rounded">/login</code>{" "}
-              redirect to <code className="text-xs bg-background px-1 py-0.5 rounded">/admin</code>.
-            </p>
-          </GuideCallout>
         </GuideSection>
 
         <GuideSection id="login" icon={LogIn} title="Signing in">
           <p>
-            Admin access uses Firebase Authentication (email and password). Accounts must be created
-            in the Firebase Console under Authentication - Users before they can sign in here.
+            You sign in with your work email and password. Only approved QK email addresses can
+            use this area.
           </p>
-          <GuideCallout variant="success" title="Authorized admin accounts">
-            <p>
-              Only these email addresses can access the admin panel and manage Firestore
-              data:{" "}
-              <span className="font-mono text-xs">{ADMIN_EMAILS.join(", ")}</span>
-            </p>
+          <GuideCallout variant="success" title="Approved emails right now">
+            <p className="font-mono text-xs break-all">{ADMIN_EMAILS.join(", ")}</p>
           </GuideCallout>
           <GuideList
             items={[
-              "Use Sign Out when finished on a shared computer.",
-              "If login fails, check caps lock and confirm your email is on the authorized list above.",
-              "Password resets are done through Firebase Console, not this website.",
-              "New admin users must be added in Firebase Authentication and included in firestore.rules by a developer.",
+              "Always click Sign Out when you finish, especially on a shared computer.",
+              "If sign-in fails, check you are using the right email and that Caps Lock is off.",
+              "If you forget your password, ask your web developer to reset it for you - you cannot reset it from this website.",
             ]}
           />
         </GuideSection>
 
-        <GuideSection id="vacancies" icon={Briefcase} title="Vacancies">
+        <GuideSection id="adding-admins" icon={UserPlus} title="Giving a colleague access">
+          <p>
+            New people cannot create their own admin access. Ask your web developer to set them
+            up. You will need to give them:
+          </p>
+          <GuideList
+            items={[
+              "The colleague's work email address",
+              "Confirmation that they should be allowed to manage the website",
+            ]}
+          />
+          <GuideCallout variant="info" title="What your developer will do">
+            <p>
+              They create a login for that email, add them to the approved list, and make sure
+              they can see jobs, applications, messages, and the team list. Until that is fully
+              done, the person may sign in but see error messages when opening those tabs.
+            </p>
+          </GuideCallout>
+        </GuideSection>
+
+        <GuideSection id="vacancies" icon={Briefcase} title="Job vacancies">
           <p>
             Vacancies appear on the public{" "}
             <Link href="/vacancies" className="text-electric-blue font-bold hover:underline">
-              /vacancies
+              Vacancies
             </Link>{" "}
-            page. Only vacancies with status <Badge className="mx-1 bg-green-100 text-green-800 border-0">active</Badge>{" "}
-            are visible to visitors.
+            page. Only jobs marked as{" "}
+            <Badge className="mx-1 bg-green-100 text-green-800 border-0">active</Badge> are
+            visible to visitors.
           </p>
-          <p className="font-bold text-foreground">Creating a vacancy</p>
+          <p className="font-bold text-foreground">Adding a vacancy</p>
           <GuideList
             items={[
-              "Click Add Vacancy and fill in job title, salary, and description (all required).",
-              "Optionally attach a job specification PDF, DOC, or DOCX. This is uploaded to Cloudinary.",
-              "New vacancies are created as active and appear on the site immediately.",
+              "Click Add Vacancy.",
+              "Fill in the job title, salary, and description (all required).",
+              "You can optionally attach a job specification file (PDF, DOC, or DOCX).",
+              "New vacancies go live on the website straight away.",
             ]}
           />
           <p className="font-bold text-foreground">Closing vs deleting</p>
           <GuideList
             items={[
-              "Close - hides the vacancy from the public site but keeps it in admin. Use this when a role is filled.",
-              "Reopen - makes a closed vacancy active again.",
-              "Delete - permanently removes the vacancy record. The job spec file remains in Cloudinary.",
+              "Close - hides the job from the public website but keeps it here for your records. Use this when the role is filled.",
+              "Reopen - puts a closed job back on the website.",
+              "Delete - removes the job from this admin area permanently.",
             ]}
           />
-          <GuideCallout variant="warning" title="Job spec downloads">
+          <GuideCallout variant="warning" title="Job specification downloads">
             <p>
-              If PDF downloads fail in admin, Cloudinary may be blocking PDF delivery. In the
-              Cloudinary dashboard go to Settings - Security and enable PDF and ZIP file delivery.
+              If a PDF will not download, tell your web developer. This is usually a file-storage
+              setting, not something wrong with the vacancy itself.
             </p>
           </GuideCallout>
         </GuideSection>
 
-        <GuideSection id="applications" icon={Users} title="Applications (CV submissions)">
+        <GuideSection id="applications" icon={Users} title="CV applications">
           <p>
-            When someone applies via the vacancies page or general CV form, their application appears
-            in the Applications tab. Each record includes name, email, phone, message, linked vacancy
-            (if any), and a downloadable CV.
+            When someone applies for a job or sends a general CV through the website, it appears
+            in the Applications tab. You will see their name, contact details, message, which job
+            they applied for (if any), and their CV to download.
           </p>
-          <GuideCallout variant="warning" title="GDPR - 6 month retention">
+          <GuideCallout variant="warning" title="Keeping personal data tidy (6 months)">
             <p>
-              CVs are automatically tagged with a 6-month expiry date from submission. When
-              applications expire, a red banner appears at the top of this tab prompting you to
-              delete them. Use Delete All Expired to bulk-remove old records and stay compliant.
+              Applications should not be kept longer than needed. Each one is marked with a date
+              six months after it was sent. When that date passes, a red reminder appears at the
+              top of this tab. Use Delete All Expired to clear old applications in one go.
             </p>
           </GuideCallout>
           <GuideList
             items={[
-              "Expand a row to see full details and download the CV.",
-              "Applications cannot be edited - only viewed and deleted.",
-              "Deleting an application removes the Firestore record but not the file in Cloudinary.",
-              "CV uploads are limited to 10 MB on the public form.",
-              "Applicants must tick the privacy consent checkbox before submitting.",
+              "Click a row to open the full details and download the CV.",
+              "You can view and delete applications, but you cannot edit them.",
+              "Applicants must agree to the privacy notice before they can send a CV.",
             ]}
           />
         </GuideSection>
 
-        <GuideSection id="enquiries" icon={Inbox} title="Contact enquiries">
+        <GuideSection id="enquiries" icon={Inbox} title="Contact messages">
           <p>
-            Messages from the{" "}
+            When someone fills in the form on the{" "}
             <Link href="/contact" className="text-electric-blue font-bold hover:underline">
-              /contact
+              Contact
             </Link>{" "}
-            form are stored here. Email notifications are not yet wired up - you must check this tab
-            regularly or rely on someone monitoring enquiries manually.
+            page, the message lands here. Please check this tab regularly.
           </p>
-          <p className="font-bold text-foreground">Status workflow</p>
-          <GuideList
-            items={[
-              "New - just submitted. Highlighted with a blue border. Count shown in the tab subtitle.",
-              "Read - automatically set when you expand a new enquiry for the first time.",
-              "Archived - set manually when handled. Use this to tidy the list without deleting.",
-            ]}
-          />
-          <p className="font-bold text-foreground">Actions</p>
-          <GuideList
-            items={[
-              "Click a row to expand and read the full message.",
-              "Reply to the customer via the email address or phone shown - there is no in-panel reply.",
-              "Archive when done, or Delete to permanently remove the record.",
-            ]}
-          />
-          <GuideCallout variant="info" title="No email alerts yet">
-            <p>
-              Enquiries are saved to the database only. Setting up email notifications (e.g. to
-              info@qkcoldstores.co.uk) requires additional integration work with your developer.
-            </p>
-          </GuideCallout>
-        </GuideSection>
-
-        <GuideSection id="team" icon={User} title="Team members">
           <p>
-            Team profiles on{" "}
-            <Link href="/team" className="text-electric-blue font-bold hover:underline">
-              /team
-            </Link>{" "}
-            are managed here. Members are grouped into Senior Leadership, Operational, and Support
-            Services sections.
+            The contact email shown on the website is{" "}
+            <a
+              href="mailto:enquiries@qkcoldstores.co.uk"
+              className="text-electric-blue font-bold hover:underline"
+            >
+              enquiries@qkcoldstores.co.uk
+            </a>
+            .
           </p>
-          <p className="font-bold text-foreground">First-time setup</p>
-          <GuideList
-            items={[
-              "If the team page is empty, click Import Existing Team to upload default staff photos from the site and populate profiles.",
-              "Import only works when no team members exist yet.",
-              "Photos are uploaded to Cloudinary folder qk-staff during import.",
-            ]}
-          />
-          <p className="font-bold text-foreground">Adding and editing</p>
-          <GuideList
-            items={[
-              "Add Team Member - enter name, role, bio, group, and sort order. Upload a photo (optional).",
-              "Sort order controls display order within each group (lower numbers appear first).",
-              "Edit or Delete using the buttons on each member row.",
-              "Changes appear on the public team page immediately after saving.",
-            ]}
-          />
-        </GuideSection>
-
-        <GuideSection id="static-content" icon={FileText} title="Static site content (developer updates)">
-          <p>
-            The following cannot be changed from this admin panel. Contact your developer for
-            updates:
-          </p>
-          <GuideList
-            items={[
-              "Homepage text, hero, services overview, and accreditation logo carousel",
-              "About, Services, FAQ, Location, and Portal page copy",
-              "Contact page layout and Gemma contact card",
-              "Opening hours text (shared across footer and contact page)",
-              "Privacy Policy and Cookie Policy legal text",
-              "Logo images, facility photos, and certification logos in /public",
-              "Google Maps embed on contact and location pages",
-              "Customer portal (Emperica) external link URL - set via environment variable",
-            ]}
-          />
-        </GuideSection>
-
-        <GuideSection id="public-pages" icon={Globe} title="Public pages reference">
-          <p>All live public routes on the site:</p>
-          <div className="grid sm:grid-cols-2 gap-2">
-            {PUBLIC_ROUTES.map((route) => (
-              <Link
-                key={route}
-                href={route}
-                target="_blank"
-                className="flex items-center justify-between px-3 py-2 rounded-lg bg-background border border-border hover:border-electric-blue/40 text-foreground font-medium transition-colors"
-              >
-                <span>{route === "/" ? "Homepage" : route}</span>
-                <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
-              </Link>
-            ))}
-          </div>
-          <GuideCallout variant="info" title="Pages that no longer exist">
-            <GuideList
-              items={[
-                "/testimonials - removed from the site",
-                "/terms - removed (footer link also removed)",
-              ]}
-            />
-          </GuideCallout>
-        </GuideSection>
-
-        <GuideSection id="integrations" icon={Cloud} title="Integrations">
-          <p className="font-bold text-foreground">Firebase (database and auth)</p>
-          <GuideList
-            items={[
-              "Stores vacancies, applications, enquiries, and team members.",
-              "Project: qk-coldstores. Managed via Firebase Console.",
-              "Security rules control who can read and write each collection.",
-            ]}
-          />
-          <p className="font-bold text-foreground">Cloudinary (file storage)</p>
-          <GuideList
-            items={[
-              "qk-cvs - candidate CV uploads",
-              "qk-job-specs - vacancy job specification documents",
-              "qk-staff - team member photos",
-              "Downloads in admin go through the site /api/download proxy.",
-            ]}
-          />
-          <p className="font-bold text-foreground">Emperica customer portal</p>
-          {portalConfigured ? (
+          <GuideCallout variant="info" title="Email alerts for new messages">
             <p>
-              Portal URL is configured. The{" "}
-              <Link href="/portal" className="text-electric-blue font-bold hover:underline">
-                /portal
-              </Link>{" "}
-              page links to:{" "}
+              When someone uses the contact form, an alert email is also sent so you know to open
+              this Enquiries tab. Those alerts are sent through Mailjet, and they appear to come
+              from{" "}
               <a
-                href={EMPERICA_PORTAL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-electric-blue font-bold hover:underline break-all"
+                href="mailto:info@webfuzsion.co.uk"
+                className="text-electric-blue font-bold hover:underline"
               >
-                {EMPERICA_PORTAL_URL}
+                info@webfuzsion.co.uk
               </a>
+              . The visitor&apos;s message is still stored here for you to read and reply to - the
+              alert is just a prompt to check admin.
             </p>
-          ) : (
-            <GuideCallout variant="warning" title="Portal URL not configured">
-              <p>
-                The /portal page currently shows a Contact Us button instead of linking to Emperica.
-                Ask your developer to set{" "}
-                <code className="text-xs bg-background px-1 py-0.5 rounded">NEXT_PUBLIC_EMPERICA_PORTAL_URL</code>{" "}
-                in the hosting environment.
-              </p>
-            </GuideCallout>
-          )}
-          <p className="font-bold text-foreground">Analytics</p>
+          </GuideCallout>
+          <p className="font-bold text-foreground">Message status</p>
+          <GuideList
+            items={[
+              "New - just arrived. Highlighted so you can spot it. The number of new messages is shown near the tab name.",
+              "Read - set automatically the first time you open the message.",
+              "Archived - mark messages as archived when you have dealt with them, so the list stays tidy.",
+            ]}
+          />
+          <p className="font-bold text-foreground">What to do</p>
+          <GuideList
+            items={[
+              "The list looks like an email inbox - From, subject, a short preview, and the time received.",
+              "Use the search box to find messages by name, email, company, subject, or message text.",
+              "Click a column heading (From, Subject, Preview, Received) to sort. Click again to reverse the order.",
+              "Click a row to expand the full message.",
+              "Press Reply to open your email app with the sender filled in, a Re: subject, and the original enquiry quoted underneath so you can write your response above it.",
+              "Use the copy button next to an email address to paste it into your mail app when replying.",
+              "Tick one or more messages, then use Delete selected to remove several at once. Select all applies to the filtered list when you are searching.",
+              "Archive when finished, or Delete if you no longer need the record.",
+            ]}
+          />
+        </GuideSection>
+
+        <GuideSection id="team" icon={User} title="Team page">
           <p>
-            Vercel Analytics runs in production. Firebase Analytics is also initialized when supported
-            by the browser.
+            People shown on{" "}
+            <Link href="/team" className="text-electric-blue font-bold hover:underline">
+              Meet the Team
+            </Link>{" "}
+            are managed here. They are grouped into Senior Leadership, Operational, and Support
+            Services.
           </p>
+          <p className="font-bold text-foreground">If the team page is empty</p>
+          <GuideList
+            items={[
+              "Click Import Existing Team to load the starting staff list and photos.",
+              "This only works when there are no team members yet.",
+            ]}
+          />
+          <p className="font-bold text-foreground">Adding or editing someone</p>
+          <GuideList
+            items={[
+              "Add Team Member - enter name, role, short bio, which group they belong to, and sort order.",
+              "Sort order controls the order within a group (lower numbers appear first).",
+              "You can upload a photo when adding or editing.",
+              "Changes show on the public team page as soon as you save.",
+            ]}
+          />
+          <GuideCallout variant="info" title="Contact page photo">
+            <p>
+              Gemma&apos;s photo on the Contact page is part of the fixed page layout (photo only, no name). Ask your
+              web developer if that needs changing. It is separate from the Meet the Team list.
+            </p>
+          </GuideCallout>
         </GuideSection>
 
-        <GuideSection id="security" icon={Shield} title="Security">
-          <GuideList
-            items={[
-              "Admin panel has no public link in the main navigation - only people who know /admin can reach it.",
-              "Only authorized admin emails can sign in and perform admin Firestore operations.",
-              "Public users can only create applications and enquiries - they cannot read other people's data.",
-              "CV and job spec URLs must be on res.cloudinary.com to download through the site.",
-              "Do not share admin credentials. Create separate Firebase accounts per admin user.",
-            ]}
-          />
-        </GuideSection>
-
-        <GuideSection id="troubleshooting" icon={Wrench} title="Troubleshooting">
-          <p className="font-bold text-foreground">Could not load data / empty tab with error</p>
-          <GuideList
-            items={[
-              "Click Try again on the error banner.",
-              "Check your internet connection and that you are still signed in.",
-              "If it persists, check Firebase Console for service outages or rule changes.",
-              "Vacancies list on the public site needs a Firestore composite index (status + createdAt). Your developer can deploy firestore.indexes.json.",
-            ]}
-          />
-          <p className="font-bold text-foreground">Contact form says something went wrong</p>
-          <GuideList
-            items={[
-              "Usually a Firestore permissions issue - enquiries security rules must allow public create.",
-              "Check browser console for details if you are technical.",
-            ]}
-          />
-          <p className="font-bold text-foreground">PDF or CV download fails</p>
-          <GuideList
-            items={[
-              "Enable PDF delivery in Cloudinary Settings - Security.",
-              "The file may have been deleted from Cloudinary but the database record remains.",
-            ]}
-          />
-          <p className="font-bold text-foreground">Upload failed when adding vacancy or team photo</p>
-          <GuideList
-            items={[
-              "Check file size and format.",
-              "Cloudinary upload preset (qk-uploads) must exist and allow unsigned uploads.",
-            ]}
-          />
-        </GuideSection>
-
-        <GuideSection id="developer" icon={Database} title="Developer notes">
+        <GuideSection id="portal" icon={ExternalLink} title="Customer Portal">
           <p>
-            For whoever maintains the codebase. Production site:{" "}
-            <a href={SITE_URL} target="_blank" rel="noopener noreferrer" className="text-electric-blue font-bold hover:underline">
-              {SITE_URL}
+            The Customer Portal button in the website header and footer opens the stock system in
+            a new browser tab. Customers sign in there with their own portal details.
+          </p>
+          <p>
+            Link used:{" "}
+            <a
+              href={EMPERICA_PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-electric-blue font-bold hover:underline break-all"
+            >
+              {EMPERICA_PORTAL_URL}
             </a>
           </p>
-          <p className="font-bold text-foreground">Key environment variables</p>
-          <div className="rounded-lg bg-background border border-border p-4 font-mono text-xs space-y-1 overflow-x-auto">
-            <p>NEXT_PUBLIC_FIREBASE_* - Firebase client config (7 vars)</p>
-            <p>NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME</p>
-            <p>NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET</p>
-            <p>NEXT_PUBLIC_SITE_URL</p>
-            <p>NEXT_PUBLIC_EMPERICA_PORTAL_URL</p>
-            <p>NEXT_PUBLIC_ADMIN_EMAILS (comma-separated, optional)</p>
-          </div>
-          <p className="font-bold text-foreground">Repo files</p>
           <GuideList
             items={[
-              "firestore.rules - security rules (deploy via Firebase CLI or Console)",
-              "firestore.indexes.json - composite index for active vacancies query",
-              "lib/enquiries.ts, lib/vacancies.ts, lib/team-members.ts - data layer",
-              "app/api/download/route.ts - Cloudinary download proxy",
+              "Portal usernames and passwords are not managed in this admin area.",
+              "If the button goes to the wrong place, ask your web developer to update the link.",
             ]}
           />
-          <p className="font-bold text-foreground">Firestore collections</p>
-          <GuideList
-            items={[
-              "vacancies - job listings",
-              "applications - CV submissions (6 month expiresAt)",
-              "enquiries - contact form (status: new | read | archived)",
-              "teamMembers - team page profiles",
-            ]}
-          />
-          <GuideCallout variant="info" title="Firestore rules nuance">
-            <p>
-              The enquiries collection has a field named service. In security rules it must be
-              referenced as request.resource.data[&apos;service&apos;] because service is a reserved
-              word in Firestore rules syntax.
-            </p>
-          </GuideCallout>
         </GuideSection>
+
+        <GuideSection id="what-you-cannot-change" icon={FileText} title="What needs a developer">
+          <p>
+            These parts of the site are not edited from this admin area. Contact your web
+            developer if they need updating:
+          </p>
+          <GuideList
+            items={[
+              "Homepage wording, hero image, and accreditation logos",
+              "About, Services, FAQ, and Location page wording",
+              "Contact page layout and the enquiries email address shown there",
+              "Opening hours text",
+              "Privacy and cookie policy wording",
+              "Company logo and main site photos",
+              "Maps on the homepage, Contact, and Location pages",
+              "The Customer Portal web address",
+            ]}
+          />
+        </GuideSection>
+
+        <GuideSection id="help" icon={Wrench} title="If something goes wrong">
+          <p className="font-bold text-foreground">A tab will not load / shows an error</p>
+          <GuideList
+            items={[
+              "Click Try again.",
+              "Check you are still signed in and have an internet connection.",
+              "If a newly added colleague can sign in but cannot see jobs or messages, their access was not finished - ask your web developer to complete setup.",
+            ]}
+          />
+          <p className="font-bold text-foreground">Someone says the contact form failed</p>
+          <GuideList
+            items={[
+              "Ask them to try again, or to email enquiries@qkcoldstores.co.uk.",
+              "If it keeps happening, tell your web developer.",
+            ]}
+          />
+          <p className="font-bold text-foreground">A CV or job PDF will not download</p>
+          <GuideList
+            items={[
+              "Try another browser, or ask your web developer to check the file storage settings.",
+            ]}
+          />
+          <p className="font-bold text-foreground">Photo or file upload fails</p>
+          <GuideList
+            items={[
+              "Check the file is not unusually large and is a normal photo or document type.",
+              "If it still fails, contact your web developer.",
+            ]}
+          />
+        </GuideSection>
+
+        {showDeveloperGuide && (
+          <GuideSection id="developer" icon={Code2} title="Developer notes (Webfuzsion only)">
+            <GuideCallout variant="warning" title="Visible only to info@webfuzsion.co.uk">
+              <p>
+                Company site admins do not see this section. Keep operational steps above in plain
+                language; put technical detail here.
+              </p>
+            </GuideCallout>
+
+            <p>
+              Production:{" "}
+              <a
+                href={SITE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-electric-blue font-bold hover:underline"
+              >
+                {SITE_URL}
+              </a>
+            </p>
+
+            <p className="font-bold text-foreground">Adding an admin (checklist)</p>
+            <GuideList
+              items={[
+                "Firebase Console - Authentication - Users - create email/password account",
+                "Add email to NEXT_PUBLIC_ADMIN_EMAILS on Vercel (Production + Preview), comma-separated, then redeploy",
+                "Add the same email to isAdmin() in firestore.rules and publish rules (Console or firebase deploy --only firestore:rules)",
+                "Without the rules publish, login can succeed but all admin collection reads fail with permission-denied",
+              ]}
+            />
+
+            <p className="font-bold text-foreground">Mailjet enquiry alerts</p>
+            <GuideList
+              items={[
+                "Provider: Mailjet API (not SMTP) via lib/mailjet.ts and POST /api/notify-enquiry",
+                "From address: info@webfuzsion.co.uk (MAILJET_FROM_EMAIL) - must stay verified in Mailjet Senders",
+                "From display name: QK Cold Stores Website (MAILJET_FROM_NAME)",
+                "Recipients: ENQUIRY_NOTIFY_EMAILS (comma-separated)",
+                "Flow: contact form saves to Firestore enquiries, then notifies; form success does not depend on Mailjet succeeding",
+                "Vercel must have MAILJET_API_KEY, MAILJET_SECRET_KEY, MAILJET_FROM_EMAIL, ENQUIRY_NOTIFY_EMAILS (and NEXT_PUBLIC_SITE_URL for the admin link in the email)",
+                "CRITICAL: Authenticate webfuzsion.co.uk in Mailjet Account settings - Domain authentication. SPF and DKIM DNS must be OK or Mailjet can return API success while no email is delivered",
+                "In DNS for webfuzsion.co.uk: add Mailjet SPF include (spf.mailjet.com) and the mailjet._domainkey TXT (DKIM) from the Mailjet domain screen, then click Validate / Check DNS",
+                "Prefer a different From vs To when possible (e.g. noreply@… as From, info@… as recipient) once that sender is verified",
+              ]}
+            />
+
+            <p className="font-bold text-foreground">Environment variables</p>
+            <div className="rounded-lg bg-background border border-border p-4 font-mono text-xs space-y-1 overflow-x-auto">
+              <p>NEXT_PUBLIC_FIREBASE_* (7 client config vars)</p>
+              <p>NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME</p>
+              <p>NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET</p>
+              <p>NEXT_PUBLIC_SITE_URL</p>
+              <p>NEXT_PUBLIC_EMPERICA_PORTAL_URL (fallback: Empirica webview URL in site-config)</p>
+              <p>NEXT_PUBLIC_ADMIN_EMAILS (must stay in sync with firestore.rules)</p>
+              <p>MAILJET_API_KEY / MAILJET_SECRET_KEY (server only)</p>
+              <p>MAILJET_FROM_EMAIL=info@webfuzsion.co.uk</p>
+              <p>MAILJET_FROM_NAME=QK Cold Stores Website</p>
+              <p>ENQUIRY_NOTIFY_EMAILS (who receives new-enquiry alerts)</p>
+            </div>
+
+            <p className="font-bold text-foreground">Recent product behaviour</p>
+            <GuideList
+              items={[
+                "/portal page removed - header/footer Customer Portal is an external link via EMPERICA_PORTAL_URL",
+                "Contact form → Firestore enquiries + Mailjet alert from info@webfuzsion.co.uk",
+                "Public contact address shown on site remains enquiries@qkcoldstores.co.uk",
+                "Contact page shows photo only in the sidebar (no name label)",
+                "Homepage / contact / location maps use Leaflet + Esri tiles (CSP must allow arcgisonline / tile hosts)",
+                "Tablet/nav: hamburger menu until xl breakpoint so tablet users get full nav",
+                "lib/mailjet.ts + app/api/notify-enquiry/route.ts - enquiry notification emails",
+              ]}
+            />
+
+            <p className="font-bold text-foreground">Key files</p>
+            <GuideList
+              items={[
+                "firestore.rules - isAdmin() email allowlist",
+                "firestore.indexes.json - active vacancies composite index",
+                "lib/site-config.ts - ADMIN_EMAILS, EMPERICA_PORTAL_URL, PUBLIC_ROUTES",
+                "lib/security-headers.mjs - CSP",
+                "lib/enquiries.ts, lib/vacancies.ts, lib/team-members.ts",
+                "app/api/download/route.ts - Cloudinary download proxy",
+                "components/facility-map.tsx - shared map with permanent pin",
+              ]}
+            />
+
+            <p className="font-bold text-foreground">Firestore collections</p>
+            <GuideList
+              items={[
+                "vacancies",
+                "applications (expiresAt ~ 6 months)",
+                "enquiries (status: new | read | archived)",
+                "teamMembers",
+              ]}
+            />
+
+            <GuideCallout variant="info" title="Rules syntax note">
+              <p>
+                Enquiries field <code className="text-xs bg-background px-1 py-0.5 rounded">service</code>{" "}
+                must be referenced as{" "}
+                <code className="text-xs bg-background px-1 py-0.5 rounded">
+                  request.resource.data[&apos;service&apos;]
+                </code>{" "}
+                because <code className="text-xs bg-background px-1 py-0.5 rounded">service</code>{" "}
+                is reserved in Firestore rules.
+              </p>
+            </GuideCallout>
+
+            <p className="font-bold text-foreground">Public routes</p>
+            <div className="grid sm:grid-cols-2 gap-2">
+              {PUBLIC_ROUTES.map((route) => (
+                <Link
+                  key={route}
+                  href={route}
+                  target="_blank"
+                  className="flex items-center justify-between px-3 py-2 rounded-lg bg-background border border-border hover:border-electric-blue/40 text-foreground font-medium transition-colors"
+                >
+                  <span>{route === "/" ? "/" : route}</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
+                </Link>
+              ))}
+            </div>
+          </GuideSection>
+        )}
       </div>
 
       <div className="mt-8 p-6 rounded-xl bg-deep-navy text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-start gap-3">
           <Mail className="w-5 h-5 text-electric-blue shrink-0 mt-0.5" />
           <div>
-            <p className="font-bold">Need help with the website?</p>
+            <p className="font-bold">Need help?</p>
             <p className="text-ice-blue/80 text-sm mt-1">
-              For content changes not covered here, contact your web developer or agency.
+              For website changes you cannot make here, contact your web developer.
             </p>
           </div>
         </div>
         <Button asChild variant="secondary" className="font-bold shrink-0">
-          <Link href="/">View live site</Link>
+          <Link href="/">View the live website</Link>
         </Button>
       </div>
     </div>

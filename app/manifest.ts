@@ -3,8 +3,8 @@ import { SITE_URL } from "@/lib/site-config"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "QK Coldstores",
-    short_name: "QK Coldstores",
+    name: "QK Cold Stores",
+    short_name: "QK Cold Stores",
     description:
       "Temperature-controlled cold storage, blast freezing, and logistics in Grantham.",
     start_url: "/",

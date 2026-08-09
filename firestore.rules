@@ -11,7 +11,8 @@ service cloud.firestore {
       return isSignedIn()
         && request.auth.token.email.lower() in [
           'lrichardson-whalley@qkcoldstores.co.uk',
-          'info@webfuzsion.co.uk'
+          'info@webfuzsion.co.uk',
+          'lhornsby@qkcoldstores.co.uk'
         ];
     }
 

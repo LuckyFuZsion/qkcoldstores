@@ -57,6 +57,7 @@ import {
   type Vacancy,
   type Application,
 } from "@/lib/vacancies"
+import { getAllEnquiries } from "@/lib/enquiries"
 import { TeamTab } from "@/components/admin/team-tab"
 import { EnquiriesTab } from "@/components/admin/enquiries-tab"
 import { GuideTab } from "@/components/admin/guide-tab"
@@ -71,12 +72,28 @@ export default function AdminVacanciesPage() {
   const { user, loading, logout } = useAuth()
   const router = useRouter()
   const [activeTab, setActiveTab] = useState<Tab>("vacancies")
+  const [newEnquiryCount, setNewEnquiryCount] = useState(0)
+
+  const refreshNewEnquiryCount = () => {
+    getAllEnquiries()
+      .then((enquiries) => {
+        setNewEnquiryCount(enquiries.filter((e) => e.status === "new").length)
+      })
+      .catch(() => {
+        // Keep last known count if refresh fails
+      })
+  }
 
   useEffect(() => {
     if (!loading && !user) {
       router.replace("/admin")
     }
   }, [user, loading, router])
+
+  useEffect(() => {
+    if (!user) return
+    refreshNewEnquiryCount()
+  }, [user])
 
   if (loading || !user) {
     return (
@@ -130,10 +147,30 @@ export default function AdminVacanciesPage() {
         </div>
       </header>
 
+      {newEnquiryCount > 0 && (
+        <div className="bg-electric-blue text-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <button
+              type="button"
+              onClick={() => setActiveTab("enquiries")}
+              className="w-full flex items-center justify-center gap-3 text-center font-black uppercase tracking-widest text-sm sm:text-base hover:opacity-90 transition-opacity"
+            >
+              <Inbox className="w-5 h-5 shrink-0" />
+              <span>
+                {newEnquiryCount} NEW/UNREAD {newEnquiryCount === 1 ? "ENQUIRY" : "ENQUIRIES"}
+              </span>
+              <span className="font-bold normal-case tracking-normal text-white/90 text-xs sm:text-sm">
+                - click to view
+              </span>
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Tab Navigation */}
       <div className="bg-card border-b border-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-1">
+          <div className="flex gap-1 overflow-x-auto">
             {[
               { key: "vacancies" as Tab, label: "Vacancies", icon: Briefcase },
               { key: "applications" as Tab, label: "Applications", icon: Users },
@@ -144,7 +181,7 @@ export default function AdminVacanciesPage() {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`flex items-center gap-2 px-6 py-4 font-bold text-sm uppercase tracking-wider border-b-2 transition-all ${
+                className={`flex items-center gap-2 px-6 py-4 font-bold text-sm uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
                   activeTab === tab.key
                     ? "border-electric-blue text-electric-blue"
                     : "border-transparent text-muted-foreground hover:text-foreground"
@@ -152,6 +189,11 @@ export default function AdminVacanciesPage() {
               >
                 <tab.icon className="w-4 h-4" />
                 {tab.label}
+                {tab.key === "enquiries" && newEnquiryCount > 0 && (
+                  <span className="ml-1 inline-flex items-center justify-center min-w-5 h-5 px-1.5 rounded-full bg-electric-blue text-white text-[10px] font-black">
+                    {newEnquiryCount}
+                  </span>
+                )}
               </button>
             ))}
           </div>
@@ -165,7 +207,7 @@ export default function AdminVacanciesPage() {
         ) : activeTab === "applications" ? (
           <ApplicationsTab />
         ) : activeTab === "enquiries" ? (
-          <EnquiriesTab />
+          <EnquiriesTab onNewCountChange={setNewEnquiryCount} />
         ) : activeTab === "team" ? (
           <TeamTab />
         ) : (

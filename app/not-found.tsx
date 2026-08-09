@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { pageMetadata } from "@/lib/metadata"
 
 export const metadata = pageMetadata({
-  title: "Page Not Found | QK Coldstores",
+  title: "Page Not Found | QK Cold Stores",
   description: "The page you are looking for could not be found.",
   path: "/404",
   noIndex: true,

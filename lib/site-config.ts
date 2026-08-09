@@ -20,7 +20,8 @@ export const SOCIAL_PROFILES = [
   .filter((url): url is string => Boolean(url))
 
 export const EMPERICA_PORTAL_URL =
-  process.env.NEXT_PUBLIC_EMPERICA_PORTAL_URL ?? ""
+  process.env.NEXT_PUBLIC_EMPERICA_PORTAL_URL?.trim() ||
+  "https://clientportal.qkcoldstores.co.uk/webview/"
 
 export const ADMIN_EMAILS = (
   process.env.NEXT_PUBLIC_ADMIN_EMAILS ??
@@ -44,7 +45,6 @@ export const PUBLIC_ROUTES = [
   "/faq",
   "/vacancies",
   "/contact",
-  "/portal",
   "/privacy",
   "/cookies",
 ] as const

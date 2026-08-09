@@ -100,7 +100,7 @@ export function AboutSections() {
                 <div className="relative w-full h-[500px]">
                   <Image
                     src={FACILITY_IMAGE}
-                    alt="QK Coldstores Facility"
+                    alt="QK Cold Stores Facility"
                     fill
                     sizes={IMAGE_SIZES.contentHalf}
                     quality={IMAGE_QUALITY.content}
@@ -137,7 +137,7 @@ export function AboutSections() {
             <span className="text-electric-blue font-bold text-sm uppercase tracking-[0.2em] mb-4 block">Core Principles</span>
             <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6 tracking-tight">Our Values</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
-              The principles that guide everything we do at QK Coldstores.
+              The principles that guide everything we do at QK Cold Stores.
             </p>
           </motion.div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">

@@ -10,7 +10,7 @@ import { HeroBackground } from "@/components/hero-background"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90svh] flex items-center justify-center overflow-x-hidden bg-deep-navy pt-14 lg:pt-16">
+    <section className="relative min-h-[90svh] flex items-center justify-center overflow-x-hidden bg-deep-navy pt-16 xl:pt-24">
       <HeroBackground priority />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-12">
@@ -23,8 +23,9 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 tracking-tight leading-[0.95]"
           >
-            QK Coldstores <br />
-            <span className="text-electric-blue">Cold Storage in Grantham</span>
+            QK Cold Stores.
+            <br />
+            <span className="text-electric-blue">Keeping your supply chain moving.</span>
           </motion.h1>
 
           <motion.p
@@ -33,7 +34,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-ice-blue/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed"
           >
-            East Midlands Leading BRC-accredited facility providing 50,000+ pallet locations,
+            East Midlands leading BRC-accredited facility providing 50,000+ pallet locations,
             rapid blast freezing, tempering, packing and storage and logistics for the food sector.
           </motion.p>
 
@@ -70,7 +71,7 @@ export function HeroSection() {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto border-t border-white/10 pt-12 mt-12 mb-8"
           >
             {[
-              { icon: ShieldCheck, title: "BRC-Approved", desc: "AA Standard Accredited" },
+              { icon: ShieldCheck, title: "BRC-Approved", desc: "Accredited" },
               { icon: Warehouse, title: "50,000+ Pallets", desc: "Cold Storage Capacity" },
               { icon: Camera, title: "24/7 CCTV", desc: "On-Site Security" },
             ].map((badge, i) => (

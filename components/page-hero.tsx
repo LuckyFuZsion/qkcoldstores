@@ -18,7 +18,7 @@ export function PageHero({
   eyebrow,
 }: PageHeroProps) {
   return (
-    <section className="relative min-h-[90svh] flex items-center justify-center overflow-x-hidden bg-deep-navy pt-14 lg:pt-16">
+    <section className="relative min-h-[90svh] flex items-center justify-center overflow-x-hidden bg-deep-navy pt-16 xl:pt-24">
       <HeroBackground backgroundImage={PAGE_HERO_BACKGROUND} />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-12">

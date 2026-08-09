@@ -8,9 +8,9 @@ import { breadcrumbsFor } from "@/lib/breadcrumbs"
 import { pageMetadata } from "@/lib/metadata"
 
 export const metadata = pageMetadata({
-  title: "Meet the Team | QK Coldstores",
+  title: "Meet the Team | QK Cold Stores",
   description:
-    "Meet the dedicated team behind QK Coldstores. Our experienced professionals ensure your products are stored safely and delivered on time.",
+    "Meet the dedicated team behind QK Cold Stores. Our experienced professionals ensure your products are stored safely and delivered on time.",
   path: "/team",
 })
 

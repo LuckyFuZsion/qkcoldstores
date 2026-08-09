@@ -1,18 +1,17 @@
 "use client"
 
-import { CheckCircle2, ArrowRight } from "lucide-react"
+import { CheckCircle2 } from "lucide-react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import { additionalServices, servicePreviewItems, serviceHref } from "@/lib/services-content"
 import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
 
 export function WhyChooseUs() {
   return (
     <section className="py-24 md:py-32 bg-background overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -33,7 +32,7 @@ export function WhyChooseUs() {
               {[
                 "BRC and Soil Association certified facilities",
                 "Members of the British Frozen Food Federation",
-                "Advanced Empirica stock management system",
+                "Advanced stock management system",
                 "Strategically located adjacent to the A1",
                 "Red Tractor Approved",
               ].map((item, i) => (
@@ -70,58 +69,6 @@ export function WhyChooseUs() {
               <div className="text-4xl font-black mb-1">50,000+</div>
               <div className="text-sm font-bold uppercase tracking-wider opacity-80 leading-tight">Pallet Positions Available</div>
             </div>
-          </motion.div>
-        </div>
-
-        <div className="pt-24 border-t border-border">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-5xl font-black text-foreground mb-6 tracking-tight">Storage and Logistics</h3>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
-              We provide a complete solution for your temperature-sensitive products,
-              helping you shorten your cold chain and reduce risk.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {servicePreviewItems.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-8 rounded-[2rem] bg-card border border-border hover:border-electric-blue/30 hover:shadow-2xl transition-all duration-300 group"
-              >
-                <div className="w-16 h-16 rounded-2xl bg-background flex items-center justify-center text-foreground group-hover:bg-electric-blue group-hover:text-white transition-all duration-300 shadow-sm mb-6 border border-border">
-                  <feature.icon className="h-8 w-8" />
-                </div>
-                <h4 className="text-xl font-black text-foreground mb-4 tracking-tight uppercase group-hover:text-electric-blue transition-colors">{feature.title}</h4>
-                <p className="text-muted-foreground font-medium leading-relaxed mb-6">{feature.description}</p>
-                <Link href={serviceHref(feature.slug)} className="inline-flex items-center gap-2 text-electric-blue font-bold text-sm group-hover:gap-3 transition-all">
-                  LEARN MORE <ArrowRight className="w-4 h-4" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-8 p-8 rounded-[2rem] bg-card border border-border"
-          >
-            <h4 className="text-xl font-black text-foreground mb-6 tracking-tight uppercase">Additional Services</h4>
-            <ul className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {additionalServices.map((item) => (
-                <li
-                  key={item}
-                  className="text-muted-foreground font-bold text-sm uppercase tracking-tight px-4 py-3 rounded-xl bg-background border border-border"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
           </motion.div>
         </div>
       </div>
