@@ -17,4 +17,4 @@ export const IMAGE_SIZES = {
   siteMap: "(max-width: 1024px) 100vw, 50vw",
 } as const
 
-export const PAGE_HERO_BACKGROUND = "/images/hero-bg.jpeg"
+export const PAGE_HERO_BACKGROUND = "/images/website-background.webp"

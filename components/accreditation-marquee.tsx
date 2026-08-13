@@ -1,5 +1,3 @@
-"use client"
-
 import Image from "next/image"
 import { accreditationLogos, brcsLogoHeightClass } from "@/lib/services-content"
 import { IMAGE_QUALITY, IMAGE_SIZES } from "@/lib/image-config"
@@ -16,7 +14,6 @@ function AccreditationLogoItem({
   alt,
   size = "default",
   scale = 1,
-  ariaHidden = false,
   logoClassName,
   priority = false,
 }: {
@@ -24,7 +21,6 @@ function AccreditationLogoItem({
   alt: string
   size?: "brcs" | "default"
   scale?: number
-  ariaHidden?: boolean
   logoClassName: string
   priority?: boolean
 }) {
@@ -36,7 +32,6 @@ function AccreditationLogoItem({
         "shrink-0 flex items-center justify-center",
         isBrcs ? brcsLogoHeightClass : cn("px-2 py-1", logoClassName)
       )}
-      aria-hidden={ariaHidden || undefined}
     >
       <Image
         src={src}
@@ -63,32 +58,10 @@ export function AccreditationMarquee({
   logoClassName = "h-10 md:h-12",
   priority = false,
 }: AccreditationMarqueeProps) {
-  const marqueeLogos = [...accreditationLogos, ...accreditationLogos]
-
   return (
-    <div className={className}>
-      <div
-        className="overflow-hidden pointer-events-none select-none motion-reduce:hidden"
-        aria-label="Accreditation logos"
-      >
-        <div className="accreditation-marquee-track flex w-max items-center gap-6 md:gap-10 pr-6 md:pr-10">
-          {marqueeLogos.map((logo, index) => (
-            <AccreditationLogoItem
-              key={`${logo.src}-${index}`}
-              src={logo.src}
-              alt={logo.alt}
-              size={logo.size}
-              scale={logo.scale}
-              ariaHidden={index >= accreditationLogos.length}
-              logoClassName={logoClassName}
-              priority={priority && index === 0}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div className="hidden motion-reduce:flex flex-wrap justify-center items-center gap-6 md:gap-10 px-4">
-        {accreditationLogos.map((logo) => (
+    <div className={className} aria-label="Accreditation logos">
+      <div className="flex flex-wrap md:flex-nowrap justify-center md:justify-evenly items-center gap-x-5 gap-y-4 md:gap-x-6 lg:gap-x-8 px-4 md:px-6 lg:px-8">
+        {accreditationLogos.map((logo, index) => (
           <AccreditationLogoItem
             key={logo.src}
             src={logo.src}
@@ -96,7 +69,7 @@ export function AccreditationMarquee({
             size={logo.size}
             scale={logo.scale}
             logoClassName={logoClassName}
-            priority={priority}
+            priority={priority && index === 0}
           />
         ))}
       </div>
