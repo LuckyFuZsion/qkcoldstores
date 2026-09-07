@@ -1,5 +1,15 @@
-export const SITE_URL =
+export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://qkcoldstores.co.uk"
+).replace(/\/$/, "")
+
+/** Stable first-publish date for schema freshness signals */
+export const SITE_DATE_PUBLISHED =
+  process.env.NEXT_PUBLIC_SITE_DATE_PUBLISHED?.trim() || "2026-03-01"
+
+/** Override when you ship a major content update; otherwise uses build/deploy date */
+export const SITE_DATE_MODIFIED =
+  process.env.NEXT_PUBLIC_SITE_DATE_MODIFIED?.trim() ||
+  new Date().toISOString().slice(0, 10)
 
 export const SITE_ADDRESS = {
   streetAddress: "2 Toll Bar Road",

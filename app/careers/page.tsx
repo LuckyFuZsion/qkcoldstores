@@ -4,6 +4,7 @@ import { PageHero } from "@/components/page-hero"
 import { VacanciesSections } from "@/components/vacancies-sections"
 import { VacancyJobPostingSchema } from "@/components/vacancy-job-posting-schema"
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { WebPageSchema } from "@/components/webpage-schema"
 import { breadcrumbsFor } from "@/lib/breadcrumbs"
 import { pageMetadata } from "@/lib/metadata"
 
@@ -17,6 +18,11 @@ export const metadata = pageMetadata({
 export default function CareersPage() {
   return (
     <>
+      <WebPageSchema
+        path="/careers"
+        name="Careers | QK Cold Stores"
+        description={metadata.description as string}
+      />
       <VacancyJobPostingSchema />
       <BreadcrumbSchema items={breadcrumbsFor("/careers", "Careers")} />
       <main>

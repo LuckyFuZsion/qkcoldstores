@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
 import { Cookie, Database, Eye, Clock, Shield, Settings } from "lucide-react"
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { WebPageSchema } from "@/components/webpage-schema"
 import { breadcrumbsFor } from "@/lib/breadcrumbs"
 
 import { pageMetadata } from "@/lib/metadata"
@@ -16,6 +17,11 @@ export const metadata = pageMetadata({
 export default function CookiePolicyPage() {
   return (
     <>
+      <WebPageSchema
+        path="/cookies"
+        name="Cookie Policy | QK Cold Stores"
+        description={metadata.description as string}
+      />
       <BreadcrumbSchema items={breadcrumbsFor("/cookies", "Cookie Policy")} />
       <main>
       <Header />

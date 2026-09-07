@@ -31,6 +31,9 @@ export function pageMetadata({
   return {
     title,
     description,
+    authors: [{ name: "QK Cold Stores", url: SITE_URL }],
+    creator: "QK Cold Stores",
+    publisher: "QK Cold Stores (Marston) Ltd",
     alternates: {
       canonical: path,
     },
@@ -60,6 +63,9 @@ export const rootMetadata: Metadata = {
   title: "QK Cold Stores | Precision Cold Storage and Logistics in Grantham",
   description:
     "QK Cold Stores provides premium temperature-controlled warehousing, blast freezing, and distribution services in Grantham, Marston and the East Midlands. Your trusted partner for cold chain logistics.",
+  authors: [{ name: "QK Cold Stores", url: SITE_URL }],
+  creator: "QK Cold Stores",
+  publisher: "QK Cold Stores (Marston) Ltd",
   keywords: [
     "cold storage",
     "cold storage Grantham",
@@ -78,6 +84,9 @@ export const rootMetadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  verification: {
+    google: "XuRbxIctTFbl8DP1VB6keBkaf0trmv2ne3dwngjbqOo",
   },
   openGraph: {
     title: "QK Cold Stores | Precision Cold Storage and Logistics in Grantham",

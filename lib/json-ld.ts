@@ -1,13 +1,120 @@
 import { FAQ_ITEMS } from "@/lib/faq-content"
-import { SITE_ADDRESS, SITE_URL, SOCIAL_PROFILES } from "@/lib/site-config"
+import {
+  SITE_ADDRESS,
+  SITE_DATE_MODIFIED,
+  SITE_DATE_PUBLISHED,
+  SITE_URL,
+  SOCIAL_PROFILES,
+} from "@/lib/site-config"
 import type { Vacancy } from "@/lib/vacancies"
 
 export const OG_IMAGE_PATH = "/images/facility-013-hero.webp"
 
+export function buildOrganizationJsonLd() {
+  const schema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: "QK Cold Stores",
+    legalName: "QK Cold Stores (Marston) Ltd",
+    url: SITE_URL,
+    logo: `${SITE_URL}/images/qk-logo.webp`,
+    image: `${SITE_URL}${OG_IMAGE_PATH}`,
+    email: "enquiries@qkcoldstores.co.uk",
+    telephone: "+441400259300",
+    foundingLocation: {
+      "@type": "Place",
+      name: "Marston, Grantham",
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: SITE_ADDRESS.streetAddress,
+      addressLocality: SITE_ADDRESS.addressLocality,
+      addressRegion: SITE_ADDRESS.addressRegion,
+      postalCode: SITE_ADDRESS.postalCode,
+      addressCountry: SITE_ADDRESS.addressCountry,
+    },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "+441400259300",
+        contactType: "customer service",
+        email: "enquiries@qkcoldstores.co.uk",
+        areaServed: "GB",
+        availableLanguage: ["English"],
+      },
+    ],
+  }
+
+  if (SOCIAL_PROFILES.length > 0) {
+    schema.sameAs = SOCIAL_PROFILES
+  }
+
+  return schema
+}
+
+export function buildWebSiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: SITE_URL,
+    name: "QK Cold Stores",
+    description:
+      "Premium temperature-controlled warehousing, blast freezing, and distribution services in Grantham, Marston and the East Midlands.",
+    inLanguage: "en-GB",
+    datePublished: SITE_DATE_PUBLISHED,
+    dateModified: SITE_DATE_MODIFIED,
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    about: {
+      "@id": `${SITE_URL}/#localbusiness`,
+    },
+  }
+}
+
+export function buildWebPageJsonLd({
+  path,
+  name,
+  description,
+}: {
+  path: string
+  name: string
+  description: string
+}) {
+  const normalisedPath = path === "/" ? "/" : path.startsWith("/") ? path : `/${path}`
+  const pageUrl = normalisedPath === "/" ? SITE_URL : `${SITE_URL}${normalisedPath}`
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name,
+    description,
+    inLanguage: "en-GB",
+    datePublished: SITE_DATE_PUBLISHED,
+    dateModified: SITE_DATE_MODIFIED,
+    isPartOf: {
+      "@id": `${SITE_URL}/#website`,
+    },
+    about: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    author: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+  }
+}
+
 export function buildLocalBusinessJsonLd() {
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "Organization"],
     "@id": `${SITE_URL}/#localbusiness`,
     name: "QK Cold Stores (Marston) Ltd",
     description:
@@ -17,6 +124,9 @@ export function buildLocalBusinessJsonLd() {
     email: "enquiries@qkcoldstores.co.uk",
     logo: `${SITE_URL}/images/qk-logo.webp`,
     image: `${SITE_URL}${OG_IMAGE_PATH}`,
+    parentOrganization: {
+      "@id": `${SITE_URL}/#organization`,
+    },
     address: {
       "@type": "PostalAddress",
       streetAddress: SITE_ADDRESS.streetAddress,
@@ -132,10 +242,37 @@ export function buildLocalBusinessJsonLd() {
   return schema
 }
 
+export function buildHomePageJsonLd() {
+  return [
+    buildOrganizationJsonLd(),
+    buildWebSiteJsonLd(),
+    buildLocalBusinessJsonLd(),
+    buildWebPageJsonLd({
+      path: "/",
+      name: "QK Cold Stores | Cold Storage and Logistics in Grantham",
+      description:
+        "QK Cold Stores provides premium temperature-controlled warehousing, blast freezing, and distribution services in Grantham, Marston and the East Midlands.",
+    }),
+  ]
+}
+
 export function buildFAQPageJsonLd() {
+  const pageUrl = `${SITE_URL}/faq`
+
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    url: pageUrl,
+    name: "Frequently Asked Questions | QK Cold Stores",
+    description:
+      "Frequently asked questions about QK Cold Stores cold storage services, facilities, and capabilities in Grantham.",
+    inLanguage: "en-GB",
+    datePublished: SITE_DATE_PUBLISHED,
+    dateModified: SITE_DATE_MODIFIED,
+    isPartOf: {
+      "@id": `${SITE_URL}/#website`,
+    },
     mainEntity: FAQ_ITEMS.map((faq) => ({
       "@type": "Question",
       name: faq.question,

@@ -115,7 +115,7 @@ export function ContactSections() {
                 <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-4 border-white shadow-lg">
                   <Image
                     src="/images/gemma.webp"
-                    alt=""
+                    alt="Member of the QK Cold Stores team"
                     fill
                     sizes={IMAGE_SIZES.avatar}
                     quality={IMAGE_QUALITY.content}

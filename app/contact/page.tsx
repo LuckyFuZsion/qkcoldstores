@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
 import { ContactSections } from "@/components/contact-sections"
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { WebPageSchema } from "@/components/webpage-schema"
 import { breadcrumbsFor } from "@/lib/breadcrumbs"
 
 import { pageMetadata } from "@/lib/metadata"
@@ -17,6 +18,11 @@ export const metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <>
+      <WebPageSchema
+        path="/contact"
+        name="Contact Us | QK Cold Stores"
+        description={metadata.description as string}
+      />
       <BreadcrumbSchema items={breadcrumbsFor("/contact", "Contact")} />
       <main>
       <Header />

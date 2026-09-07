@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
 import { ServicesSections } from "@/components/services-sections"
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { WebPageSchema } from "@/components/webpage-schema"
 import { breadcrumbsFor } from "@/lib/breadcrumbs"
 
 import { pageMetadata } from "@/lib/metadata"
@@ -17,6 +18,11 @@ export const metadata = pageMetadata({
 export default function ServicesPage() {
   return (
     <>
+      <WebPageSchema
+        path="/services"
+        name="Services | QK Cold Stores"
+        description={metadata.description as string}
+      />
       <BreadcrumbSchema items={breadcrumbsFor("/services", "Services")} />
       <main>
       <Header />

@@ -8,7 +8,7 @@ import { LocationPreview } from "@/components/location-preview"
 import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
 import { JsonLdScript } from "@/components/json-ld-script"
-import { buildLocalBusinessJsonLd } from "@/lib/json-ld"
+import { buildHomePageJsonLd } from "@/lib/json-ld"
 import { pageMetadata } from "@/lib/metadata"
 
 export const metadata = pageMetadata({
@@ -21,7 +21,7 @@ export const metadata = pageMetadata({
 export default function HomePage() {
   return (
     <>
-      <JsonLdScript data={buildLocalBusinessJsonLd()} />
+      <JsonLdScript data={buildHomePageJsonLd()} />
       <main>
         <Header />
         <HeroSection />

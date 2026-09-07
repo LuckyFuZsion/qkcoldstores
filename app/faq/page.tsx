@@ -6,6 +6,7 @@ import { FAQCta } from "@/components/faq-cta"
 
 import { JsonLdScript } from "@/components/json-ld-script"
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { WebPageSchema } from "@/components/webpage-schema"
 import { breadcrumbsFor } from "@/lib/breadcrumbs"
 import { buildFAQPageJsonLd } from "@/lib/json-ld"
 import { pageMetadata } from "@/lib/metadata"
@@ -20,6 +21,11 @@ export const metadata = pageMetadata({
 export default function FAQPage() {
   return (
     <>
+      <WebPageSchema
+        path="/faq"
+        name="FAQ | QK Cold Stores"
+        description={metadata.description as string}
+      />
       <JsonLdScript data={buildFAQPageJsonLd()} />
       <BreadcrumbSchema items={breadcrumbsFor("/faq", "FAQ")} />
       <main>

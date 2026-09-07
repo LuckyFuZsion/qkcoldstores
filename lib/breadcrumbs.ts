@@ -16,11 +16,15 @@ export function buildBreadcrumbJsonLd(items: BreadcrumbItem[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: item.path === "/" ? SITE_URL : `${SITE_URL}${item.path}`,
-    })),
+    itemListElement: items.map((item, index) => {
+      const path = item.path.startsWith("/") ? item.path : `/${item.path}`
+      const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        item: url,
+      }
+    }),
   }
 }

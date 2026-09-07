@@ -4,6 +4,7 @@ import { PageHero } from "@/components/page-hero"
 import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Database, Eye, Lock, UserCheck, FileText, Mail, Clock } from "lucide-react"
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { WebPageSchema } from "@/components/webpage-schema"
 import { breadcrumbsFor } from "@/lib/breadcrumbs"
 
 import { pageMetadata } from "@/lib/metadata"
@@ -18,6 +19,11 @@ export const metadata = pageMetadata({
 export default function PrivacyPolicyPage() {
   return (
     <>
+      <WebPageSchema
+        path="/privacy"
+        name="Privacy Policy | QK Cold Stores"
+        description={metadata.description as string}
+      />
       <BreadcrumbSchema items={breadcrumbsFor("/privacy", "Privacy Policy")} />
       <main>
       <Header />

@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import { TeamSection } from "@/components/team-section"
 import { PageHero } from "@/components/page-hero"
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { WebPageSchema } from "@/components/webpage-schema"
 import { breadcrumbsFor } from "@/lib/breadcrumbs"
 
 import { pageMetadata } from "@/lib/metadata"
@@ -17,6 +18,11 @@ export const metadata = pageMetadata({
 export default function TeamPage() {
   return (
     <>
+      <WebPageSchema
+        path="/team"
+        name="Meet the Team | QK Cold Stores"
+        description={metadata.description as string}
+      />
       <BreadcrumbSchema items={breadcrumbsFor("/team", "Meet the Team")} />
       <main className="min-h-screen">
       <Header />
