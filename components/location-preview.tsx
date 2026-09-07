@@ -56,7 +56,7 @@ export function LocationPreview() {
               {[
                 { icon: MapPin, title: "Headquarters", text: "2 Toll Bar Road, Marston, Grantham, NG32 2HT", href: null as string | null },
                 { icon: Phone, title: "Direct Line", text: "01400 259300", href: "tel:+441400259300" },
-                { icon: Mail, title: "Email", text: "info@qkcoldstores.co.uk", href: "mailto:info@qkcoldstores.co.uk" },
+                { icon: Mail, title: "Email", text: "enquiries@qkcoldstores.co.uk", href: "mailto:enquiries@qkcoldstores.co.uk" },
               ].map((item, i) => (
                 <motion.div 
                   key={i}

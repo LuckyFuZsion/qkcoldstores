@@ -14,7 +14,7 @@ export function buildLocalBusinessJsonLd() {
       "Premium temperature-controlled warehousing, blast freezing, and distribution services in Grantham, Marston and the East Midlands.",
     url: SITE_URL,
     telephone: "+441400259300",
-    email: "info@qkcoldstores.co.uk",
+    email: "enquiries@qkcoldstores.co.uk",
     logo: `${SITE_URL}/images/qk-logo.webp`,
     image: `${SITE_URL}${OG_IMAGE_PATH}`,
     address: {

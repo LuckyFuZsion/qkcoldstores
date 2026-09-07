@@ -38,7 +38,7 @@ export function VacancyList({ onApply }: { onApply: (vacancyId: string, vacancyT
         className="text-center py-16 px-8 rounded-[2rem] bg-card border border-border"
       >
         <Briefcase className="w-16 h-16 text-muted-foreground/30 mx-auto mb-6" />
-        <h3 className="text-2xl font-black text-foreground mb-4">No Current Vacancies</h3>
+        <h3 className="text-2xl font-black text-foreground mb-4">No Current Openings</h3>
         <p className="text-muted-foreground font-medium max-w-md mx-auto">
           There are no open positions at the moment, but we are always keen to hear from talented people. 
           Submit your CV below and we will keep it on file for 6 months.

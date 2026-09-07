@@ -12,7 +12,7 @@ const quickLinks = [
   { label: "What We Offer", href: "/services" },
   { label: "Location", href: "/location" },
   { label: "FAQ", href: "/faq" },
-  { label: "Vacancies", href: "/vacancies" },
+  { label: "Careers", href: "/careers" },
   { label: "Customer Portal", href: EMPERICA_PORTAL_URL, external: true },
   { label: "Contact Us", href: "/contact" },
 ] as const
@@ -110,11 +110,11 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:info@qkcoldstores.co.uk"
+                  href="mailto:enquiries@qkcoldstores.co.uk"
                   className="text-muted-foreground hover:text-electric-blue font-bold flex items-center group transition-colors"
                 >
                   <span className="mr-2 h-0.5 w-0 bg-electric-blue transition-all group-hover:w-4" />
-                  info@qkcoldstores.co.uk
+                  enquiries@qkcoldstores.co.uk
                 </a>
               </li>
             </ul>
@@ -147,9 +147,17 @@ export function Footer() {
               <Link href="/privacy" className="hover:text-deep-navy transition-colors">Privacy Policy</Link>
               <Link href="/cookies" className="hover:text-deep-navy transition-colors">Cookie Policy</Link>
             </div>
-            <p className="text-muted-foreground text-sm font-bold uppercase tracking-widest">
-              &copy; {new Date().getFullYear()} QK Cold Stores (Marston) Ltd.
-            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-muted-foreground text-sm font-bold uppercase tracking-widest">
+              <p>&copy; {new Date().getFullYear()} QK Cold Stores (Marston) Ltd.</p>
+              <a
+                href="https://webfuzsion.co.uk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-electric-blue transition-colors"
+              >
+                Site by WebFuZsion
+              </a>
+            </div>
           </div>
         </div>
       </div>

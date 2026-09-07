@@ -43,7 +43,7 @@ export const PUBLIC_ROUTES = [
   "/location",
   "/services",
   "/faq",
-  "/vacancies",
+  "/careers",
   "/contact",
   "/privacy",
   "/cookies",

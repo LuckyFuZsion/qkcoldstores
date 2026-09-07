@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { sendEnquiryNotification } from "@/lib/mailjet"
+import { sendEnquiryNotification } from "@/lib/enquiry-email"
 import type { EnquiryInput } from "@/lib/enquiries"
 
 export const runtime = "nodejs"
@@ -10,7 +10,13 @@ function isValidEmail(value: string): boolean {
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as Partial<EnquiryInput>
+    const body = (await request.json()) as Partial<EnquiryInput> & { website?: string }
+
+    // Honeypot filled - pretend success so bots learn nothing
+    if (String(body.website ?? "").trim()) {
+      return NextResponse.json({ ok: true })
+    }
+
     const name = String(body.name ?? "").trim()
     const email = String(body.email ?? "").trim()
     const message = String(body.message ?? "").trim()

@@ -25,8 +25,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "info@qkcoldstores.co.uk",
-    href: "mailto:info@qkcoldstores.co.uk",
+    value: "enquiries@qkcoldstores.co.uk",
+    href: "mailto:enquiries@qkcoldstores.co.uk",
   },
   {
     icon: Clock,

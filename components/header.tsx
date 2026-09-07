@@ -51,7 +51,7 @@ const rightNavItems: NavEntry[] = [
     label: "More",
     items: [
       { href: "/faq", label: "FAQ" },
-      { href: "/vacancies", label: "Vacancies" },
+      { href: "/careers", label: "Careers" },
     ],
   },
   { type: "cta", href: "/contact", label: "Contact" },

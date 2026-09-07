@@ -25,6 +25,11 @@ const nextConfig = {
         destination: '/admin',
         permanent: true,
       },
+      {
+        source: '/vacancies',
+        destination: '/careers',
+        permanent: true,
+      },
     ]
   },
   async headers() {

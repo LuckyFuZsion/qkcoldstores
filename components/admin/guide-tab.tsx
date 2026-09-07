@@ -106,7 +106,7 @@ export function GuideTab() {
     { id: "overview", label: "Overview" },
     { id: "login", label: "Signing in" },
     { id: "adding-admins", label: "Adding colleagues" },
-    { id: "vacancies", label: "Job vacancies" },
+    { id: "vacancies", label: "Careers listings" },
     { id: "applications", label: "CV applications" },
     { id: "enquiries", label: "Contact messages" },
     { id: "team", label: "Team page" },
@@ -156,7 +156,7 @@ export function GuideTab() {
           <p className="font-bold text-foreground">You can manage</p>
           <GuideList
             items={[
-              "Job vacancies shown on the website",
+              "Careers listings shown on the website",
               "CV applications people have sent in",
               "Messages from the Contact page form",
               "People listed on the Meet the Team page",
@@ -208,11 +208,11 @@ export function GuideTab() {
           </GuideCallout>
         </GuideSection>
 
-        <GuideSection id="vacancies" icon={Briefcase} title="Job vacancies">
+        <GuideSection id="vacancies" icon={Briefcase} title="Careers listings">
           <p>
-            Vacancies appear on the public{" "}
-            <Link href="/vacancies" className="text-electric-blue font-bold hover:underline">
-              Vacancies
+            Roles appear on the public{" "}
+            <Link href="/careers" className="text-electric-blue font-bold hover:underline">
+              Careers
             </Link>{" "}
             page. Only jobs marked as{" "}
             <Badge className="mx-1 bg-green-100 text-green-800 border-0">active</Badge> are
@@ -247,7 +247,14 @@ export function GuideTab() {
           <p>
             When someone applies for a job or sends a general CV through the website, it appears
             in the Applications tab. You will see their name, contact details, message, which job
-            they applied for (if any), and their CV to download.
+            they applied for (if any), and their CV to download. An alert is also emailed to{" "}
+            <a
+              href="mailto:careers@qkcoldstores.co.uk"
+              className="text-electric-blue font-bold hover:underline"
+            >
+              careers@qkcoldstores.co.uk
+            </a>
+            .
           </p>
           <GuideCallout variant="warning" title="Keeping personal data tidy (6 months)">
             <p>
@@ -286,16 +293,9 @@ export function GuideTab() {
           <GuideCallout variant="info" title="Email alerts for new messages">
             <p>
               When someone uses the contact form, an alert email is also sent so you know to open
-              this Enquiries tab. Those alerts are sent through Mailjet, and they appear to come
-              from{" "}
-              <a
-                href="mailto:info@webfuzsion.co.uk"
-                className="text-electric-blue font-bold hover:underline"
-              >
-                info@webfuzsion.co.uk
-              </a>
-              . The visitor&apos;s message is still stored here for you to read and reply to - the
-              alert is just a prompt to check admin.
+              this Enquiries tab. The visitor also receives a short confirmation email. The
+              visitor&apos;s message is still stored here for you to read and reply to - the alert
+              is just a prompt to check admin.
             </p>
           </GuideCallout>
           <p className="font-bold text-foreground">Message status</p>
@@ -459,18 +459,19 @@ export function GuideTab() {
               ]}
             />
 
-            <p className="font-bold text-foreground">Mailjet enquiry alerts</p>
+            <p className="font-bold text-foreground">Resend enquiry alerts</p>
             <GuideList
               items={[
-                "Provider: Mailjet API (not SMTP) via lib/mailjet.ts and POST /api/notify-enquiry",
-                "From address: info@webfuzsion.co.uk (MAILJET_FROM_EMAIL) - must stay verified in Mailjet Senders",
-                "From display name: QK Cold Stores Website (MAILJET_FROM_NAME)",
+                "Provider: Resend API via lib/enquiry-email.ts and POST /api/notify-enquiry",
+                "From: RESEND_FROM_EMAIL (e.g. donotreply@qkcoldstores.co.uk once the domain is verified in Resend)",
+                "From display name: QK Cold Stores Website (RESEND_FROM_NAME)",
                 "Recipients: ENQUIRY_NOTIFY_EMAILS (comma-separated)",
-                "Flow: contact form saves to Firestore enquiries, then notifies; form success does not depend on Mailjet succeeding",
-                "Vercel must have MAILJET_API_KEY, MAILJET_SECRET_KEY, MAILJET_FROM_EMAIL, ENQUIRY_NOTIFY_EMAILS (and NEXT_PUBLIC_SITE_URL for the admin link in the email)",
-                "CRITICAL: Authenticate webfuzsion.co.uk in Mailjet Account settings - Domain authentication. SPF and DKIM DNS must be OK or Mailjet can return API success while no email is delivered",
-                "In DNS for webfuzsion.co.uk: add Mailjet SPF include (spf.mailjet.com) and the mailjet._domainkey TXT (DKIM) from the Mailjet domain screen, then click Validate / Check DNS",
-                "Prefer a different From vs To when possible (e.g. noreply@… as From, info@… as recipient) once that sender is verified",
+                "Optional BCC: ENQUIRY_BCC_EMAILS (comma-separated)",
+                "Careers/CV applications alert APPLICATION_NOTIFY_EMAILS (default careers@qkcoldstores.co.uk) via POST /api/notify-application",
+                "Submitter also gets an auto-confirmation to the email address on the form (Reply-To: enquiries@qkcoldstores.co.uk)",
+                "Flow: contact form saves to Firestore enquiries, then notifies; form success does not depend on Resend succeeding",
+                "Vercel must have RESEND_API_KEY, RESEND_FROM_EMAIL, ENQUIRY_NOTIFY_EMAILS, APPLICATION_NOTIFY_EMAILS (and NEXT_PUBLIC_SITE_URL for the admin link in the email)",
+                "With onboarding@resend.dev, Resend usually only delivers to the email on your Resend account - use a verified qkcoldstores.co.uk From address for production",
               ]}
             />
 
@@ -482,22 +483,27 @@ export function GuideTab() {
               <p>NEXT_PUBLIC_SITE_URL</p>
               <p>NEXT_PUBLIC_EMPERICA_PORTAL_URL (fallback: Empirica webview URL in site-config)</p>
               <p>NEXT_PUBLIC_ADMIN_EMAILS (must stay in sync with firestore.rules)</p>
-              <p>MAILJET_API_KEY / MAILJET_SECRET_KEY (server only)</p>
-              <p>MAILJET_FROM_EMAIL=info@webfuzsion.co.uk</p>
-              <p>MAILJET_FROM_NAME=QK Cold Stores Website</p>
+              <p>RESEND_API_KEY (server only)</p>
+              <p>RESEND_FROM_EMAIL=donotreply@qkcoldstores.co.uk</p>
+              <p>RESEND_FROM_NAME=QK Cold Stores Website</p>
               <p>ENQUIRY_NOTIFY_EMAILS (who receives new-enquiry alerts)</p>
+              <p>ENQUIRY_BCC_EMAILS (optional BCC list)</p>
+              <p>APPLICATION_NOTIFY_EMAILS=careers@qkcoldstores.co.uk</p>
+              <p>APPLICATION_BCC_EMAILS (optional BCC for careers alerts)</p>
             </div>
 
             <p className="font-bold text-foreground">Recent product behaviour</p>
             <GuideList
               items={[
                 "/portal page removed - header/footer Customer Portal is an external link via EMPERICA_PORTAL_URL",
-                "Contact form → Firestore enquiries + Mailjet alert from info@webfuzsion.co.uk",
+                "Contact form → Firestore enquiries + Resend alert",
+                "Careers CV form → Firestore applications + Resend alert to careers@",
                 "Public contact address shown on site remains enquiries@qkcoldstores.co.uk",
                 "Contact page shows photo only in the sidebar (no name label)",
                 "Homepage / contact / location maps use Leaflet + Esri tiles (CSP must allow arcgisonline / tile hosts)",
                 "Tablet/nav: hamburger menu until xl breakpoint so tablet users get full nav",
-                "lib/mailjet.ts + app/api/notify-enquiry/route.ts - enquiry notification emails",
+                "lib/enquiry-email.ts + app/api/notify-enquiry/route.ts - enquiry notification emails",
+                "lib/application-email.ts + app/api/notify-application/route.ts - careers application emails",
               ]}
             />
 

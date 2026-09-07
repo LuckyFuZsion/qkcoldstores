@@ -201,7 +201,7 @@ export default function CookiePolicyPage() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a 
-                  href="mailto:info@qkcoldstores.co.uk"
+                  href="mailto:enquiries@qkcoldstores.co.uk"
                   className="inline-flex items-center gap-2 bg-electric-blue hover:bg-electric-blue/90 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                 >
                   Email Us

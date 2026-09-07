@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Upload, CheckCircle2, AlertCircle, FileText, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -8,7 +8,16 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { submitApplication } from "@/lib/vacancies"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { getActiveVacancies, submitApplication, type Vacancy } from "@/lib/vacancies"
+
+const GENERAL_APPLICATION_VALUE = "__general__"
 
 interface CVSubmissionFormProps {
   vacancyId?: string | null
@@ -16,7 +25,11 @@ interface CVSubmissionFormProps {
   onClose?: () => void
 }
 
-export function CVSubmissionForm({ vacancyId = null, vacancyTitle = null, onClose }: CVSubmissionFormProps) {
+export function CVSubmissionForm({
+  vacancyId = null,
+  vacancyTitle = null,
+  onClose,
+}: CVSubmissionFormProps) {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -24,12 +37,39 @@ export function CVSubmissionForm({ vacancyId = null, vacancyTitle = null, onClos
     phone: "",
     message: "",
   })
+  const [vacancies, setVacancies] = useState<Vacancy[]>([])
+  const [selectedVacancyId, setSelectedVacancyId] = useState<string>(
+    vacancyId || GENERAL_APPLICATION_VALUE
+  )
   const [cvFile, setCvFile] = useState<File | null>(null)
   const [consent, setConsent] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    getActiveVacancies()
+      .then(setVacancies)
+      .catch(console.error)
+  }, [])
+
+  useEffect(() => {
+    setSelectedVacancyId(vacancyId || GENERAL_APPLICATION_VALUE)
+  }, [vacancyId])
+
+  const selectedVacancyTitle =
+    selectedVacancyId === GENERAL_APPLICATION_VALUE
+      ? null
+      : vacancies.find((v) => v.id === selectedVacancyId)?.title ??
+        (vacancyId && selectedVacancyId === vacancyId ? vacancyTitle : null)
+
+  const handleVacancyChange = (value: string) => {
+    setSelectedVacancyId(value)
+    if (value === GENERAL_APPLICATION_VALUE && onClose) {
+      onClose()
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -44,16 +84,53 @@ export function CVSubmissionForm({ vacancyId = null, vacancyTitle = null, onClos
       return
     }
 
+    const applyingVacancyId =
+      selectedVacancyId === GENERAL_APPLICATION_VALUE ? null : selectedVacancyId
+    const applyingVacancyTitle =
+      selectedVacancyId === GENERAL_APPLICATION_VALUE ? null : selectedVacancyTitle
+
     setSubmitting(true)
     try {
-      await submitApplication(
-        { ...formData, vacancyId: vacancyId ?? null, vacancyTitle: vacancyTitle ?? null },
+      const saved = await submitApplication(
+        {
+          ...formData,
+          vacancyId: applyingVacancyId,
+          vacancyTitle: applyingVacancyTitle,
+        },
         cvFile
       )
+
+      try {
+        const notifyResponse = await fetch("/api/notify-application", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...formData,
+            vacancyId: applyingVacancyId,
+            vacancyTitle: applyingVacancyTitle,
+            cvFileName: saved.cvFileName,
+          }),
+        })
+        if (!notifyResponse.ok) {
+          const detail = await notifyResponse.text().catch(() => "")
+          console.error(
+            `Application saved, but careers email notification failed (${notifyResponse.status}):`,
+            detail
+          )
+        }
+      } catch (notifyError) {
+        console.error(
+          "Application saved, but careers email notification failed:",
+          notifyError
+        )
+      }
+
       setSubmitted(true)
     } catch (err) {
       console.error(err)
-      setError("Something went wrong. Please try again or email us directly at info@qkcoldstores.co.uk.")
+      setError(
+        "Something went wrong. Please try again or email us directly at careers@qkcoldstores.co.uk."
+      )
     } finally {
       setSubmitting(false)
     }
@@ -71,7 +148,8 @@ export function CVSubmissionForm({ vacancyId = null, vacancyTitle = null, onClos
         </div>
         <h3 className="text-2xl font-black text-foreground mb-4">Application Submitted</h3>
         <p className="text-muted-foreground font-medium max-w-md mx-auto">
-          Thank you for your interest in joining QK Cold Stores. We will review your application and be in touch if a suitable opportunity arises.
+          Thank you for your interest in joining QK Cold Stores. We will review your application and
+          be in touch if a suitable opportunity arises.
         </p>
       </motion.div>
     )
@@ -79,16 +157,48 @@ export function CVSubmissionForm({ vacancyId = null, vacancyTitle = null, onClos
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {vacancyTitle && (
+      <div className="space-y-2">
+        <Label htmlFor="vacancy" className="font-bold text-sm uppercase tracking-wider">
+          Job applying for (if advertised)
+        </Label>
+        <Select value={selectedVacancyId} onValueChange={handleVacancyChange}>
+          <SelectTrigger id="vacancy" className="rounded-xl border-border h-12">
+            <SelectValue placeholder="Select a role (optional)" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={GENERAL_APPLICATION_VALUE}>
+              Not applying for a specific role
+            </SelectItem>
+            {vacancies.map((vacancy) => (
+              <SelectItem key={vacancy.id} value={vacancy.id}>
+                {vacancy.title}
+              </SelectItem>
+            ))}
+            {vacancyId &&
+              vacancyTitle &&
+              !vacancies.some((v) => v.id === vacancyId) && (
+                <SelectItem value={vacancyId}>{vacancyTitle}</SelectItem>
+              )}
+          </SelectContent>
+        </Select>
+        <p className="text-xs text-muted-foreground font-medium">
+          Optional - leave as &quot;Not applying for a specific role&quot; to send a general CV.
+        </p>
+      </div>
+
+      {selectedVacancyTitle && (
         <div className="flex items-center justify-between bg-electric-blue/5 border border-electric-blue/20 rounded-xl px-4 py-3">
           <p className="text-sm font-bold text-foreground">
-            Applying for: <span className="text-electric-blue">{vacancyTitle}</span>
+            Applying for: <span className="text-electric-blue">{selectedVacancyTitle}</span>
           </p>
-          {onClose && (
-            <button type="button" onClick={onClose} className="text-muted-foreground hover:text-foreground">
-              <X className="w-4 h-4" />
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => handleVacancyChange(GENERAL_APPLICATION_VALUE)}
+            className="text-muted-foreground hover:text-foreground"
+            aria-label="Clear selected role"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
       )}
 
@@ -165,7 +275,6 @@ export function CVSubmissionForm({ vacancyId = null, vacancyTitle = null, onClos
         />
       </div>
 
-      {/* CV Upload */}
       <div className="space-y-2">
         <Label className="font-bold text-sm uppercase tracking-wider">Upload CV *</Label>
         <div
@@ -217,7 +326,6 @@ export function CVSubmissionForm({ vacancyId = null, vacancyTitle = null, onClos
         />
       </div>
 
-      {/* Consent */}
       <div className="flex items-start gap-3 p-4 rounded-xl bg-card border border-border">
         <Checkbox
           id="consent"
@@ -226,9 +334,12 @@ export function CVSubmissionForm({ vacancyId = null, vacancyTitle = null, onClos
           className="mt-0.5"
         />
         <Label htmlFor="consent" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
-          I consent to QK Cold Stores storing my personal information and CV for up to 6 months for recruitment purposes. 
-          My data will be automatically deleted after this period. 
-          See our <a href="/privacy" className="text-electric-blue font-bold hover:underline">Privacy Policy</a> for details.
+          I consent to QK Cold Stores storing my personal information and CV for up to 6 months for
+          recruitment purposes. My data will be automatically deleted after this period. See our{" "}
+          <a href="/privacy" className="text-electric-blue font-bold hover:underline">
+            Privacy Policy
+          </a>{" "}
+          for details.
         </Label>
       </div>
 

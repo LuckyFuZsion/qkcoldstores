@@ -126,7 +126,7 @@ export async function submitApplication(
     vacancyTitle: string | null
   },
   cvFile: File
-): Promise<string> {
+): Promise<{ id: string; cvUrl: string; cvFileName: string }> {
   const upload = await uploadDocumentToCloudinary(cvFile, "qk-cvs")
 
   const now = new Date()
@@ -142,7 +142,11 @@ export async function submitApplication(
     submittedAt: serverTimestamp(),
     expiresAt: Timestamp.fromDate(expiresAt),
   })
-  return docRef.id
+  return {
+    id: docRef.id,
+    cvUrl: upload.secureUrl,
+    cvFileName: cvFile.name,
+  }
 }
 
 export async function getAllApplications(): Promise<Application[]> {

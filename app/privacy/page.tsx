@@ -158,7 +158,7 @@ export default function PrivacyPolicyPage() {
                   <CardContent className="p-6">
                     <h3 className="font-semibold text-foreground mb-3">Recruitment and Job Applications</h3>
                     <p className="text-muted-foreground leading-relaxed mb-3">
-                      When you submit a job application or CV through our vacancies page, we collect personal information including 
+                      When you submit a job application or CV through our careers page, we collect personal information including 
                       your name, email address, phone number, cover note, and your uploaded CV document. This information is used 
                       solely for the purpose of evaluating your suitability for current or future roles at QK Cold Stores.
                     </p>
@@ -169,8 +169,8 @@ export default function PrivacyPolicyPage() {
                     <p className="text-muted-foreground leading-relaxed">
                       The legal basis for processing this data is your explicit consent, which is obtained at the point of submission. 
                       You may request early deletion of your recruitment data at any time by contacting us at{" "}
-                      <a href="mailto:info@qkcoldstores.co.uk" className="text-electric-blue hover:underline">
-                        info@qkcoldstores.co.uk
+                      <a href="mailto:enquiries@qkcoldstores.co.uk" className="text-electric-blue hover:underline">
+                        enquiries@qkcoldstores.co.uk
                       </a>.
                     </p>
                   </CardContent>
@@ -252,7 +252,7 @@ export default function PrivacyPolicyPage() {
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">Recruitment data:</strong> CVs, personal details and cover notes submitted through our 
-                  vacancies page are retained for a maximum of 6 months from the date of submission and are then automatically deleted.
+                  careers page are retained for a maximum of 6 months from the date of submission and are then automatically deleted.
                 </p>
               </div>
             </div>
@@ -273,8 +273,8 @@ export default function PrivacyPolicyPage() {
                     <p>2 Toll Bar Road, Marston</p>
                     <p>Grantham, Lincolnshire NG32 2HT</p>
                     <p className="mt-4">
-                      <a href="mailto:info@qkcoldstores.co.uk" className="text-electric-blue hover:underline">
-                        info@qkcoldstores.co.uk
+                      <a href="mailto:enquiries@qkcoldstores.co.uk" className="text-electric-blue hover:underline">
+                        enquiries@qkcoldstores.co.uk
                       </a>
                     </p>
                     <p>

@@ -39,6 +39,16 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
     const form = e.currentTarget
     const formData = new FormData(form)
 
+    // Honeypot: bots often fill hidden fields; humans never see this
+    const honeypot = String(formData.get("website") ?? "").trim()
+    if (honeypot) {
+      form.reset()
+      setService("")
+      setIsSubmitted(true)
+      setIsSubmitting(false)
+      return
+    }
+
     try {
       const enquiry = {
         name: String(formData.get("name") ?? ""),
@@ -51,12 +61,12 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
 
       await submitEnquiry(enquiry)
 
-      // Notify QK admins by email - do not fail the form if Mailjet has an issue
+      // Notify admins by email - do not fail the form if Resend has an issue
       try {
         const notifyResponse = await fetch("/api/notify-enquiry", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(enquiry),
+          body: JSON.stringify({ ...enquiry, website: "" }),
         })
         if (!notifyResponse.ok) {
           const detail = await notifyResponse.text().catch(() => "")
@@ -108,9 +118,23 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
     </div>
   ) : null
 
+  const honeypotField = (
+    <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+      <label htmlFor={variant === "compact" ? "website-compact" : "website"}>Website</label>
+      <input
+        id={variant === "compact" ? "website-compact" : "website"}
+        name="website"
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+      />
+    </div>
+  )
+
   if (variant === "compact") {
     return (
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="relative space-y-4">
+        {honeypotField}
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="name-compact" className={compactLabelClassName}>Name</Label>
@@ -165,7 +189,8 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="relative space-y-6">
+      {honeypotField}
       <div className="grid sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="name" className={labelClassName}>Full Name *</Label>

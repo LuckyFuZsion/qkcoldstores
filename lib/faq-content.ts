@@ -27,7 +27,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "How do I become a customer of QK Cold Stores?",
     answer:
-      "Simply contact us through our website or call our commercial team. We'll arrange a facility visit, discuss your specific requirements, and provide a tailored proposal. We offer flexible contract arrangements to suit businesses of all sizes. Please contact info@qkcoldstores.co.uk for further information.",
+      "Simply contact us through our website or call our commercial team. We'll arrange a facility visit, discuss your specific requirements, and provide a tailored proposal. We offer flexible contract arrangements to suit businesses of all sizes. Please contact enquiries@qkcoldstores.co.uk for further information.",
   },
   {
     question: "Do you offer short-term or seasonal storage options?",

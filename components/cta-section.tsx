@@ -47,10 +47,10 @@ export function CTASection() {
                 <div>
                   <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-1">Email</p>
                   <a
-                    href="mailto:info@qkcoldstores.co.uk"
+                    href="mailto:enquiries@qkcoldstores.co.uk"
                     className="text-xl sm:text-2xl font-black text-foreground hover:text-electric-blue transition-colors break-all"
                   >
-                    info@qkcoldstores.co.uk
+                    enquiries@qkcoldstores.co.uk
                   </a>
                 </div>
               </div>
