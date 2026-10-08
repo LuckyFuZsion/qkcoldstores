@@ -46,7 +46,7 @@ service cloud.firestore {
         isOptionalString(request.resource.data.message, 5000) &&
         isNonEmptyString(request.resource.data.cvUrl, 500) &&
         isNonEmptyString(request.resource.data.cvFileName, 255) &&
-        request.resource.data.cvUrl.matches("https://res\\.cloudinary\\.com/.+") &&
+        request.resource.data.cvUrl.matches("https://res\\.cloudinary\\.com/fty1twel/.+") &&
         isOptionalString(request.resource.data.vacancyId, 128) &&
         isOptionalString(request.resource.data.vacancyTitle, 200) &&
         isOptionalString(request.resource.data.cvPublicId, 256) &&

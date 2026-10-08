@@ -6,7 +6,9 @@ const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
 const MAX_BYTES = 20 * 1024 * 1024
 const MAX_REDIRECTS = 3
 
-/** Only files in our own Cloudinary account may be proxied. */
+const ALLOWED_FOLDERS = ["/qk-cvs/", "/qk-job-specs/"]
+
+/** The Cloudinary account is shared with another site, so only QK's own folders may be proxied. */
 function isAllowedCloudinaryUrl(url: string): boolean {
   if (!CLOUD_NAME) return false
   try {
@@ -14,7 +16,8 @@ function isAllowedCloudinaryUrl(url: string): boolean {
     return (
       parsed.protocol === "https:" &&
       parsed.hostname === "res.cloudinary.com" &&
-      parsed.pathname.startsWith(`/${CLOUD_NAME}/`)
+      parsed.pathname.startsWith(`/${CLOUD_NAME}/`) &&
+      ALLOWED_FOLDERS.some((folder) => parsed.pathname.includes(folder))
     )
   } catch {
     return false
