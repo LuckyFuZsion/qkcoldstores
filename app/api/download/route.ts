@@ -42,10 +42,10 @@ async function isAdminRequest(request: NextRequest): Promise<boolean> {
     )
     if (!res.ok) return false
     const data = (await res.json()) as {
-      users?: { email?: string; emailVerified?: boolean }[]
+      users?: { email?: string }[]
     }
     const user = data.users?.[0]
-    return Boolean(user?.emailVerified) && isAdminEmail(user?.email)
+    return isAdminEmail(user?.email)
   } catch {
     return false
   }
