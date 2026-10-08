@@ -470,16 +470,31 @@ export function GuideTab() {
                 "Careers/CV applications alert APPLICATION_NOTIFY_EMAILS (default careers@qkcoldstores.co.uk) via POST /api/notify-application",
                 "Submitter also gets an auto-confirmation to the email address on the form (Reply-To: enquiries@qkcoldstores.co.uk)",
                 "Flow: contact form saves to Firestore enquiries, then notifies; form success does not depend on Resend succeeding",
+                "Both notify routes are rate limited (lib/rate-limit.ts, in-memory, best effort) and return generic errors; a CAPTCHA would be the next hardening step",
                 "Vercel must have RESEND_API_KEY, RESEND_FROM_EMAIL, ENQUIRY_NOTIFY_EMAILS, APPLICATION_NOTIFY_EMAILS (and NEXT_PUBLIC_SITE_URL for the admin link in the email)",
                 "With onboarding@resend.dev, Resend usually only delivers to the email on your Resend account - use a verified qkcoldstores.co.uk From address for production",
+              ]}
+            />
+
+            <p className="font-bold text-foreground">Cloudinary (file storage)</p>
+            <GuideList
+              items={[
+                "Dedicated QK account - cloud name fty1twel (moved from a shared account on 8 Oct 2026)",
+                "Sign in with qkcoldstores@webfuzsion.co.uk - the password is kept in Bitwarden under "Cloudinary - QK Cold Stores", never in this site or in git",
+                "Upload preset: qk-uploads (unsigned). Allowed formats: pdf, doc, docx, jpg, jpeg, png, webp (set via the Admin API - the dashboard has no field for it)",
+                "Folders: qk-cvs (applicant CVs), qk-job-specs (job spec documents), qk-staff (team photos)",
+                "Settings - Security - 'Allow delivery of PDF and ZIP files' must stay ticked or PDF downloads return 401",
+                "CV downloads go through /api/download, which only serves qk-cvs and qk-job-specs from this account, and needs an admin sign-in for CVs",
+                "firestore.rules pins applications.cvUrl to https://res.cloudinary.com/fty1twel/ - update it if the cloud name ever changes",
+                "Old copies remain in the previous shared account (qk-cvs, qk-job-specs, qk-staff) and can be deleted once everything is confirmed working",
               ]}
             />
 
             <p className="font-bold text-foreground">Environment variables</p>
             <div className="rounded-lg bg-background border border-border p-4 font-mono text-xs space-y-1 overflow-x-auto">
               <p>NEXT_PUBLIC_FIREBASE_* (7 client config vars)</p>
-              <p>NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME</p>
-              <p>NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET</p>
+              <p>NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=fty1twel</p>
+              <p>NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=qk-uploads</p>
               <p>NEXT_PUBLIC_SITE_URL</p>
               <p>NEXT_PUBLIC_EMPERICA_PORTAL_URL (fallback: Empirica webview URL in site-config)</p>
               <p>NEXT_PUBLIC_ADMIN_EMAILS (must stay in sync with firestore.rules)</p>
@@ -510,12 +525,14 @@ export function GuideTab() {
             <p className="font-bold text-foreground">Key files</p>
             <GuideList
               items={[
-                "firestore.rules - isAdmin() email allowlist",
+                "firestore.rules - isAdmin() email allowlist and cvUrl account check",
                 "firestore.indexes.json - active vacancies composite index",
                 "lib/site-config.ts - ADMIN_EMAILS, EMPERICA_PORTAL_URL, PUBLIC_ROUTES",
                 "lib/security-headers.mjs - CSP",
                 "lib/enquiries.ts, lib/vacancies.ts, lib/team-members.ts",
-                "app/api/download/route.ts - Cloudinary download proxy",
+                "app/api/download/route.ts - Cloudinary download proxy (own account and QK folders only; CVs need an admin token)",
+                "lib/rate-limit.ts - rate limiter for the notify routes",
+                "scripts/migrate-cloudinary.mjs - one-off Cloudinary account migration (kept for reference; needs scripts/.migrate.env, git-ignored)",
                 "components/facility-map.tsx - shared map with permanent pin",
               ]}
             />
