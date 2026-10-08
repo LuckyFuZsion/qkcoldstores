@@ -24,6 +24,11 @@ service cloud.firestore {
       return value == null || (value is string && value.size() <= maxLen);
     }
 
+    function isEmail(value) {
+      return value is string
+        && value.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$');
+    }
+
     // --- Vacancies ---
     // Public: read active vacancies only (matches getActiveVacancies query).
     // Admin: full CRUD when signed in.
@@ -39,19 +44,27 @@ service cloud.firestore {
       allow read, delete: if isAdmin();
       allow update: if false;
       allow create: if
+        request.resource.data.keys().hasOnly([
+          'firstName', 'lastName', 'email', 'phone', 'message',
+          'vacancyId', 'vacancyTitle', 'cvUrl', 'cvFileName',
+          'cvPublicId', 'cvResourceType', 'submittedAt', 'expiresAt'
+        ]) &&
         isNonEmptyString(request.resource.data.firstName, 100) &&
         isNonEmptyString(request.resource.data.lastName, 100) &&
         isNonEmptyString(request.resource.data.email, 200) &&
+        isEmail(request.resource.data.email) &&
         isOptionalString(request.resource.data.phone, 50) &&
         isOptionalString(request.resource.data.message, 5000) &&
         isNonEmptyString(request.resource.data.cvUrl, 500) &&
         isNonEmptyString(request.resource.data.cvFileName, 255) &&
-        request.resource.data.cvUrl.matches("https://res\\.cloudinary\\.com/fty1twel/.+") &&
+        request.resource.data.cvUrl.matches("https://res\\.cloudinary\\.com/fty1twel/(raw|image)/upload/(.+/)?qk-cvs/.+") &&
         isOptionalString(request.resource.data.vacancyId, 128) &&
         isOptionalString(request.resource.data.vacancyTitle, 200) &&
         isOptionalString(request.resource.data.cvPublicId, 256) &&
         isOptionalString(request.resource.data.cvResourceType, 32) &&
         request.resource.data.expiresAt is timestamp &&
+        request.resource.data.expiresAt > request.time &&
+        request.resource.data.expiresAt <= request.time + duration.value(200, 'd') &&
         request.resource.data.submittedAt == request.time;
     }
 
@@ -61,8 +74,13 @@ service cloud.firestore {
     match /enquiries/{enquiryId} {
       allow read, update, delete: if isAdmin();
       allow create: if
+        request.resource.data.keys().hasOnly([
+          'name', 'company', 'email', 'phone', 'service',
+          'message', 'status', 'submittedAt'
+        ]) &&
         isNonEmptyString(request.resource.data.name, 100) &&
         isNonEmptyString(request.resource.data.email, 200) &&
+        isEmail(request.resource.data.email) &&
         isNonEmptyString(request.resource.data.message, 5000) &&
         isOptionalString(request.resource.data.company, 200) &&
         isOptionalString(request.resource.data.phone, 50) &&

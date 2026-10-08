@@ -480,7 +480,7 @@ export function GuideTab() {
             <GuideList
               items={[
                 "Dedicated QK account - cloud name fty1twel (moved from a shared account on 8 Oct 2026)",
-                "Sign in with qkcoldstores@webfuzsion.co.uk - the password is kept in Bitwarden under "Cloudinary - QK Cold Stores", never in this site or in git",
+                "Sign in with qkcoldstores@webfuzsion.co.uk - the password is kept in Bitwarden under 'Cloudinary - QK Cold Stores', never in this site or in git",
                 "Upload preset: qk-uploads (unsigned). Allowed formats: pdf, doc, docx, jpg, jpeg, png, webp (set via the Admin API - the dashboard has no field for it)",
                 "Folders: qk-cvs (applicant CVs), qk-job-specs (job spec documents), qk-staff (team photos)",
                 "Settings - Security - 'Allow delivery of PDF and ZIP files' must stay ticked or PDF downloads return 401",

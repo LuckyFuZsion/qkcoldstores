@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select"
 import { Send, CheckCircle, AlertCircle } from "lucide-react"
 import { submitEnquiry } from "@/lib/enquiries"
+import { TurnstileWidget, turnstileEnabled } from "@/components/turnstile-widget"
 
 interface ContactFormProps {
   variant?: "default" | "compact"
@@ -24,6 +25,8 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [service, setService] = useState<string>("")
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+  const [turnstileReset, setTurnstileReset] = useState(0)
   const fieldClassName =
     "bg-white text-deep-navy border-slate-200 placeholder:text-slate-400 focus-visible:border-electric-blue dark:bg-white dark:text-deep-navy dark:border-slate-200 dark:placeholder:text-slate-400"
   const labelClassName = "text-deep-navy dark:text-deep-navy"
@@ -66,7 +69,7 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
         const notifyResponse = await fetch("/api/notify-enquiry", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...enquiry, website: "" }),
+          body: JSON.stringify({ ...enquiry, website: "", turnstileToken }),
         })
         if (!notifyResponse.ok) {
           const detail = await notifyResponse.text().catch(() => "")
@@ -87,6 +90,7 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
       setError("Something went wrong. Please try again or call us on 01400 259300.")
     } finally {
       setIsSubmitting(false)
+      setTurnstileReset((n) => n + 1)
     }
   }
 
@@ -169,10 +173,11 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
             className={`${compactFieldClassName} resize-none`}
           />
         </div>
+        <TurnstileWidget onToken={setTurnstileToken} resetKey={turnstileReset} />
         {errorBanner}
         <Button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || (turnstileEnabled && !turnstileToken)}
           className="w-full bg-electric-blue hover:bg-electric-blue/90 text-white font-semibold"
         >
           {isSubmitting ? (
@@ -267,12 +272,14 @@ export function ContactForm({ variant = "default" }: ContactFormProps) {
         />
       </div>
 
+      <TurnstileWidget onToken={setTurnstileToken} resetKey={turnstileReset} />
+
       {errorBanner}
 
       <Button
         type="submit"
         size="lg"
-        disabled={isSubmitting}
+        disabled={isSubmitting || (turnstileEnabled && !turnstileToken)}
         className="w-full sm:w-auto bg-electric-blue hover:bg-electric-blue/90 text-white font-semibold"
       >
         {isSubmitting ? (

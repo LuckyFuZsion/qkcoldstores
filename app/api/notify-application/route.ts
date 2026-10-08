@@ -4,6 +4,7 @@ import {
   type ApplicationNotifyInput,
 } from "@/lib/application-email"
 import { getClientIp, isRateLimited } from "@/lib/rate-limit"
+import { verifyTurnstile } from "@/lib/turnstile"
 
 export const runtime = "nodejs"
 
@@ -19,10 +20,15 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Partial<ApplicationNotifyInput> & {
       website?: string
+      turnstileToken?: string
     }
 
     if (String(body.website ?? "").trim()) {
       return NextResponse.json({ ok: true })
+    }
+
+    if (!(await verifyTurnstile(body.turnstileToken, getClientIp(request)))) {
+      return NextResponse.json({ error: "CAPTCHA check failed" }, { status: 400 })
     }
 
     const firstName = String(body.firstName ?? "").trim()

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Upload, CheckCircle2, AlertCircle, FileText, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { TurnstileWidget, turnstileEnabled } from "@/components/turnstile-widget"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
@@ -44,6 +45,8 @@ export function CVSubmissionForm({
   const [cvFile, setCvFile] = useState<File | null>(null)
   const [consent, setConsent] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+  const [turnstileReset, setTurnstileReset] = useState(0)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -109,6 +112,7 @@ export function CVSubmissionForm({
             vacancyId: applyingVacancyId,
             vacancyTitle: applyingVacancyTitle,
             cvFileName: saved.cvFileName,
+            turnstileToken,
           }),
         })
         if (!notifyResponse.ok) {
@@ -133,6 +137,7 @@ export function CVSubmissionForm({
       )
     } finally {
       setSubmitting(false)
+      setTurnstileReset((n) => n + 1)
     }
   }
 
@@ -350,9 +355,11 @@ export function CVSubmissionForm({
         </div>
       )}
 
+      <TurnstileWidget onToken={setTurnstileToken} resetKey={turnstileReset} />
+
       <Button
         type="submit"
-        disabled={submitting}
+        disabled={submitting || (turnstileEnabled && !turnstileToken)}
         className="w-full bg-deep-navy text-white hover:bg-black font-bold py-7 rounded-2xl shadow-xl text-lg"
       >
         {submitting ? "Submitting..." : "Submit Application"}

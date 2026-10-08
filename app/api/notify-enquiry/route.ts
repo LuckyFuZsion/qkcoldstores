@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { sendEnquiryNotification } from "@/lib/enquiry-email"
 import type { EnquiryInput } from "@/lib/enquiries"
 import { getClientIp, isRateLimited } from "@/lib/rate-limit"
+import { verifyTurnstile } from "@/lib/turnstile"
 
 export const runtime = "nodejs"
 
@@ -15,11 +16,15 @@ export async function POST(request: Request) {
   }
 
   try {
-    const body = (await request.json()) as Partial<EnquiryInput> & { website?: string }
+    const body = (await request.json()) as Partial<EnquiryInput> & { website?: string; turnstileToken?: string }
 
     // Honeypot filled - pretend success so bots learn nothing
     if (String(body.website ?? "").trim()) {
       return NextResponse.json({ ok: true })
+    }
+
+    if (!(await verifyTurnstile(body.turnstileToken, getClientIp(request)))) {
+      return NextResponse.json({ error: "CAPTCHA check failed" }, { status: 400 })
     }
 
     const name = String(body.name ?? "").trim()
