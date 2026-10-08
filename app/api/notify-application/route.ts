@@ -3,6 +3,7 @@ import {
   sendApplicationNotification,
   type ApplicationNotifyInput,
 } from "@/lib/application-email"
+import { getClientIp, isRateLimited } from "@/lib/rate-limit"
 
 export const runtime = "nodejs"
 
@@ -11,6 +12,10 @@ function isValidEmail(value: string): boolean {
 }
 
 export async function POST(request: Request) {
+  if (isRateLimited(`application:ip:${getClientIp(request)}`, 5, 60 * 60 * 1000)) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 })
+  }
+
   try {
     const body = (await request.json()) as Partial<ApplicationNotifyInput> & {
       website?: string
@@ -35,7 +40,7 @@ export async function POST(request: Request) {
       email: email.slice(0, 200),
       phone: body.phone ? String(body.phone).slice(0, 50) : undefined,
       message: body.message ? String(body.message).slice(0, 5000) : undefined,
-      vacancyId: body.vacancyId ?? null,
+      vacancyId: body.vacancyId ? String(body.vacancyId).slice(0, 128) : null,
       vacancyTitle: body.vacancyTitle
         ? String(body.vacancyTitle).slice(0, 200)
         : null,
@@ -46,6 +51,6 @@ export async function POST(request: Request) {
   } catch (error) {
     const detail = error instanceof Error ? error.message : "Notification failed"
     console.error("Application notification failed:", detail)
-    return NextResponse.json({ error: detail }, { status: 500 })
+    return NextResponse.json({ error: "Notification failed" }, { status: 500 })
   }
 }

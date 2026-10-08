@@ -92,7 +92,12 @@ export async function downloadCloudinaryFile(secureUrl: string, fileName: string
     filename: fileName,
   })
 
-  const response = await fetch(`/api/download?${params.toString()}`)
+  const headers: Record<string, string> = {}
+  const { auth } = await import("./firebase")
+  const token = await auth.currentUser?.getIdToken()
+  if (token) headers.Authorization = `Bearer ${token}`
+
+  const response = await fetch(`/api/download?${params.toString()}`, { headers })
 
   if (!response.ok) {
     let message = "Could not download this file. Please try again."

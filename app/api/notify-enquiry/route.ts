@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { sendEnquiryNotification } from "@/lib/enquiry-email"
 import type { EnquiryInput } from "@/lib/enquiries"
+import { getClientIp, isRateLimited } from "@/lib/rate-limit"
 
 export const runtime = "nodejs"
 
@@ -9,6 +10,10 @@ function isValidEmail(value: string): boolean {
 }
 
 export async function POST(request: Request) {
+  if (isRateLimited(`enquiry:ip:${getClientIp(request)}`, 5, 60 * 60 * 1000)) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 })
+  }
+
   try {
     const body = (await request.json()) as Partial<EnquiryInput> & { website?: string }
 
@@ -29,6 +34,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Enquiry payload too long" }, { status: 400 })
     }
 
+    if (isRateLimited(`enquiry:email:${email.toLowerCase()}`, 2, 60 * 60 * 1000)) {
+      return NextResponse.json({ error: "Too many requests" }, { status: 429 })
+    }
+
     await sendEnquiryNotification({
       name,
       email,
@@ -42,6 +51,6 @@ export async function POST(request: Request) {
   } catch (error) {
     const detail = error instanceof Error ? error.message : "Notification failed"
     console.error("Enquiry notification failed:", detail)
-    return NextResponse.json({ error: detail }, { status: 500 })
+    return NextResponse.json({ error: "Notification failed" }, { status: 500 })
   }
 }
