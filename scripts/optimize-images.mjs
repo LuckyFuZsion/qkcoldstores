@@ -31,12 +31,6 @@ const jobs = [
     quality: 82,
   },
   {
-    input: "QK-New/Certifications/brcs-food-safety.png",
-    output: "QK-New/Certifications/brcs-food-safety.webp",
-    width: 320,
-    quality: 85,
-  },
-  {
     input: "QK-New/Certifications/brcs-storage.png",
     output: "QK-New/Certifications/brcs-storage.webp",
     width: 320,

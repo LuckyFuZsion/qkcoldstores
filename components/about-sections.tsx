@@ -71,7 +71,7 @@ export function AboutSections() {
                 </p>
               </div>
               <div className="grid sm:grid-cols-2 gap-6 mt-12">
-                {["BRCGS Accredited Storage and Distribution", "BRCGS Food Safety", "Organic Certified", "Red Tractor Approved"].map((item, i) => (
+                {["BRCGS Certified Storage and Distribution", "BRCGS Food Safety", "Organic Certified", "Red Tractor Approved"].map((item, i) => (
                   <motion.div
                     key={item}
                     initial={{ opacity: 0, y: 12 }}

@@ -20,7 +20,6 @@ export type AccreditationLogo = {
 const BRCS_LOGO_HEIGHT = "h-16 md:h-20"
 
 export const accreditationLogos: AccreditationLogo[] = [
-  { src: "/QK-New/Certifications/brcs-food-safety.webp", alt: "BRCGS Food Safety", size: "brcs" },
   { src: "/QK-New/Certifications/brcs-storage.webp", alt: "BRCGS Storage and Distribution", size: "brcs", scale: 0.9 },
   { src: "/QK-New/Certifications/brcs-start.webp", alt: "BRCGS START", size: "brcs" },
   { src: "/QK-New/Certifications/red-tractor.webp", alt: "Red Tractor" },

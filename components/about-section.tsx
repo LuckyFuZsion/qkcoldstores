@@ -76,7 +76,7 @@ export function AboutSection() {
 
             <div className="grid sm:grid-cols-2 gap-6 mb-12">
               {[
-                "BRCGS Accredited Storage and Distribution",
+                "BRCGS Certified Storage and Distribution",
                 "Organic Certified",
                 "Red Tractor Approved",
                 "BRCGS Food Safety"

@@ -71,7 +71,7 @@ export function HeroSection() {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto border-t border-white/10 pt-12 mt-12 mb-8"
           >
             {[
-              { icon: ShieldCheck, title: "BRC-Approved", desc: "Accredited" },
+              { icon: ShieldCheck, title: "BRCGS Certified", desc: "Accredited" },
               { icon: Warehouse, title: "50,000+ Pallets", desc: "Cold Storage Capacity" },
               { icon: Camera, title: "24/7 CCTV", desc: "On-Site Security" },
             ].map((badge, i) => (
