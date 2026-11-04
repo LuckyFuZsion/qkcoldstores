@@ -10,7 +10,7 @@ export const FAQ_ITEMS: FaqItem[] = [
       "We provide multi-temperature storage zones ranging from -25°C for blast-frozen products to +5°C for chilled goods. Each zone is independently monitored and controlled 24/7 to ensure optimal product preservation.",
   },
   {
-    question: "What accreditations and certifications does QK Cold Stores hold?",
+    question: "What certifications does QK Cold Stores hold?",
     answer:
       "QK Cold Stores is proudly certified to the BRCGS Storage and Distribution Standard, demonstrating our commitment to maintaining the highest standards of food safety, quality, and operational excellence across our temperature-controlled facilities. Our robust food safety management systems are built on a foundation of HACCP steps and processes, ensuring potential risks are identified, controlled, and continuously monitored throughout our operations. In addition, we are certified to the BRCGS Food Safety Standard and the START! Standard, reflecting our dedication to best practice, regulatory compliance, and continuous improvement. These internationally recognised certifications provide our customers with confidence that their products are handled, stored, and managed in accordance with the highest industry standards, safeguarding product integrity at every stage of the supply chain.",
   },
