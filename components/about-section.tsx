@@ -79,7 +79,6 @@ export function AboutSection() {
                 "BRCGS Certified Storage and Distribution",
                 "Organic Certified",
                 "Red Tractor Approved",
-                "BRCGS Food Safety"
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-electric-blue/10 flex items-center justify-center shrink-0">

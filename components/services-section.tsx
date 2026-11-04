@@ -9,7 +9,7 @@ const services = [
     icon: Warehouse,
     title: "Bulk Cold Storage",
     description: "Temperature-controlled warehousing with capacity for over 50,000 pallets. Multiple temperature zones from -25°C to +5°C.",
-    features: ["Multi-temperature zones", "BRC Accredited", "Real-time monitoring", "Flexible storage options"],
+    features: ["Multi-temperature zones", "BRCGS Certified", "Real-time monitoring", "Flexible storage options"],
   },
   {
     icon: Snowflake,

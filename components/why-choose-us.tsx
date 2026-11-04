@@ -30,7 +30,7 @@ export function WhyChooseUs() {
             </p>
             <ul className="space-y-4 mb-10">
               {[
-                "BRC and Soil Association certified facilities",
+                "BRCGS and Soil Association certified facilities",
                 "Members of the British Frozen Food Federation",
                 "Advanced stock management system",
                 "Strategically located adjacent to the A1",

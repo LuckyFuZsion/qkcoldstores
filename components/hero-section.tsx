@@ -34,7 +34,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-ice-blue/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed"
           >
-            East Midlands leading BRC-accredited facility providing 50,000+ pallet locations,
+            East Midlands leading BRCGS Certified facility providing 50,000+ pallet locations,
             rapid blast freezing, tempering, packing and storage and logistics for the food sector.
           </motion.p>
 
@@ -70,18 +70,22 @@ export function HeroSection() {
             transition={{ duration: 1, delay: 0.8 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto border-t border-white/10 pt-12 mt-12 mb-8"
           >
-            {[
-              { icon: ShieldCheck, title: "BRCGS Certified", desc: "Accredited" },
-              { icon: Warehouse, title: "50,000+ Pallets", desc: "Cold Storage Capacity" },
-              { icon: Camera, title: "24/7 CCTV", desc: "On-Site Security" },
-            ].map((badge, i) => (
+            {(
+              [
+                { icon: ShieldCheck, title: "BRCGS Certified" },
+                { icon: Warehouse, title: "50,000+ Pallets", desc: "Cold Storage Capacity" },
+                { icon: Camera, title: "24/7 CCTV", desc: "On-Site Security" },
+              ] as const
+            ).map((badge, i) => (
               <div key={i} className="flex items-center gap-4 text-left group">
                 <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center text-white group-hover:bg-electric-blue transition-all duration-300 shadow-sm">
                   <badge.icon className="w-7 h-7" />
                 </div>
                 <div>
                   <div className="font-black text-white text-lg uppercase tracking-tight">{badge.title}</div>
-                  <div className="text-ice-blue/60 text-sm font-medium">{badge.desc}</div>
+                  {"desc" in badge ? (
+                    <div className="text-ice-blue/60 text-sm font-medium">{badge.desc}</div>
+                  ) : null}
                 </div>
               </div>
             ))}
